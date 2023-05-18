@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { sampleSize } from "lodash";
 import { COUNTRIES } from "@/utils/countries";
 
-const SAMPLE_SIZE = 10;
+const SAMPLE_SIZE = 1;
 
 function Home() {
   const [countries, setCountries] = useState<string[]>([]);

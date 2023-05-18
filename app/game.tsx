@@ -9,6 +9,7 @@ const Game: FC<GameProps> = ({ countries }) => {
   const [currentCountryIndex, setCurrentCountryIndex] = useState(0);
   const [guessedCountry, setGuessedCountry] = useState<string | null>(null);
   const [guessResult, setGuessResult] = useState("");
+  const [gameOver, setGameOver] = useState(false);
   const [width, setWidth] = useState(window.innerWidth);
   const [height, setHeight] = useState(window.innerHeight);
 
@@ -41,10 +42,18 @@ const Game: FC<GameProps> = ({ countries }) => {
   useEffect(() => {
     if (currentCountryIndex >= countries.length) {
       setGuessResult("Game Over!");
+      setGameOver(true);
     } else {
       setGuessResult("");
     }
   }, [currentCountryIndex, countries]);
+
+  const handlePlayAgain = () => {
+    setCurrentCountryIndex(0);
+    setGuessedCountry(null);
+    setGuessResult("");
+    setGameOver(false);
+  };
 
   return (
     <div className="relative">
@@ -60,6 +69,14 @@ const Game: FC<GameProps> = ({ countries }) => {
         <p className="absolute top-16 left-1/2 transform -translate-x-1/2">
           {guessResult}
         </p>
+      )}
+      {gameOver && (
+        <button
+          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 px-4 py-2 bg-blue-500 text-white rounded"
+          onClick={handlePlayAgain}
+        >
+          Play Again
+        </button>
       )}
       <WorldMap
         onCountryClick={handleCountryClick}
