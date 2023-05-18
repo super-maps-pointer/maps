@@ -1,5 +1,11 @@
 import { FC, useCallback } from "react";
-import { ComposableMap, Geographies, Geography } from "react-simple-maps";
+import {
+  ComposableMap,
+  Geographies,
+  Geography,
+  ZoomableGroup,
+} from "react-simple-maps";
+import { COLORS } from "@/utils/colors";
 
 interface WorldMapProps {
   onCountryClick: (country: string) => void;
@@ -21,16 +27,6 @@ const WorldMap: FC<WorldMapProps> = ({
   width,
   height,
 }) => {
-  const getCountryStyle = useCallback(
-    (countryName: string) => {
-      const isCountrySelected = countryName === selectedCountry;
-      const fill = isCountrySelected ? "#f00" : "#088";
-
-      return { fill };
-    },
-    [selectedCountry]
-  );
-
   const handleGeographyClick = useCallback(
     (geography: GeographyProps) => {
       const countryName = geography.properties.name;
@@ -49,22 +45,37 @@ const WorldMap: FC<WorldMapProps> = ({
         width={width}
         height={height}
       >
-        <Geographies geography="/world-110m.json">
-          {({ geographies }) =>
-            geographies.map((geography) => (
-              <Geography
-                key={geography.rsmKey}
-                geography={geography}
-                stroke="#fff"
-                onClick={() => handleGeographyClick(geography)}
-                style={{
-                  default: getCountryStyle(geography.properties.name),
-                  hover: { fill: "#888" },
-                }}
-              />
-            ))
-          }
-        </Geographies>
+        <ZoomableGroup zoom={1} center={[0, 20]}>
+          <Geographies geography="/world-110m.json">
+            {({ geographies }) =>
+              geographies.map((geography) => (
+                <Geography
+                  key={geography.rsmKey}
+                  geography={geography}
+                  stroke="none"
+                  onClick={() => handleGeographyClick(geography)}
+                  style={{
+                    default: {
+                      fill: COLORS.default,
+                      stroke: "none",
+                      outline: "none",
+                    },
+                    hover: {
+                      fill: COLORS.hover,
+                      stroke: "none",
+                      outline: "none",
+                    },
+                    pressed: {
+                      fill: COLORS.selected,
+                      stroke: "none",
+                      outline: "none",
+                    },
+                  }}
+                />
+              ))
+            }
+          </Geographies>
+        </ZoomableGroup>
       </ComposableMap>
     </div>
   );
