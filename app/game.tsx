@@ -41,14 +41,26 @@ const Game: FC<GameProps> = ({ countries }) => {
   useEffect(() => {
     if (currentCountryIndex >= countries.length) {
       setGuessResult("Game Over!");
+    } else {
+      setGuessResult("");
     }
   }, [currentCountryIndex, countries]);
 
   return (
-    <div>
-      <h1>Guess the Country on the Map!</h1>
-      <p>{countries[currentCountryIndex]}</p>
-      {guessResult && <p>{guessResult}</p>}
+    <div className="relative">
+      <h1 className="text-center absolute top-4 left-1/2 transform -translate-x-1/2">
+        Guess the Country on the Map!
+      </h1>
+      {currentCountryIndex < countries.length && (
+        <h2 className="absolute top-12 left-1/2 transform -translate-x-1/2">
+          {countries[currentCountryIndex]}
+        </h2>
+      )}
+      {guessResult && (
+        <p className="absolute top-16 left-1/2 transform -translate-x-1/2">
+          {guessResult}
+        </p>
+      )}
       <WorldMap
         onCountryClick={handleCountryClick}
         selectedCountry={guessedCountry}
