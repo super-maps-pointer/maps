@@ -1,6 +1,6 @@
 "use client";
+import Game from "@/app/game";
 import Head from "next/head";
-import Globe from "@/app/globe";
 
 function Home() {
   return (
@@ -8,7 +8,7 @@ function Home() {
       <Head>
         <title>Interactive World Map</title>
       </Head>
-      <Globe />
+      <Game countries={["France", "Bangladesh", "Turkey"]} />
     </>
   );
 }
