@@ -1,15 +1,22 @@
 import WorldMap from "@/app/world-map";
+import { COUNTRIES } from "@/utils/countries";
+import { sampleSize } from "lodash";
 import { FC, useCallback, useState, useEffect } from "react";
 
-interface GameProps {
-  countries: string[];
-}
+const SAMPLE_SIZE = 10;
 
-const Game: FC<GameProps> = ({ countries }) => {
+const getCountries = () => {
+  const randomSample = sampleSize(COUNTRIES, SAMPLE_SIZE);
+  return randomSample;
+};
+interface GameProps {}
+
+const Game: FC<GameProps> = () => {
   const [currentCountryIndex, setCurrentCountryIndex] = useState(0);
   const [guessedCountry, setGuessedCountry] = useState<string | null>(null);
   const [guessResult, setGuessResult] = useState("");
   const [gameOver, setGameOver] = useState(false);
+  const [countries, setCountries] = useState<string[]>(getCountries());
   const [width, setWidth] = useState(window.innerWidth);
   const [height, setHeight] = useState(window.innerHeight);
 
@@ -53,6 +60,7 @@ const Game: FC<GameProps> = ({ countries }) => {
     setGuessedCountry(null);
     setGuessResult("");
     setGameOver(false);
+    setCountries(getCountries());
   };
 
   return (
