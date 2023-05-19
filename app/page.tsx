@@ -21,11 +21,7 @@ function Home() {
 
   return (
     <>
-      <ToastContainer
-        position="bottom-right"
-        autoClose={2000}
-        hideProgressBar
-      />
+      <ToastContainer position="bottom-left" autoClose={2000} hideProgressBar />
       <Head>
         <title>Interactive World Map</title>
         <link
