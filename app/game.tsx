@@ -1,25 +1,38 @@
+import { Level } from "@/app/page";
 import UpperBar from "@/app/upper-bar";
 import WorldMap from "@/app/world-map";
-import { COUNTRIES } from "@/utils/countries";
+import { COUNTRIES, EASIEST_COUNTRIES } from "@/utils/countries";
 import { sampleSize } from "lodash";
 import { FC, useCallback, useState, useEffect } from "react";
 import { toast } from "react-toastify";
 
-export const SAMPLE_SIZE = 5;
+export const SAMPLE_SIZE = 20;
 
-const getCountries = () => {
-  const randomSample = sampleSize(COUNTRIES, SAMPLE_SIZE);
+const getCountries = (level: Level) => {
+  let countryPool: string[] = [];
+
+  switch (level) {
+    case Level.One:
+      countryPool = EASIEST_COUNTRIES;
+      break;
+    default:
+      countryPool = COUNTRIES;
+      break;
+  }
+
+  const randomSample = sampleSize(countryPool, SAMPLE_SIZE);
   return randomSample;
 };
+interface GameProps {
+  level: Level;
+}
 
-interface GameProps {}
-
-const Game: FC<GameProps> = () => {
+const Game: FC<GameProps> = ({ level }) => {
   const [currentCountryIndex, setCurrentCountryIndex] = useState(0);
   const [guessedCountry, setGuessedCountry] = useState<string | null>(null);
   const [guessResult, setGuessResult] = useState("");
   const [gameOver, setGameOver] = useState(false);
-  const [countries, setCountries] = useState<string[]>(getCountries());
+  const [countries, setCountries] = useState<string[]>(getCountries(level));
   const [score, setScore] = useState(0);
   const [guessedCountries, setGuessedCountries] = useState<string[]>([]);
   const [width, setWidth] = useState(window.innerWidth);
@@ -69,7 +82,7 @@ const Game: FC<GameProps> = () => {
     setGameOver(false);
     setScore(0);
     setGuessedCountries([]);
-    setCountries(getCountries());
+    setCountries(getCountries(level));
   };
 
   return (
