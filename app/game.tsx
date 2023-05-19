@@ -1,29 +1,12 @@
 import { Level } from "@/app/page";
 import UpperBar from "@/app/upper-bar";
 import WorldMap from "@/app/world-map";
-import { COUNTRIES, EASIEST_COUNTRIES } from "@/utils/countries";
-import { sampleSize } from "lodash";
+import useDeviceSize from "@/hooks/useDeviceSize";
+import { getCountries } from "@/utils/countries";
 import { FC, useCallback, useState, useEffect } from "react";
 import { toast } from "react-toastify";
 
 export const SAMPLE_SIZE = 20;
-
-const getCountries = (level: Level) => {
-  let countryPool: string[] = [];
-
-  switch (level) {
-    case Level.One:
-      countryPool = EASIEST_COUNTRIES;
-      break;
-    default:
-      countryPool = COUNTRIES;
-      break;
-  }
-
-  const randomSample = sampleSize(countryPool, SAMPLE_SIZE);
-  return randomSample;
-};
-
 interface GameProps {
   level: Level;
 }

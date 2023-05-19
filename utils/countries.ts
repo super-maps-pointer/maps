@@ -1,4 +1,8 @@
-export const COUNTRIES = [
+import { SAMPLE_SIZE } from "@/app/game";
+import { Level } from "@/app/page";
+import { sampleSize } from "lodash";
+
+const COUNTRIES = [
   "Fiji",
   "Tanzania",
   "W. Sahara",
@@ -178,7 +182,7 @@ export const COUNTRIES = [
   "S. Sudan",
 ];
 
-export const EASIEST_COUNTRIES = [
+const EASIEST_COUNTRIES = [
   "United States",
   "Canada",
   "United Kingdom",
@@ -220,3 +224,19 @@ export const EASIEST_COUNTRIES = [
   "Poland",
   "Australia",
 ];
+
+export const getCountries = (level: Level) => {
+  let countryPool: string[] = [];
+
+  switch (level) {
+    case Level.One:
+      countryPool = EASIEST_COUNTRIES;
+      break;
+    default:
+      countryPool = COUNTRIES;
+      break;
+  }
+
+  const randomSample = sampleSize(countryPool, SAMPLE_SIZE);
+  return randomSample;
+};
