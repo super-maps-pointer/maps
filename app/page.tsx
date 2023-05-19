@@ -7,7 +7,11 @@ import "react-toastify/dist/ReactToastify.css";
 function Home() {
   return (
     <>
-      <ToastContainer position="top-right" autoClose={2000} hideProgressBar />
+      <ToastContainer
+        position="bottom-right"
+        autoClose={2000}
+        hideProgressBar
+      />
       <Head>
         <title>Interactive World Map</title>
       </Head>
