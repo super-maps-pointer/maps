@@ -56,18 +56,21 @@ const WorldMap: FC<WorldMapProps> = ({
                   onClick={() => handleGeographyClick(geography)}
                   style={{
                     default: {
-                      fill: COLORS.default,
-                      stroke: "none",
+                      fill: COLORS.background,
+                      stroke: COLORS.textSecondary,
+                      strokeWidth: 0.5,
                       outline: "none",
                     },
                     hover: {
-                      fill: COLORS.hover,
-                      stroke: "none",
+                      fill: COLORS.primaryHover,
+                      stroke: COLORS.textSecondary,
+                      strokeWidth: 0.5,
                       outline: "none",
                     },
                     pressed: {
-                      fill: COLORS.selected,
-                      stroke: "none",
+                      fill: COLORS.primary,
+                      stroke: COLORS.textSecondary,
+                      strokeWidth: 0.5,
                       outline: "none",
                     },
                   }}
