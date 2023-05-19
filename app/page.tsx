@@ -1,26 +1,21 @@
 "use client";
 import Game from "@/app/game";
 import Head from "next/head";
-import { useEffect, useState } from "react";
-import { sampleSize } from "lodash";
-import { COUNTRIES } from "@/utils/countries";
-
-const SAMPLE_SIZE = 10;
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Home() {
-  const [countries, setCountries] = useState<string[]>([]);
-
-  useEffect(() => {
-    const randomSample = sampleSize(COUNTRIES, SAMPLE_SIZE);
-    setCountries(randomSample);
-  }, []);
-
   return (
     <>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={2000}
+        hideProgressBar
+      />
       <Head>
         <title>Interactive World Map</title>
       </Head>
-      <Game countries={countries} />
+      <Game />
     </>
   );
 }
