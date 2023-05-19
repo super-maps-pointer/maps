@@ -1,3 +1,4 @@
+import Gauge from "@/app/gauge";
 import { Level } from "@/app/page";
 import UpperBar from "@/app/upper-bar";
 import WorldMap from "@/app/world-map";
@@ -6,38 +7,7 @@ import { getCountries } from "@/utils/countries";
 import { FC, useCallback, useState, useEffect } from "react";
 import { toast } from "react-toastify";
 
-export const SAMPLE_SIZE = 5;
-
-interface GaugeProps {
-  score: number;
-  winCondition: number;
-}
-
-const Gauge: FC<GaugeProps> = ({ score, winCondition }) => {
-  const gaugeScore = (score / winCondition) * 100;
-
-  return (
-    <div className="absolute top-1/2 right-0 transform -translate-y-1/2 text-center">
-      <div className="flex flex-col items-center">
-        <div
-          className="h-64 w-4 bg-gray-300 mb-4"
-          style={{ marginBottom: "4px" }}
-        >
-          <div
-            className="h-full bg-blue-500"
-            style={{
-              height: `${gaugeScore}%`,
-              transformOrigin: "bottom",
-            }}
-          ></div>
-        </div>
-        <p>
-          {score} / {winCondition}
-        </p>
-      </div>
-    </div>
-  );
-};
+export const SAMPLE_SIZE = 20;
 
 interface GameProps {
   level: Level;
@@ -84,7 +54,8 @@ const Game: FC<GameProps> = ({ level }) => {
     setCountries(getCountries(level));
   };
 
-  const isGameWon = guessedCountries.length >= winCondition;
+  const score = guessedCountries.length;
+  const isGameWon = score >= winCondition;
   const isGameLost = attempts >= SAMPLE_SIZE;
   const isGameOver = isGameWon || isGameLost;
 
@@ -94,7 +65,7 @@ const Game: FC<GameProps> = ({ level }) => {
         tries={attempts}
         countryToGuess={countries[currentCountryIndex]}
       />
-      <Gauge score={guessedCountries.length} winCondition={winCondition} />
+      <Gauge score={score} winCondition={winCondition} />
       {isGameOver && (
         <div className="fixed inset-0 flex items-center justify-center">
           {isGameWon ? (
@@ -112,7 +83,7 @@ const Game: FC<GameProps> = ({ level }) => {
       )}
       <WorldMap
         onCountryClick={handleCountryClick}
-        selectedCountry={guessedCountries[guessedCountries.length - 1]}
+        selectedCountry={guessedCountries[score - 1]}
         guessedCountries={guessedCountries}
         width={width}
         height={height}
