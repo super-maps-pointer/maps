@@ -1,10 +1,18 @@
 "use client";
+import { useCallback, useState } from "react";
 import Game from "@/app/game";
 import Head from "next/head";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import IntroductionScreen from "@/app/introduction-screen";
 
 function Home() {
+  const [showIntroduction, setShowIntroduction] = useState(true);
+
+  const handlePlay = useCallback(() => {
+    setShowIntroduction(false);
+  }, []);
+
   return (
     <>
       <ToastContainer
@@ -33,7 +41,7 @@ function Home() {
         />
         <link rel="manifest" href="/site.webmanifest" />
       </Head>
-      <Game />
+      {showIntroduction ? <IntroductionScreen onPlay={handlePlay} /> : <Game />}
     </>
   );
 }
