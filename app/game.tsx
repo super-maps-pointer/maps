@@ -2,7 +2,7 @@ import WorldMap from "@/app/world-map";
 import { COUNTRIES } from "@/utils/countries";
 import { sampleSize } from "lodash";
 import { FC, useCallback, useState, useEffect } from "react";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 
 const SAMPLE_SIZE = 5;
 
@@ -20,6 +20,7 @@ const Game: FC<GameProps> = () => {
   const [gameOver, setGameOver] = useState(false);
   const [countries, setCountries] = useState<string[]>(getCountries());
   const [score, setScore] = useState(0);
+  const [guessedCountries, setGuessedCountries] = useState<string[]>([]);
   const [width, setWidth] = useState(window.innerWidth);
   const [height, setHeight] = useState(window.innerHeight);
 
@@ -41,6 +42,7 @@ const Game: FC<GameProps> = () => {
       if (country === countries[currentCountryIndex]) {
         toast.success("Good!");
         setScore(score + 1);
+        setGuessedCountries([...guessedCountries, country]);
       } else {
         toast.error("Wrong!");
       }
@@ -48,7 +50,7 @@ const Game: FC<GameProps> = () => {
       setGuessedCountry(country);
       setCurrentCountryIndex(currentCountryIndex + 1);
     },
-    [countries, currentCountryIndex, score]
+    [countries, currentCountryIndex, guessedCountries, score]
   );
 
   useEffect(() => {
@@ -65,6 +67,7 @@ const Game: FC<GameProps> = () => {
     setGuessResult("");
     setGameOver(false);
     setScore(0);
+    setGuessedCountries([]);
     setCountries(getCountries());
   };
 
@@ -103,6 +106,7 @@ const Game: FC<GameProps> = () => {
       <WorldMap
         onCountryClick={handleCountryClick}
         selectedCountry={guessedCountry}
+        guessedCountries={guessedCountries}
         width={width}
         height={height}
       />
