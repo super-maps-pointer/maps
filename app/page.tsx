@@ -6,6 +6,12 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import IntroductionScreen from "@/app/introduction-screen";
 
+export enum Level {
+  One = 1,
+  Two,
+  Three,
+}
+
 function Home() {
   const [showIntroduction, setShowIntroduction] = useState(true);
 
@@ -15,11 +21,7 @@ function Home() {
 
   return (
     <>
-      <ToastContainer
-        position="bottom-right"
-        autoClose={2000}
-        hideProgressBar
-      />
+      <ToastContainer position="bottom-left" autoClose={2000} hideProgressBar />
       <Head>
         <title>Interactive World Map</title>
         <link
@@ -41,7 +43,11 @@ function Home() {
         />
         <link rel="manifest" href="/site.webmanifest" />
       </Head>
-      {showIntroduction ? <IntroductionScreen onPlay={handlePlay} /> : <Game />}
+      {showIntroduction ? (
+        <IntroductionScreen onPlay={handlePlay} />
+      ) : (
+        <Game level={Level.One} />
+      )}
     </>
   );
 }
