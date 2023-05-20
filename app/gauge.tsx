@@ -9,7 +9,7 @@ const Gauge: FC<GaugeProps> = ({ score, winCondition }) => {
   const gaugeScore = (score / winCondition) * 100;
 
   return (
-    <div className="absolute top-1/2 right-0 transform -translate-y-1/2 text-center">
+    <div className="absolute top-1/2 right-5 transform -translate-y-1/2 text-center">
       <div className="flex flex-col items-center">
         <div
           className="h-64 w-4 bg-gray-300 mb-4"
@@ -19,7 +19,7 @@ const Gauge: FC<GaugeProps> = ({ score, winCondition }) => {
             className="h-full bg-blue-500"
             style={{
               height: `${gaugeScore}%`,
-              transformOrigin: "bottom",
+              transformOrigin: "top",
             }}
           ></div>
         </div>
