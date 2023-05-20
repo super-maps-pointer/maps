@@ -1,9 +1,8 @@
 import Gauge from "@/app/gauge";
-import { Level } from "@/app/page";
 import UpperBar from "@/app/upper-bar";
 import WorldMap from "@/app/world-map";
 import useDeviceSize from "@/hooks/useDeviceSize";
-import { getCountries } from "@/utils/countries";
+import { Level, getCountries } from "@/utils/countries";
 import { FC, useCallback, useState, useEffect } from "react";
 import { toast } from "react-toastify";
 

@@ -5,12 +5,7 @@ import Head from "next/head";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import IntroductionScreen from "@/app/introduction-screen";
-
-export enum Level {
-  One = 1,
-  Two,
-  Three,
-}
+import { Level } from "@/utils/countries";
 
 function Home() {
   const [showIntroduction, setShowIntroduction] = useState(true);
