@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.1.0](https://github.com/super-maps-pointer/maps/compare/v1.0.0...v1.1.0) (2023-05-20)
+
+
+### Features
+
+* first level ([#6](https://github.com/super-maps-pointer/maps/issues/6)) ([fea7923](https://github.com/super-maps-pointer/maps/commit/fea7923016876af8ec4c75ef5fccd77e464c85e7))
+
+
+### Bug Fixes
+
+* build now works ([50c7628](https://github.com/super-maps-pointer/maps/commit/50c7628ca6242c8362c30223c1a877fd472da726))
+
 ## 1.0.0 (2023-05-19)
 
 
