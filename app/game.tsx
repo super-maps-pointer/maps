@@ -1,8 +1,10 @@
+import EndGameScreen from "@/app/end-game-screen";
 import Gauge from "@/app/gauge";
 import UpperBar from "@/app/upper-bar";
 import WorldMap from "@/app/world-map";
 import useDeviceSize from "@/hooks/useDeviceSize";
-import { Level, getCountries } from "@/utils/countries";
+import { getCountries } from "@/utils/countries";
+import { Level, getNextLevel } from "@/utils/rules";
 import { FC, useCallback, useState, useEffect } from "react";
 import { toast } from "react-toastify";
 
@@ -18,6 +20,7 @@ const Game: FC<GameProps> = ({ level }) => {
   const [attempts, setAttempts] = useState(0);
   const [guessedCountries, setGuessedCountries] = useState<string[]>([]);
   const [width, height] = useDeviceSize();
+  const [currentLevel, setCurrentLevel] = useState(level);
 
   const handleCountryClick = useCallback(
     (country: string) => {
@@ -50,7 +53,16 @@ const Game: FC<GameProps> = ({ level }) => {
     setCurrentCountryIndex(0);
     setAttempts(0);
     setGuessedCountries([]);
-    setCountries(getCountries(level));
+    setCountries(getCountries(currentLevel));
+  };
+
+  const handleNextLevel = () => {
+    const nextLevel = getNextLevel(currentLevel);
+    setCurrentLevel(nextLevel);
+    setCurrentCountryIndex(0);
+    setAttempts(0);
+    setGuessedCountries([]);
+    setCountries(getCountries(nextLevel));
   };
 
   const score = guessedCountries.length;
@@ -63,21 +75,16 @@ const Game: FC<GameProps> = ({ level }) => {
       <UpperBar
         tries={attempts}
         countryToGuess={countries[currentCountryIndex]}
+        level={currentLevel}
       />
       <Gauge score={score} winCondition={winCondition} />
       {isGameOver && (
         <div className="fixed inset-0 flex items-center justify-center">
-          {isGameWon ? (
-            <p>Congratulations! You won!</p>
-          ) : (
-            <p>Game over! You failed.</p>
-          )}
-          <button
-            className="px-4 py-2 bg-blue-500 text-white rounded mt-4"
-            onClick={handlePlayAgain}
-          >
-            Play Again
-          </button>
+          <EndGameScreen
+            isGameWon={isGameWon}
+            handleNextLevel={handleNextLevel}
+            handlePlayAgain={handlePlayAgain}
+          />
         </div>
       )}
       <WorldMap

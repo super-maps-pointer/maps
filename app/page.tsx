@@ -5,7 +5,7 @@ import Head from "next/head";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import IntroductionScreen from "@/app/introduction-screen";
-import { Level } from "@/utils/countries";
+import { Level } from "@/utils/rules";
 
 function Home() {
   const [showIntroduction, setShowIntroduction] = useState(true);

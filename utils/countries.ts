@@ -1,11 +1,6 @@
 import { SAMPLE_SIZE } from "@/app/game";
+import { Level } from "@/utils/rules";
 import { sampleSize } from "lodash";
-
-export enum Level {
-  One = 1,
-  Two,
-  Three,
-}
 
 const COUNTRIES = [
   "Fiji",
