@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/super-maps-pointer/maps/compare/v1.1.0...v1.2.0) (2023-05-26)
+
+
+### Features
+
+* three levels ([#8](https://github.com/super-maps-pointer/maps/issues/8)) ([84b5e65](https://github.com/super-maps-pointer/maps/commit/84b5e65e57dba696986da899fe181009b9cb31b0))
+
 ## [1.1.0](https://github.com/super-maps-pointer/maps/compare/v1.0.0...v1.1.0) (2023-05-20)
 
 
