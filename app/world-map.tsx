@@ -7,6 +7,7 @@ import {
 } from "react-simple-maps";
 import { COLORS } from "@/utils/colors";
 import { Country } from "@/utils/countries";
+import { GeoProjection } from "@/utils/geo-projections";
 
 interface WorldMapProps {
   onCountryClick: (code: string, name: string) => void;
@@ -14,6 +15,7 @@ interface WorldMapProps {
   guessedCountries: Country[];
   width: number;
   height: number;
+  geoProjection: GeoProjection;
 }
 
 interface GeographyProps {
@@ -30,6 +32,7 @@ const WorldMap: FC<WorldMapProps> = ({
   guessedCountries,
   width,
   height,
+  geoProjection = "geoMercator",
 }) => {
   const handleGeographyClick = useCallback(
     (geography: GeographyProps) => {
@@ -45,7 +48,7 @@ const WorldMap: FC<WorldMapProps> = ({
   return (
     <div style={{ width: "100%", height: "100%" }}>
       <ComposableMap
-        projection="geoMercator"
+        projection={geoProjection}
         projectionConfig={{
           scale: width / 5,
         }}

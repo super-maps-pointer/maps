@@ -4,6 +4,7 @@ import UpperBar from "@/app/upper-bar";
 import WorldMap from "@/app/world-map";
 import useDeviceSize from "@/hooks/useDeviceSize";
 import { Country, getCountries } from "@/utils/countries";
+import { GeoProjection, getRandomGeoProjection } from "@/utils/geo-projections";
 import { Level, getNextLevel } from "@/utils/rules";
 import { FC, useCallback, useState, useEffect } from "react";
 import { toast } from "react-toastify";
@@ -21,6 +22,18 @@ const Game: FC<GameProps> = ({ level }) => {
   const [guessedCountries, setGuessedCountries] = useState<Country[]>([]);
   const [width, height] = useDeviceSize();
   const [currentLevel, setCurrentLevel] = useState(level);
+  const [geoProjection, setGeoProjection] = useState<GeoProjection>(
+    getRandomGeoProjection()
+  );
+
+  const generateNewGeoProjection = useCallback(() => {
+    let newGeoProjection: GeoProjection;
+
+    do {
+      newGeoProjection = getRandomGeoProjection();
+    } while (newGeoProjection === geoProjection);
+    setGeoProjection(newGeoProjection);
+  }, [geoProjection]);
 
   const handleCountryClick = useCallback(
     (name: string, code: string) => {
@@ -30,6 +43,7 @@ const Game: FC<GameProps> = ({ level }) => {
         const country = countries[currentCountryIndex];
 
         toast.success("Good!");
+        generateNewGeoProjection();
         setGuessedCountries((prevGuessedCountries) => [
           ...prevGuessedCountries,
           country,
@@ -40,7 +54,7 @@ const Game: FC<GameProps> = ({ level }) => {
 
       setCurrentCountryIndex((prevIndex) => prevIndex + 1);
     },
-    [countries, currentCountryIndex]
+    [countries, currentCountryIndex, generateNewGeoProjection]
   );
 
   useEffect(() => {
@@ -68,7 +82,8 @@ const Game: FC<GameProps> = ({ level }) => {
   };
 
   const score = guessedCountries.length;
-  const countryToGuess = countries[currentCountryIndex];
+  const countryToGuess =
+    countries.length > 0 ? countries[currentCountryIndex] : null;
   const isGameWon = score >= winCondition;
   const isGameLost = attempts >= SAMPLE_SIZE;
   const isGameOver = isGameWon || isGameLost;
@@ -77,7 +92,7 @@ const Game: FC<GameProps> = ({ level }) => {
     <div className="relative">
       <UpperBar
         tries={attempts}
-        countryToGuess={countryToGuess}
+        countryToGuess={countryToGuess?.name ?? ""}
         level={currentLevel}
       />
       <Gauge score={score} winCondition={winCondition} />
@@ -94,6 +109,7 @@ const Game: FC<GameProps> = ({ level }) => {
         onCountryClick={handleCountryClick}
         selectedCountry={countryToGuess}
         guessedCountries={guessedCountries}
+        geoProjection={geoProjection}
         width={width}
         height={height}
       />

@@ -13,15 +13,15 @@ const EndGameScreen: FC<EndGameScreenProps> = ({
 }) => {
   if (isGameWon) {
     return (
-      <>
-        <p>Congratulations! You won!</p>
+      <div className="flex flex-col items-center justify-center">
+        <p className="text-center">Congratulations! You won!</p>
         <button
           className="px-4 py-2 bg-blue-500 text-white rounded mt-4"
           onClick={handleNextLevel}
         >
           Next Level
         </button>
-      </>
+      </div>
     );
   } else {
     return (
