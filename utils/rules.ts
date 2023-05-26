@@ -1,16 +1,16 @@
 export enum Level {
-  One = 1,
-  Two,
-  Three,
+  Easy = "easy",
+  Normal = "normal",
+  Hard = "hard",
 }
 
 export const displayLevel = (level: Level) => {
   switch (level) {
-    case Level.One:
+    case "easy":
       return "Level 1";
-    case Level.Two:
+    case "normal":
       return "Level 2 🏴‍☠️";
-    case Level.Three:
+    case "hard":
       return "Level 3 🤯";
   }
 };

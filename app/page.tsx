@@ -41,7 +41,7 @@ function Home() {
       {showIntroduction ? (
         <IntroductionScreen onPlay={handlePlay} />
       ) : (
-        <Game level={Level.One} />
+        <Game level={Level.Easy} />
       )}
     </>
   );

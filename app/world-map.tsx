@@ -6,11 +6,12 @@ import {
   ZoomableGroup,
 } from "react-simple-maps";
 import { COLORS } from "@/utils/colors";
+import { Country } from "@/utils/countries";
 
 interface WorldMapProps {
-  onCountryClick: (country: string) => void;
-  selectedCountry: string | null;
-  guessedCountries: string[];
+  onCountryClick: (code: string, name: string) => void;
+  selectedCountry: Country | null;
+  guessedCountries: Country[];
   width: number;
   height: number;
 }
@@ -19,6 +20,7 @@ interface GeographyProps {
   rsmKey: string;
   properties: {
     name: string;
+    adm0_a3: string;
   };
 }
 
@@ -31,13 +33,14 @@ const WorldMap: FC<WorldMapProps> = ({
 }) => {
   const handleGeographyClick = useCallback(
     (geography: GeographyProps) => {
-      const countryName = geography.properties.name;
-      onCountryClick(countryName);
+      const { name, adm0_a3 } = geography.properties;
+      onCountryClick(name, adm0_a3);
     },
     [onCountryClick]
   );
 
-  const isGuessed = (country: string) => guessedCountries.includes(country);
+  const isGuessed = (countryCode: string) =>
+    !!guessedCountries.find((country) => country.code === countryCode);
 
   return (
     <div style={{ width: "100%", height: "100%" }}>
@@ -50,11 +53,11 @@ const WorldMap: FC<WorldMapProps> = ({
         height={height}
       >
         <ZoomableGroup zoom={1} center={[0, 20]}>
-          <Geographies geography="/world-110m.json">
-            {({ geographies }) =>
-              geographies.map((geography) => {
-                const countryName = geography.properties.name;
-                const isCountryGuessed = isGuessed(countryName);
+          <Geographies geography="/middle-res-world-map.geo.json">
+            {({ geographies }) => {
+              return geographies.map((geography) => {
+                const countryCode = geography.properties.adm0_a3;
+                const isCountryGuessed = isGuessed(countryCode);
 
                 return (
                   <Geography
@@ -88,8 +91,8 @@ const WorldMap: FC<WorldMapProps> = ({
                     }}
                   />
                 );
-              })
-            }
+              });
+            }}
           </Geographies>
         </ZoomableGroup>
       </ComposableMap>
