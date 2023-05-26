@@ -8,6 +8,7 @@ import {
 import { COLORS } from "@/utils/colors";
 import { Country } from "@/utils/countries";
 import { GeoProjection } from "@/utils/geo-projections";
+import { Sphere } from "react-simple-maps";
 
 interface WorldMapProps {
   onCountryClick: (code: string, name: string) => void;
@@ -56,6 +57,7 @@ const WorldMap: FC<WorldMapProps> = ({
         height={height}
       >
         <ZoomableGroup zoom={1} center={[0, 20]}>
+          <Sphere id={"sphere"} fill="#FFF" stroke="#000" strokeWidth={1} />
           <Geographies geography="/middle-res-world-map.geo.json">
             {({ geographies }) => {
               return geographies.map((geography) => {

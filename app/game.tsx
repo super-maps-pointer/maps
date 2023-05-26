@@ -22,9 +22,8 @@ const Game: FC<GameProps> = ({ level }) => {
   const [guessedCountries, setGuessedCountries] = useState<Country[]>([]);
   const [width, height] = useDeviceSize();
   const [currentLevel, setCurrentLevel] = useState(level);
-  const [geoProjection, setGeoProjection] = useState<GeoProjection>(
-    getRandomGeoProjection()
-  );
+  const [geoProjection, setGeoProjection] =
+    useState<GeoProjection>("geoMercator");
 
   const generateNewGeoProjection = useCallback(() => {
     let newGeoProjection: GeoProjection;
