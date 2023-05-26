@@ -25,15 +25,15 @@ const EndGameScreen: FC<EndGameScreenProps> = ({
     );
   } else {
     return (
-      <>
-        <p>Game over! You failed.</p>
+      <div className="flex flex-col items-center justify-center">
+        <p className="text-center">Game over! You failed.</p>
         <button
           className="px-4 py-2 bg-blue-500 text-white rounded mt-4"
           onClick={handlePlayAgain}
         >
           Play Again
         </button>
-      </>
+      </div>
     );
   }
 };
