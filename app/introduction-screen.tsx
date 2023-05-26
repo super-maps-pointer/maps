@@ -10,7 +10,13 @@ const IntroductionScreen: FC<IntroductionScreenProps> = ({ onPlay }) => {
   return (
     <div className="flex flex-col items-center justify-center h-screen">
       <div className="mb-4">
-        <Image src={IMAGES.logo} alt="Image" width={400} height={400} />
+        <Image
+          src={IMAGES.logo}
+          alt="Logo Super Maps Pointer"
+          width={400}
+          height={400}
+          priority
+        />
       </div>
       <h1 className="text-4xl font-bold mb-4">
         Welcome to Super Maps Pointer!
