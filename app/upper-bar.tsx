@@ -6,10 +6,15 @@ import { FC } from "react";
 
 interface UpperBarProps {
   tries: number;
-  countryToGuess: string;
+  countryToGuess: Country | null;
   level: Level;
   geoProjection: GeoProjection;
 }
+
+const renderCountryName = (country: Country) => {
+  const { name } = country;
+  return <h2 className="text-2xl font-bold">{name.toUpperCase()}</h2>;
+};
 
 const UpperBar: FC<UpperBarProps> = ({
   tries,
@@ -28,7 +33,7 @@ const UpperBar: FC<UpperBarProps> = ({
         </div>
         <div className="flex flex-col items-center">
           <h1 className="text-2xl font-bold">Guess the Country on the Map!</h1>
-          <h2 className="text-2xl font-bold">{countryToGuess.toUpperCase()}</h2>
+          {countryToGuess !== null && renderCountryName(countryToGuess)}
         </div>
         <div>{displayLevel(level)}</div>
       </div>

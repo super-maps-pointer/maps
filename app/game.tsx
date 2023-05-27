@@ -110,7 +110,7 @@ const Game: FC<GameProps> = ({ level }) => {
     <div className="relative">
       <UpperBar
         tries={attempts}
-        countryToGuess={countryToGuess?.name ?? ""}
+        countryToGuess={countryToGuess}
         geoProjection={geoProjection}
         level={currentLevel}
       />
