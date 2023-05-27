@@ -4,6 +4,7 @@ import UpperBar from "@/app/upper-bar";
 import WorldMap from "@/app/world-map";
 import useDeviceSize from "@/hooks/useDeviceSize";
 import { Country, getCountries } from "@/utils/countries";
+import { GeoAspect, getRandomGeoAspect } from "@/utils/geo-aspects";
 import { GeoProjection, getRandomGeoProjection } from "@/utils/geo-projections";
 import { Level, getNextLevel } from "@/utils/rules";
 import { FC, useCallback, useState, useEffect } from "react";
@@ -24,6 +25,9 @@ const Game: FC<GameProps> = ({ level }) => {
   const [currentLevel, setCurrentLevel] = useState(level);
   const [geoProjection, setGeoProjection] =
     useState<GeoProjection>("geoMercator");
+  const [geoAspect, setGeoAspect] = useState<GeoAspect>(
+    "European - Africa centric"
+  );
 
   const generateNewGeoProjection = useCallback(() => {
     let newGeoProjection: GeoProjection;
@@ -34,6 +38,15 @@ const Game: FC<GameProps> = ({ level }) => {
     setGeoProjection(newGeoProjection);
   }, [geoProjection]);
 
+  const generateNewGeoAspects = useCallback(() => {
+    let newGeoAspects: GeoAspect;
+
+    do {
+      newGeoAspects = getRandomGeoAspect();
+    } while (newGeoAspects === geoAspect);
+    setGeoAspect(newGeoAspects);
+  }, [geoAspect]);
+
   const handleCountryClick = useCallback(
     (name: string, code: string) => {
       setAttempts((prevAttempts) => prevAttempts + 1);
@@ -42,7 +55,6 @@ const Game: FC<GameProps> = ({ level }) => {
         const country = countries[currentCountryIndex];
 
         toast.success("Good!");
-        generateNewGeoProjection();
         setGuessedCountries((prevGuessedCountries) => [
           ...prevGuessedCountries,
           country,
@@ -51,9 +63,16 @@ const Game: FC<GameProps> = ({ level }) => {
         toast.error(`Wrong! You clicked ${name}`);
       }
 
+      generateNewGeoProjection();
+      generateNewGeoAspects();
       setCurrentCountryIndex((prevIndex) => prevIndex + 1);
     },
-    [countries, currentCountryIndex, generateNewGeoProjection]
+    [
+      countries,
+      currentCountryIndex,
+      generateNewGeoAspects,
+      generateNewGeoProjection,
+    ]
   );
 
   useEffect(() => {
@@ -92,6 +111,7 @@ const Game: FC<GameProps> = ({ level }) => {
       <UpperBar
         tries={attempts}
         countryToGuess={countryToGuess?.name ?? ""}
+        geoProjection={geoProjection}
         level={currentLevel}
       />
       <Gauge score={score} winCondition={winCondition} />
@@ -108,9 +128,10 @@ const Game: FC<GameProps> = ({ level }) => {
         onCountryClick={handleCountryClick}
         selectedCountry={countryToGuess}
         guessedCountries={guessedCountries}
-        geoProjection={geoProjection}
         width={width}
         height={height}
+        geoProjection={geoProjection}
+        geoAspect={geoAspect}
       />
     </div>
   );

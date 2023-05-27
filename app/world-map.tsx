@@ -7,6 +7,7 @@ import {
 } from "react-simple-maps";
 import { COLORS } from "@/utils/colors";
 import { Country } from "@/utils/countries";
+import { GeoAspect, getRotationFromGeoAspect } from "@/utils/geo-aspects";
 import { GeoProjection } from "@/utils/geo-projections";
 import { Sphere } from "react-simple-maps";
 
@@ -17,6 +18,7 @@ interface WorldMapProps {
   width: number;
   height: number;
   geoProjection: GeoProjection;
+  geoAspect: GeoAspect;
 }
 
 interface GeographyProps {
@@ -34,6 +36,7 @@ const WorldMap: FC<WorldMapProps> = ({
   width,
   height,
   geoProjection = "geoMercator",
+  geoAspect = "European - Africa centric",
 }) => {
   const handleGeographyClick = useCallback(
     (geography: GeographyProps) => {
@@ -52,6 +55,7 @@ const WorldMap: FC<WorldMapProps> = ({
         projection={geoProjection}
         projectionConfig={{
           scale: width / 5,
+          rotate: getRotationFromGeoAspect(geoAspect),
         }}
         width={width}
         height={height}
