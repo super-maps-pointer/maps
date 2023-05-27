@@ -3,6 +3,7 @@ import {
   ComposableMap,
   Geographies,
   Geography,
+  Graticule,
   ZoomableGroup,
 } from "react-simple-maps";
 import { COLORS } from "@/utils/colors";
@@ -61,7 +62,8 @@ const WorldMap: FC<WorldMapProps> = ({
         height={height}
       >
         <ZoomableGroup zoom={1} center={[0, 20]}>
-          <Sphere id={"sphere"} fill="#FFF" stroke="#000" strokeWidth={1} />
+          <Sphere id={"sphere"} fill="#FFF" stroke="#EAEAEC" strokeWidth={1} />
+          <Graticule stroke="#EAEAEC" strokeWidth={0.5} />
           <Geographies geography="/middle-res-world-map.geo.json">
             {({ geographies }) => {
               return geographies.map((geography) => {
