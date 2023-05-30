@@ -1,4 +1,4 @@
-import { FC, useCallback } from "react";
+import { FC, useCallback, useState } from "react";
 import {
   ComposableMap,
   Geographies,
@@ -11,6 +11,33 @@ import { Country } from "@/utils/countries";
 import { GeoAspect, getRotationFromGeoAspect } from "@/utils/geo-aspects";
 import { GeoProjection } from "@/utils/geo-projections";
 import { Sphere } from "react-simple-maps";
+import Zoom from "@/app/zoom";
+
+const getGeoStyle = (isCountryGuessed: boolean) => ({
+  default: {
+    fill: isCountryGuessed ? COLORS.guessed : COLORS.default,
+    stroke: COLORS.stroke,
+    strokeWidth: 0.5,
+    outline: "none",
+  },
+  hover: {
+    fill: isCountryGuessed ? COLORS.guessed : COLORS.hover,
+    stroke: COLORS.stroke,
+    strokeWidth: 0.5,
+    outline: "none",
+  },
+  pressed: {
+    fill: isCountryGuessed ? COLORS.guessed : COLORS.selected,
+    stroke: COLORS.stroke,
+    strokeWidth: 0.5,
+    outline: "none",
+  },
+});
+
+interface Position {
+  coordinates: [number, number];
+  zoom: number;
+}
 
 interface WorldMapProps {
   onCountryClick: (code: string, name: string) => void;
@@ -39,6 +66,11 @@ const WorldMap: FC<WorldMapProps> = ({
   geoProjection = "geoMercator",
   geoAspect = "European - Africa centric",
 }) => {
+  const [position, setPosition] = useState<Position>({
+    coordinates: [0, 0],
+    zoom: 1,
+  });
+
   const handleGeographyClick = useCallback(
     (geography: GeographyProps) => {
       const { name, adm0_a3 } = geography.properties;
@@ -50,8 +82,23 @@ const WorldMap: FC<WorldMapProps> = ({
   const isGuessed = (countryCode: string) =>
     !!guessedCountries.find((country) => country.code === countryCode);
 
+  const handleZoomIn = () => {
+    if (position.zoom >= 4) return;
+    setPosition((pos: Position) => ({ ...pos, zoom: pos.zoom * 2 }));
+  };
+
+  const handleZoomOut = () => {
+    if (position.zoom <= 0.7) return;
+    setPosition((pos: Position) => ({ ...pos, zoom: pos.zoom / 2 }));
+  };
+
+  const handleMoveEnd = (position: Position) => {
+    setPosition(position);
+  };
+
   return (
     <div style={{ width: "100%", height: "100%" }}>
+      <Zoom onZoomIn={handleZoomIn} onZoomOut={handleZoomOut} />
       <ComposableMap
         projection={geoProjection}
         projectionConfig={{
@@ -61,7 +108,11 @@ const WorldMap: FC<WorldMapProps> = ({
         width={width}
         height={height}
       >
-        <ZoomableGroup zoom={1} center={[0, 20]}>
+        <ZoomableGroup
+          zoom={position.zoom}
+          center={position.coordinates}
+          onMoveEnd={handleMoveEnd}
+        >
           <Sphere id={"sphere"} fill="#FFF" stroke="#EAEAEC" strokeWidth={1} />
           <Graticule stroke="#EAEAEC" strokeWidth={0.5} />
           <Geographies geography="/middle-res-world-map.geo.json">
@@ -76,30 +127,7 @@ const WorldMap: FC<WorldMapProps> = ({
                     geography={geography}
                     stroke="none"
                     onClick={() => handleGeographyClick(geography)}
-                    style={{
-                      default: {
-                        fill: isCountryGuessed
-                          ? COLORS.guessed
-                          : COLORS.default,
-                        stroke: COLORS.stroke,
-                        strokeWidth: 0.5,
-                        outline: "none",
-                      },
-                      hover: {
-                        fill: isCountryGuessed ? COLORS.guessed : COLORS.hover,
-                        stroke: COLORS.stroke,
-                        strokeWidth: 0.5,
-                        outline: "none",
-                      },
-                      pressed: {
-                        fill: isCountryGuessed
-                          ? COLORS.guessed
-                          : COLORS.selected,
-                        stroke: COLORS.stroke,
-                        strokeWidth: 0.5,
-                        outline: "none",
-                      },
-                    }}
+                    style={getGeoStyle(isCountryGuessed)}
                   />
                 );
               });
