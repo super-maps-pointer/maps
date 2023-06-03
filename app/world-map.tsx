@@ -1,12 +1,49 @@
-import { FC, useCallback } from "react";
+import { FC, useCallback, useEffect, useState } from "react";
 import {
   ComposableMap,
   Geographies,
   Geography,
+  Graticule,
   ZoomableGroup,
 } from "react-simple-maps";
 import { COLORS } from "@/utils/colors";
 import { Country } from "@/utils/countries";
+import { GeoAspect, getRotationFromGeoAspect } from "@/utils/geo-aspects";
+import { GeoProjection } from "@/utils/geo-projections";
+import { Sphere } from "react-simple-maps";
+import Zoom from "@/app/zoom";
+import Rotation from "@/app/rotation";
+
+const getGeoStyle = (isCountryGuessed: boolean) => ({
+  default: {
+    fill: isCountryGuessed ? COLORS.guessed : COLORS.default,
+    stroke: COLORS.stroke,
+    strokeWidth: 0.5,
+    outline: "none",
+  },
+  hover: {
+    fill: isCountryGuessed ? COLORS.guessed : COLORS.hover,
+    stroke: COLORS.stroke,
+    strokeWidth: 0.5,
+    outline: "none",
+  },
+  pressed: {
+    fill: isCountryGuessed ? COLORS.guessed : COLORS.selected,
+    stroke: COLORS.stroke,
+    strokeWidth: 0.5,
+    outline: "none",
+  },
+});
+
+const MIN_ZOOM = 0.5;
+const MAX_ZOOM = 4;
+
+interface Position {
+  coordinates: [number, number];
+  zoom: number;
+}
+
+type Rotate = [number, number, number];
 
 interface WorldMapProps {
   onCountryClick: (code: string, name: string) => void;
@@ -14,6 +51,8 @@ interface WorldMapProps {
   guessedCountries: Country[];
   width: number;
   height: number;
+  geoProjection: GeoProjection;
+  geoAspect: GeoAspect;
 }
 
 interface GeographyProps {
@@ -30,7 +69,21 @@ const WorldMap: FC<WorldMapProps> = ({
   guessedCountries,
   width,
   height,
+  geoProjection = "geoMercator",
+  geoAspect = "European - Africa centric",
 }) => {
+  const [position, setPosition] = useState<Position>({
+    coordinates: [0, 0],
+    zoom: 1,
+  });
+  const [rotation, setRotation] = useState<Rotate>(
+    getRotationFromGeoAspect(geoAspect)
+  );
+
+  useEffect(() => {
+    setRotation(getRotationFromGeoAspect(geoAspect));
+  }, [geoAspect]);
+
   const handleGeographyClick = useCallback(
     (geography: GeographyProps) => {
       const { name, adm0_a3 } = geography.properties;
@@ -42,17 +95,52 @@ const WorldMap: FC<WorldMapProps> = ({
   const isGuessed = (countryCode: string) =>
     !!guessedCountries.find((country) => country.code === countryCode);
 
+  const handleZoomIn = () => {
+    if (position.zoom >= MAX_ZOOM) return;
+    setPosition((pos: Position) => ({ ...pos, zoom: pos.zoom * 2 }));
+  };
+
+  const handleZoomOut = () => {
+    if (position.zoom <= MIN_ZOOM) return;
+    setPosition((pos: Position) => ({ ...pos, zoom: pos.zoom / 2 }));
+  };
+
+  const handleRotateClockwise = () => {
+    setRotation((rot: Rotate) => [rot[0] + 10, rot[1], rot[2]]);
+  };
+
+  const handleRotateCounterClockwise = () => {
+    setRotation((rot: Rotate) => [rot[0] - 10, rot[1], rot[2]]);
+  };
+
+  const handleMoveEnd = (position: Position) => {
+    setPosition(position);
+  };
+
   return (
     <div style={{ width: "100%", height: "100%" }}>
+      <Zoom onZoomIn={handleZoomIn} onZoomOut={handleZoomOut} />
+      <Rotation
+        onRotateClockwise={handleRotateClockwise}
+        onRotateCounterClockwise={handleRotateCounterClockwise}
+      />
       <ComposableMap
-        projection="geoMercator"
+        projection={geoProjection}
         projectionConfig={{
           scale: width / 5,
+          rotate: rotation,
         }}
         width={width}
         height={height}
       >
-        <ZoomableGroup zoom={1} center={[0, 20]}>
+        <ZoomableGroup
+          zoom={position.zoom}
+          center={position.coordinates}
+          onMoveEnd={handleMoveEnd}
+          minZoom={MIN_ZOOM}
+        >
+          <Sphere id={"sphere"} fill="#FFF" stroke="#EAEAEC" strokeWidth={1} />
+          <Graticule stroke="#EAEAEC" strokeWidth={0.5} />
           <Geographies geography="/middle-res-world-map.geo.json">
             {({ geographies }) => {
               return geographies.map((geography) => {
@@ -65,30 +153,7 @@ const WorldMap: FC<WorldMapProps> = ({
                     geography={geography}
                     stroke="none"
                     onClick={() => handleGeographyClick(geography)}
-                    style={{
-                      default: {
-                        fill: isCountryGuessed
-                          ? COLORS.guessed
-                          : COLORS.default,
-                        stroke: COLORS.stroke,
-                        strokeWidth: 0.5,
-                        outline: "none",
-                      },
-                      hover: {
-                        fill: isCountryGuessed ? COLORS.guessed : COLORS.hover,
-                        stroke: COLORS.stroke,
-                        strokeWidth: 0.5,
-                        outline: "none",
-                      },
-                      pressed: {
-                        fill: isCountryGuessed
-                          ? COLORS.guessed
-                          : COLORS.selected,
-                        stroke: COLORS.stroke,
-                        strokeWidth: 0.5,
-                        outline: "none",
-                      },
-                    }}
+                    style={getGeoStyle(isCountryGuessed)}
                   />
                 );
               });
