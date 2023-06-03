@@ -2,7 +2,6 @@
 import { useCallback, useState } from "react";
 import Game from "@/app/game";
 import Head from "next/head";
-import "react-toastify/dist/ReactToastify.css";
 import { ChakraProvider } from "@chakra-ui/react";
 import IntroductionScreen from "@/app/introduction-screen";
 import { Level } from "@/utils/rules";
@@ -17,7 +16,7 @@ function Home() {
   return (
     <ChakraProvider>
       <Head>
-        <title>Interactive World Map</title>
+        <title>Super Maps Pointer</title>
         <link
           rel="apple-touch-icon"
           sizes="180x180"
