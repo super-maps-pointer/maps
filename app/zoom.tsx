@@ -8,11 +8,17 @@ interface ZoomProps {
 const Zoom: FC<ZoomProps> = ({ onZoomIn, onZoomOut }) => {
   return (
     <div className="absolute top-1/2 left-5 transform -translate-y-1/2 flex flex-col items-center">
-      <button className="mb-2 px-4 py-2 bg-gray-200 rounded" onClick={onZoomIn}>
-        Zoom +
+      <button
+        className="w-10 h-10 mb-2 rounded-full inline-flex items-center justify-center bg-gray-200 text-2xl font-bold"
+        onClick={onZoomIn}
+      >
+        +
       </button>
-      <button className="px-4 py-2 bg-gray-200 rounded" onClick={onZoomOut}>
-        Zoom -
+      <button
+        className="w-10 h-10 rounded-full inline-flex items-center justify-center bg-gray-200 text-2xl font-bold"
+        onClick={onZoomOut}
+      >
+        -
       </button>
     </div>
   );
