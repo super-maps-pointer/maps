@@ -3,9 +3,11 @@ import Gauge from "@/app/gauge";
 import UpperBar from "@/app/upper-bar";
 import WorldMap from "@/app/world-map";
 import useDeviceSize from "@/hooks/useDeviceSize";
+import { COLORS } from "@/utils/colors";
 import { Country, getCountries } from "@/utils/countries";
 import { GeoAspect, getRandomGeoAspect } from "@/utils/geo-aspects";
 import { GeoProjection, getRandomGeoProjection } from "@/utils/geo-projections";
+import { IMAGES } from "@/utils/images";
 import { Level, getNextLevel } from "@/utils/rules";
 import { FC, useCallback, useState, useEffect } from "react";
 import { toast } from "react-toastify";
@@ -107,7 +109,7 @@ const Game: FC<GameProps> = ({ level }) => {
   const isGameOver = isGameWon || isGameLost;
 
   return (
-    <div className="relative">
+    <div className="relative " style={{ backgroundColor: COLORS.background }}>
       <UpperBar
         tries={attempts}
         countryToGuess={countryToGuess}
