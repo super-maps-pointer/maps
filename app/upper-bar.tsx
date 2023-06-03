@@ -2,6 +2,7 @@ import { SAMPLE_SIZE } from "@/app/game";
 import { Country } from "@/utils/countries";
 import { GeoProjection } from "@/utils/geo-projections";
 import { Level, displayLevel } from "@/utils/rules";
+import { Heading } from "@chakra-ui/react";
 import { FC } from "react";
 
 interface UpperBarProps {
@@ -34,10 +35,8 @@ const UpperBar: FC<UpperBarProps> = ({
               Projection: {geoProjection}
             </h3>
           </div>
-          <div className="flex-1">
-            <h1 className="text-center text-2xl font-bold">
-              Guess the Country on the Map!
-            </h1>
+          <div className="flex-3">
+            <Heading>Guess the Country on the Map!</Heading>
             <p className="text-center">
               {countryToGuess !== null && renderCountryName(countryToGuess)}
             </p>
