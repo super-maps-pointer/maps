@@ -1,6 +1,7 @@
 import { FC } from "react";
 import Image from "next/image";
 import { IMAGES } from "@/utils/images";
+import { Button } from "@chakra-ui/react";
 
 interface IntroductionScreenProps {
   onPlay: () => void;
@@ -24,12 +25,14 @@ const IntroductionScreen: FC<IntroductionScreenProps> = ({ onPlay }) => {
       <p className="text-xl mb-8">
         Get ready to test your geography knowledge!
       </p>
-      <button
-        className="px-6 py-3 bg-blue-500 text-white rounded hover:bg-blue-600"
+      <Button
+        rounded="full"
+        colorScheme="teal"
+        variant="solid"
         onClick={onPlay}
       >
         Start Level 1
-      </button>
+      </Button>
     </div>
   );
 };

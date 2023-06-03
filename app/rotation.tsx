@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+import { Button } from "@chakra-ui/react";
 
 interface RotationProps {
   onRotateClockwise: () => void;
@@ -12,20 +13,23 @@ const Rotation: FC<RotationProps> = ({
   return (
     <div className="fixed top-[90px] left-0 w-full flex justify-center">
       <div className="flex flex-row justify-center">
-        <button
-          className="mb-2 px-4 py-2 bg-gray-200 rounded"
+        <Button
+          className="mr-2"
+          rounded="full"
+          variant="solid"
+          colorScheme="teal"
           onClick={onRotateClockwise}
-          style={{ marginRight: "8px", height: "40px" }}
         >
           Rotate Clockwise
-        </button>
-        <button
-          className="px-4 py-2 bg-gray-200 rounded"
+        </Button>
+        <Button
+          rounded="full"
+          colorScheme="teal"
+          variant="solid"
           onClick={onRotateCounterClockwise}
-          style={{ height: "40px" }}
         >
           Rotate Counter-Clockwise
-        </button>
+        </Button>
       </div>
     </div>
   );
