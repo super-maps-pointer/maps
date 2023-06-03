@@ -1,4 +1,4 @@
-import { FC, useCallback, useState } from "react";
+import { FC, useCallback, useEffect, useState } from "react";
 import {
   ComposableMap,
   Geographies,
@@ -12,6 +12,7 @@ import { GeoAspect, getRotationFromGeoAspect } from "@/utils/geo-aspects";
 import { GeoProjection } from "@/utils/geo-projections";
 import { Sphere } from "react-simple-maps";
 import Zoom from "@/app/zoom";
+import Rotation from "@/app/rotation";
 
 const getGeoStyle = (isCountryGuessed: boolean) => ({
   default: {
@@ -38,6 +39,8 @@ interface Position {
   coordinates: [number, number];
   zoom: number;
 }
+
+type Rotate = [number, number, number];
 
 interface WorldMapProps {
   onCountryClick: (code: string, name: string) => void;
@@ -70,6 +73,13 @@ const WorldMap: FC<WorldMapProps> = ({
     coordinates: [0, 0],
     zoom: 1,
   });
+  const [rotation, setRotation] = useState<Rotate>(
+    getRotationFromGeoAspect(geoAspect)
+  );
+
+  useEffect(() => {
+    setRotation(getRotationFromGeoAspect(geoAspect));
+  }, [geoAspect]);
 
   const handleGeographyClick = useCallback(
     (geography: GeographyProps) => {
@@ -92,6 +102,14 @@ const WorldMap: FC<WorldMapProps> = ({
     setPosition((pos: Position) => ({ ...pos, zoom: pos.zoom / 2 }));
   };
 
+  const handleRotateClockwise = () => {
+    setRotation((rot: Rotate) => [rot[0] + 10, rot[1], rot[2]]);
+  };
+
+  const handleRotateCounterClockwise = () => {
+    setRotation((rot: Rotate) => [rot[0] - 10, rot[1], rot[2]]);
+  };
+
   const handleMoveEnd = (position: Position) => {
     setPosition(position);
   };
@@ -99,11 +117,15 @@ const WorldMap: FC<WorldMapProps> = ({
   return (
     <div style={{ width: "100%", height: "100%" }}>
       <Zoom onZoomIn={handleZoomIn} onZoomOut={handleZoomOut} />
+      <Rotation
+        onRotateClockwise={handleRotateClockwise}
+        onRotateCounterClockwise={handleRotateCounterClockwise}
+      />
       <ComposableMap
         projection={geoProjection}
         projectionConfig={{
           scale: width / 5,
-          rotate: getRotationFromGeoAspect(geoAspect),
+          rotate: rotation,
         }}
         width={width}
         height={height}
