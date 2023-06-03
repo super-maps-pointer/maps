@@ -1,12 +1,16 @@
+"use client";
 import "./globals.css";
 import { Raleway } from "next/font/google";
+import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 
 const raleway = Raleway({ weight: "400", subsets: ["latin"] });
 
-export const metadata = {
-  title: "Super Maps Pointer",
-  description: "Guess the country while the map is changing",
-};
+const theme = extendTheme({
+  fonts: {
+    body: raleway.style.fontFamily,
+    heading: raleway.style.fontFamily,
+  },
+});
 
 export default function RootLayout({
   children,
@@ -15,7 +19,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={raleway.className}>{children}</body>
+      <body className={raleway.className}>
+        <ChakraProvider theme={theme}>{children}</ChakraProvider>
+      </body>
     </html>
   );
 }

@@ -2,7 +2,6 @@
 import { useCallback, useState } from "react";
 import Game from "@/app/game";
 import Head from "next/head";
-import { ChakraProvider } from "@chakra-ui/react";
 import IntroductionScreen from "@/app/introduction-screen";
 import { Level } from "@/utils/rules";
 
@@ -14,7 +13,7 @@ function Home() {
   }, []);
 
   return (
-    <ChakraProvider>
+    <>
       <Head>
         <title>Super Maps Pointer</title>
         <link
@@ -41,7 +40,7 @@ function Home() {
       ) : (
         <Game level={Level.Easy} />
       )}
-    </ChakraProvider>
+    </>
   );
 }
 
