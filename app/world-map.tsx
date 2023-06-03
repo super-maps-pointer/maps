@@ -35,6 +35,9 @@ const getGeoStyle = (isCountryGuessed: boolean) => ({
   },
 });
 
+const MIN_ZOOM = 0.5;
+const MAX_ZOOM = 4;
+
 interface Position {
   coordinates: [number, number];
   zoom: number;
@@ -93,12 +96,12 @@ const WorldMap: FC<WorldMapProps> = ({
     !!guessedCountries.find((country) => country.code === countryCode);
 
   const handleZoomIn = () => {
-    if (position.zoom >= 4) return;
+    if (position.zoom >= MAX_ZOOM) return;
     setPosition((pos: Position) => ({ ...pos, zoom: pos.zoom * 2 }));
   };
 
   const handleZoomOut = () => {
-    if (position.zoom <= 0.7) return;
+    if (position.zoom <= MIN_ZOOM) return;
     setPosition((pos: Position) => ({ ...pos, zoom: pos.zoom / 2 }));
   };
 
@@ -134,6 +137,7 @@ const WorldMap: FC<WorldMapProps> = ({
           zoom={position.zoom}
           center={position.coordinates}
           onMoveEnd={handleMoveEnd}
+          minZoom={MIN_ZOOM}
         >
           <Sphere id={"sphere"} fill="#FFF" stroke="#EAEAEC" strokeWidth={1} />
           <Graticule stroke="#EAEAEC" strokeWidth={0.5} />
