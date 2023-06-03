@@ -17,14 +17,14 @@ const Rotation: FC<RotationProps> = ({
           className="mr-2"
           rounded="full"
           variant="solid"
-          colorScheme="teal"
+          colorScheme="secondary"
           onClick={onRotateClockwise}
         >
           Rotate Clockwise
         </Button>
         <Button
           rounded="full"
-          colorScheme="teal"
+          colorScheme="secondary"
           variant="solid"
           onClick={onRotateCounterClockwise}
         >

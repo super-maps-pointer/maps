@@ -1,9 +1,8 @@
 import { SAMPLE_SIZE } from "@/app/game";
-import { COLORS } from "@/utils/colors";
 import { Country } from "@/utils/countries";
 import { GeoProjection } from "@/utils/geo-projections";
 import { Level, displayLevel } from "@/utils/rules";
-import { Heading, Text, Box } from "@chakra-ui/react";
+import { Heading, Text, Box, useTheme } from "@chakra-ui/react";
 import { FC } from "react";
 
 interface UpperBarProps {
@@ -13,21 +12,19 @@ interface UpperBarProps {
   geoProjection: GeoProjection;
 }
 
-const renderCountryName = (country: Country) => {
-  const { name } = country;
-  return <h2 className="text-2xl font-bold">{name.toUpperCase()}</h2>;
-};
-
 const UpperBar: FC<UpperBarProps> = ({
   tries,
   countryToGuess,
   level,
   geoProjection,
 }) => {
+  const theme = useTheme();
+
   return (
     <Box
-      bg={COLORS.primary}
-      className="absolute top-0 left-0 w-full px-4 py-2 border-b border-gray-400"
+      bg={theme.colors.primary.main}
+      className="absolute top-0 left-0 w-full px-4 py-2 border-b"
+      style={{ borderBottomColor: theme.colors.primary[900] }}
     >
       <div className="flex flex-col justify-between">
         <div className="flex items-center">
@@ -43,9 +40,14 @@ const UpperBar: FC<UpperBarProps> = ({
             <Heading as="h1" size="xl" color="white">
               Guess the Country on the Map!
             </Heading>
-            <Text color="white" fontSize="lg" className="text-center">
-              {countryToGuess !== null && renderCountryName(countryToGuess)}
-            </Text>
+            <Heading
+              as="h2"
+              color="white"
+              fontSize="lg"
+              className="text-center"
+            >
+              {countryToGuess?.name.toUpperCase()}
+            </Heading>
           </div>
           <div className="flex-1">
             <Text color="white" className="text-right">

@@ -3,13 +3,12 @@ import Gauge from "@/app/gauge";
 import UpperBar from "@/app/upper-bar";
 import WorldMap from "@/app/world-map";
 import useDeviceSize from "@/hooks/useDeviceSize";
-import { COLORS } from "@/utils/colors";
 import { Country, getCountries } from "@/utils/countries";
 import { GeoAspect, getRandomGeoAspect } from "@/utils/geo-aspects";
 import { GeoProjection, getRandomGeoProjection } from "@/utils/geo-projections";
 import { Level, getNextLevel } from "@/utils/rules";
 import { FC, useCallback, useState, useEffect } from "react";
-import { useToast } from "@chakra-ui/react";
+import { useTheme, useToast } from "@chakra-ui/react";
 
 export const SAMPLE_SIZE = 20;
 
@@ -30,6 +29,7 @@ const Game: FC<GameProps> = ({ level }) => {
     "European - Africa centric"
   );
   const toast = useToast();
+  const theme = useTheme();
 
   const generateNewGeoProjection = useCallback(() => {
     let newGeoProjection: GeoProjection;
@@ -123,7 +123,10 @@ const Game: FC<GameProps> = ({ level }) => {
   const isGameOver = isGameWon || isGameLost;
 
   return (
-    <div className="relative " style={{ backgroundColor: COLORS.background }}>
+    <div
+      className="relative "
+      style={{ backgroundColor: theme.colors.third.main }}
+    >
       <UpperBar
         tries={attempts}
         countryToGuess={countryToGuess}
