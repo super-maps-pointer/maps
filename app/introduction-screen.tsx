@@ -27,7 +27,7 @@ const IntroductionScreen: FC<IntroductionScreenProps> = ({ onPlay }) => {
       </p>
       <Button
         rounded="full"
-        colorScheme="teal"
+        colorScheme="secondary"
         variant="solid"
         onClick={onPlay}
       >

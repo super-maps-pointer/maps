@@ -13,7 +13,7 @@ const Zoom: FC<ZoomProps> = ({ onZoomIn, onZoomOut }) => {
         className="mb-2"
         rounded="full"
         variant="solid"
-        colorScheme="teal"
+        colorScheme="secondary"
         onClick={onZoomIn}
       >
         <p className="text-2xl">+</p>
@@ -21,7 +21,7 @@ const Zoom: FC<ZoomProps> = ({ onZoomIn, onZoomOut }) => {
       <Button
         rounded="full"
         variant="solid"
-        colorScheme="teal"
+        colorScheme="secondary"
         onClick={onZoomOut}
       >
         <p className="text-2xl">-</p>

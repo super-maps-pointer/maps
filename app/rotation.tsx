@@ -11,7 +11,7 @@ const Rotation: FC<RotationProps> = ({
   onRotateCounterClockwise,
 }) => {
   return (
-    <div className="fixed top-[90px] left-0 w-full flex justify-center">
+    <div className="fixed bottom-20 left-0 w-full flex justify-center">
       <div className="flex flex-row justify-center">
         <Button
           className="mr-2"

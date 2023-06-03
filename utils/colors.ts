@@ -1,6 +1,5 @@
 export const COLORS = {
   background: "#F4F4F8",
-  primary: "#BFD7EA",
   primaryHover: "#A5C2D6",
   textPrimary: "#222222",
   textSecondary: "#666666",
@@ -10,4 +9,9 @@ export const COLORS = {
   selected: "#FF9966",
   disabled: "#FFFFFF",
   stroke: "#333333",
+  primary: "#065758",
+  seconday: "#c46960",
+  thrid: "#e2f0ef",
+  forth: "#a9d4d6",
+  fifth: "#82c3c5",
 };
