@@ -2,7 +2,6 @@
 import { useCallback, useState } from "react";
 import Game from "@/app/game";
 import Head from "next/head";
-import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ChakraProvider } from "@chakra-ui/react";
 import IntroductionScreen from "@/app/introduction-screen";
@@ -17,7 +16,6 @@ function Home() {
 
   return (
     <ChakraProvider>
-      <ToastContainer position="bottom-left" autoClose={2000} hideProgressBar />
       <Head>
         <title>Interactive World Map</title>
         <link

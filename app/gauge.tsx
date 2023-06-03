@@ -19,7 +19,7 @@ const Gauge: FC<GaugeProps> = ({ score, winCondition }) => {
             className="h-full rounded-lg"
             style={{
               height: `${gaugeScore}%`,
-              background: `linear-gradient(to top, #59c75c ${gaugeScore}%, #b6e3b9 100%)`,
+              background: `linear-gradient(to top, #285E61 ${gaugeScore}%, #4FD1C5 100%)`,
             }}
           />
         </div>

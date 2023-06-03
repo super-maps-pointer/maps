@@ -7,10 +7,9 @@ import { COLORS } from "@/utils/colors";
 import { Country, getCountries } from "@/utils/countries";
 import { GeoAspect, getRandomGeoAspect } from "@/utils/geo-aspects";
 import { GeoProjection, getRandomGeoProjection } from "@/utils/geo-projections";
-import { IMAGES } from "@/utils/images";
 import { Level, getNextLevel } from "@/utils/rules";
 import { FC, useCallback, useState, useEffect } from "react";
-import { toast } from "react-toastify";
+import { useToast } from "@chakra-ui/react";
 
 export const SAMPLE_SIZE = 20;
 
@@ -30,6 +29,7 @@ const Game: FC<GameProps> = ({ level }) => {
   const [geoAspect, setGeoAspect] = useState<GeoAspect>(
     "European - Africa centric"
   );
+  const toast = useToast();
 
   const generateNewGeoProjection = useCallback(() => {
     let newGeoProjection: GeoProjection;
@@ -56,13 +56,26 @@ const Game: FC<GameProps> = ({ level }) => {
       if (code === countries[currentCountryIndex].code) {
         const country = countries[currentCountryIndex];
 
-        toast.success("Good!");
+        toast({
+          title: "Good!",
+          status: "success",
+          duration: 2000,
+          isClosable: true,
+          position: "bottom-left",
+        });
         setGuessedCountries((prevGuessedCountries) => [
           ...prevGuessedCountries,
           country,
         ]);
       } else {
-        toast.error(`Wrong! You clicked ${name}`);
+        toast({
+          title: "Wrong!",
+          status: "error",
+          description: `You clicked ${name}`,
+          duration: 2000,
+          isClosable: true,
+          position: "bottom-left",
+        });
       }
 
       generateNewGeoProjection();
@@ -74,6 +87,7 @@ const Game: FC<GameProps> = ({ level }) => {
       currentCountryIndex,
       generateNewGeoAspects,
       generateNewGeoProjection,
+      toast,
     ]
   );
 
