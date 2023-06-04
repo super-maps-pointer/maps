@@ -46,7 +46,7 @@ const UpperBar: FC<UpperBarProps> = ({
               fontSize="lg"
               className="text-center"
             >
-              {countryToGuess?.name.toUpperCase()}
+              {countryToGuess?.flag} {countryToGuess?.name.toUpperCase()}
             </Heading>
           </div>
           <div className="flex-1">
