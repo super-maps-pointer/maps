@@ -2,6 +2,7 @@ export enum Level {
   Easy = "easy",
   Normal = "normal",
   Hard = "hard",
+  Extreme = "extreme",
 }
 
 export const displayLevel = (level: Level) => {
@@ -12,6 +13,8 @@ export const displayLevel = (level: Level) => {
       return "Level 2 🏴‍☠️";
     case "hard":
       return "Level 3 🤯";
+    case "extreme":
+      return "Level 4 🤬";
   }
 };
 
