@@ -8,6 +8,7 @@ export interface Country {
   capital: string;
   population: number;
   funFact: string;
+  flag: string;
   dependOf?: string;
   level?: Level;
 }
@@ -19,6 +20,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     population: 38928346,
     funFact: "Home to the Hindu Kush mountain range.",
     code: "AFG",
+    flag: "🇦🇫",
   },
   ALB: {
     name: "Albania",
@@ -26,6 +28,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     population: 2877797,
     funFact: "One of the oldest inhabited regions in Europe.",
     code: "ALB",
+    flag: "🇦🇱",
   },
   DZA: {
     name: "Algeria",
@@ -33,6 +36,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     population: 43851044,
     funFact: "The largest country in Africa.",
     code: "DZA",
+    flag: "🇩🇿",
   },
   ASM: {
     name: "American Samoa",
@@ -40,6 +44,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     population: 55191,
     funFact: "The only U.S. territory south of the Equator.",
     code: "ASM",
+    flag: "🇦🇸",
   },
   AND: {
     name: "Andorra",
@@ -48,6 +53,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact: "Has the highest life expectancy in the world.",
     level: Level.Normal,
     code: "AND",
+    flag: "🇦🇩",
   },
   AGO: {
     name: "Angola",
@@ -55,6 +61,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     population: 32866272,
     funFact: "The second-largest oil producer in Africa.",
     code: "AGO",
+    flag: "🇦🇴",
   },
   AIA: {
     name: "Anguilla",
@@ -62,6 +69,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     population: 15003,
     funFact: "Has some of the world's most beautiful beaches.",
     code: "AIA",
+    flag: "🇦🇮",
   },
   ATG: {
     name: "Antigua and Barbuda",
@@ -70,6 +78,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact: "The birthplace of cricket legend Sir Vivian Richards.",
     level: Level.Normal,
     code: "ATG",
+    flag: "🇦🇬",
   },
   ARG: {
     name: "Argentina",
@@ -78,6 +87,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact: "Home to the world's widest avenue, 9 de Julio Avenue.",
     level: Level.Easy,
     code: "ARG",
+    flag: "🇦🇷",
   },
   ARM: {
     name: "Armenia",
@@ -85,6 +95,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     population: 2963243,
     funFact: "One of the earliest Christian civilizations.",
     code: "ARM",
+    flag: "🇦🇲",
   },
   ABW: {
     name: "Aruba",
@@ -92,6 +103,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     population: 106766,
     funFact: "Famous for its white sandy beaches and turquoise waters.",
     code: "ABW",
+    flag: "🇦🇼",
   },
   AUS: {
     name: "Australia",
@@ -101,6 +113,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "Home to the Great Barrier Reef, the world's largest coral reef system.",
     level: Level.Easy,
     code: "AUS",
+    flag: "🇦🇺",
   },
   AUT: {
     name: "Austria",
@@ -110,6 +123,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "Famous for its classical music composers like Mozart and Strauss.",
     level: Level.Easy,
     code: "AUT",
+    flag: "🇦🇹",
   },
   AZE: {
     name: "Azerbaijan",
@@ -118,6 +132,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "Azerbaijan is known for its rich cultural heritage and traditional carpets.",
     code: "AZE",
+    flag: "🇦🇿",
   },
   BHS: {
     name: "Bahamas",
@@ -125,6 +140,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     population: 393248,
     funFact: "Comprises 700 islands and over 2,000 cays.",
     code: "BHS",
+    flag: "🇧🇸",
   },
   BHR: {
     name: "Bahrain",
@@ -132,6 +148,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     population: 1701575,
     funFact: "Known for its Formula One Grand Prix circuit.",
     code: "BHR",
+    flag: "🇧🇭",
   },
   BGD: {
     name: "Bangladesh",
@@ -139,6 +156,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     population: 164689383,
     funFact: "One of the most densely populated countries in the world.",
     code: "BGD",
+    flag: "🇧🇩",
   },
   BRB: {
     name: "Barbados",
@@ -147,6 +165,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact: "Birthplace of legendary cricketer Sir Garfield Sobers.",
     level: Level.Normal,
     code: "BRB",
+    flag: "🇧🇧",
   },
   BLR: {
     name: "Belarus",
@@ -154,6 +173,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     population: 9449323,
     funFact: "Has the highest number of World War II memorials per capita.",
     code: "BLR",
+    flag: "🇧🇾",
   },
   BEL: {
     name: "Belgium",
@@ -162,6 +182,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact: "Famous for its chocolate, waffles, and beer.",
     level: Level.Easy,
     code: "BEL",
+    flag: "🇧🇪",
   },
   BLZ: {
     name: "Belize",
@@ -170,6 +191,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "Home to the largest barrier reef system in the Northern Hemisphere.",
     code: "BLZ",
+    flag: "🇧🇿",
   },
   BEN: {
     name: "Benin",
@@ -177,6 +199,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     population: 12123200,
     funFact: "Birthplace of the voodoo religion.",
     code: "BEN",
+    flag: "🇧🇯",
   },
   BMU: {
     name: "Bermuda",
@@ -184,6 +207,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     population: 62278,
     funFact: "Famous for its pink sandy beaches.",
     code: "BMU",
+    flag: "🇧🇲",
   },
   BTN: {
     name: "Bhutan",
@@ -193,6 +217,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "The only country in the world to measure its success by Gross National Happiness.",
     level: Level.Normal,
     code: "BTN",
+    flag: "🇧🇹",
   },
   BOL: {
     name: "Bolivia",
@@ -200,6 +225,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     population: 11673021,
     funFact: "Has the highest capital city in the world, La Paz.",
     code: "BOL",
+    flag: "🇧🇴",
   },
   BIH: {
     name: "Bosnia and Herzegovina",
@@ -208,6 +234,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "Home to the historic city of Mostar and the iconic Stari Most bridge.",
     code: "BIH",
+    flag: "🇧🇦",
   },
   BWA: {
     name: "Botswana",
@@ -216,6 +243,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "Famous for its wildlife, including the Okavango Delta and the Kalahari Desert.",
     code: "BWA",
+    flag: "🇧🇼",
   },
   BRA: {
     name: "Brazil",
@@ -225,6 +253,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "The largest country in South America and known for the Amazon rainforest.",
     level: Level.Easy,
     code: "BRA",
+    flag: "🇧🇷",
   },
   VGB: {
     name: "British Virgin Islands",
@@ -233,6 +262,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "A British Overseas Territory known for its stunning beaches and sailing spots.",
     code: "VGB",
+    flag: "🇻🇬",
   },
   BRN: {
     name: "Brunei",
@@ -241,6 +271,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "One of the world's wealthiest countries with rich cultural heritage.",
     code: "BRN",
+    flag: "🇧🇳",
   },
   BGR: {
     name: "Bulgaria",
@@ -249,6 +280,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "Has a diverse landscape, including the stunning Black Sea coastline and the Pirin National Park.",
     code: "BGR",
+    flag: "🇧🇬",
   },
   BFA: {
     name: "Burkina Faso",
@@ -256,6 +288,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     population: 19193382,
     funFact: "Known for its traditional music, art, and craftwork.",
     code: "BFA",
+    flag: "🇧🇫",
   },
   BDI: {
     name: "Burundi",
@@ -264,6 +297,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "Famous for its drumming rituals and the source of the Nile River.",
     code: "BDI",
+    flag: "🇧🇮",
   },
   CPV: {
     name: "Cabo Verde",
@@ -273,6 +307,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "Comprised of a group of volcanic islands in the central Atlantic Ocean.",
     level: Level.Normal,
     code: "CPV",
+    flag: "🇨🇻",
   },
   KHM: {
     name: "Cambodia",
@@ -280,6 +315,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     population: 16245729,
     funFact: "Home to the iconic temple complex of Angkor Wat.",
     code: "KHM",
+    flag: "🇰🇭",
   },
   CMR: {
     name: "Cameroon",
@@ -287,6 +323,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     population: 24263089,
     funFact: "Known for its diverse cultures, landscapes, and wildlife.",
     code: "CMR",
+    flag: "🇨🇲",
   },
   CAN: {
     name: "Canada",
@@ -296,6 +333,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "The second-largest country in the world by land area, known for its stunning natural beauty.",
     level: Level.Easy,
     code: "CAN",
+    flag: "🇨🇦",
   },
   BES: {
     name: "Caribbean Netherlands",
@@ -304,6 +342,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "Part of the Caribbean Netherlands, special municipalities of the Netherlands.",
     code: "BES",
+    flag: "🇧🇶",
   },
   CYM: {
     name: "Cayman Islands",
@@ -312,6 +351,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "A British Overseas Territory known for its crystal-clear waters and stunning coral reefs.",
     code: "CYM",
+    flag: "🇰🇾",
   },
   CAF: {
     name: "Central African Republic",
@@ -320,6 +360,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "Has a rich cultural heritage and diverse wildlife, including forest elephants.",
     code: "CAF",
+    flag: "🇨🇫",
   },
   TCD: {
     name: "Chad",
@@ -328,6 +369,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "Home to Lake Chad, a large, shallow lake in the Sahelian zone of Africa.",
     code: "TCD",
+    flag: "🇹🇩",
   },
   CHL: {
     name: "Chile",
@@ -336,6 +378,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "Known for its stunning landscapes, including the Atacama Desert and Patagonia.",
     code: "CHL",
+    flag: "🇨🇱",
   },
   CHN: {
     name: "China",
@@ -345,6 +388,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "The most populous country in the world and known for its rich history and culture.",
     level: Level.Easy,
     code: "CHN",
+    flag: "🇨🇳",
   },
   COL: {
     name: "Colombia",
@@ -354,6 +398,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "Home to the world's second-most biodiverse country, with a rich variety of flora and fauna.",
     level: Level.Easy,
     code: "COL",
+    flag: "🇨🇴",
   },
   COM: {
     name: "Comoros",
@@ -363,6 +408,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "An archipelago located off the eastern coast of Africa in the Indian Ocean.",
     level: Level.Normal,
     code: "COM",
+    flag: "🇰🇲",
   },
   COG: {
     name: "Congo",
@@ -371,6 +417,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "Known for its dense rainforests and diverse wildlife, including gorillas and chimpanzees.",
     code: "COG",
+    flag: "🇨🇬",
   },
   COK: {
     name: "Cook Islands",
@@ -379,6 +426,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "A group of 15 islands located in the South Pacific Ocean, known for their stunning natural beauty.",
     code: "COK",
+    flag: "🇨🇰",
   },
   CRI: {
     name: "Costa Rica",
@@ -387,6 +435,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "Famous for its rich biodiversity, national parks, and eco-tourism opportunities.",
     code: "CRI",
+    flag: "🇨🇷",
   },
   HRV: {
     name: "Croatia",
@@ -395,6 +444,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "Home to the stunning Dalmatian Coastline and historic cities like Dubrovnik and Split.",
     code: "HRV",
+    flag: "🇭🇷",
   },
   CUB: {
     name: "Cuba",
@@ -403,6 +453,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "Known for its vintage cars, vibrant music, and historic architecture.",
     code: "CUB",
+    flag: "🇨🇺",
   },
   CUW: {
     name: "Curaçao",
@@ -411,6 +462,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "A Caribbean island country with a unique blend of European and Caribbean cultures.",
     code: "CUW",
+    flag: "🇨🇼",
   },
   CYP: {
     name: "Cyprus",
@@ -418,6 +470,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     population: 847000,
     funFact: "The mythical birthplace of the Greek goddess of love, Aphrodite.",
     code: "CYP",
+    flag: "🇨🇾",
   },
   CZE: {
     name: "Czech Republic",
@@ -426,6 +479,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "Home to Prague Castle, the largest ancient castle complex in the world.",
     code: "CZE",
+    flag: "🇨🇿",
   },
   COD: {
     name: "Democratic Republic of the Congo",
@@ -434,6 +488,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "The second-largest country in Africa by land area and home to the Congo River, the deepest river in the world.",
     code: "COD",
+    flag: "🇨🇩",
   },
   DNK: {
     name: "Denmark",
@@ -443,6 +498,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "Known for its high standard of living, beautiful landscapes, and the iconic Little Mermaid statue.",
     level: Level.Easy,
     code: "DNK",
+    flag: "🇩🇰",
   },
   DJI: {
     name: "Djibouti",
@@ -452,6 +508,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "A small country located in the Horn of Africa, known for its salt lakes and diverse marine life.",
     level: Level.Normal,
     code: "DJI",
+    flag: "🇩🇯",
   },
   DMA: {
     name: "Dominica",
@@ -461,6 +518,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "Nicknamed the 'Nature Isle of the Caribbean' due to its lush rainforests, waterfalls, and natural hot springs.",
     level: Level.Normal,
     code: "DMA",
+    flag: "🇩🇲",
   },
   DOM: {
     name: "Dominican Republic",
@@ -469,6 +527,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "The birthplace of merengue music and home to the highest peak in the Caribbean, Pico Duarte.",
     code: "DOM",
+    flag: "🇩🇴",
   },
   ECU: {
     name: "Ecuador",
@@ -477,6 +536,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "Named after the equator, which runs through the country, and known for the Galápagos Islands.",
     code: "ECU",
+    flag: "🇪🇨",
   },
   EGY: {
     name: "Egypt",
@@ -486,6 +546,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "Home to the ancient wonders of the world, including the Great Pyramid of Giza and the Sphinx.",
     level: Level.Easy,
     code: "EGY",
+    flag: "🇪🇬",
   },
   SLV: {
     name: "El Salvador",
@@ -494,6 +555,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "The smallest country in Central America and known for its beautiful beaches and surfing spots.",
     code: "SLV",
+    flag: "🇸🇻",
   },
   GNQ: {
     name: "Equatorial Guinea",
@@ -502,6 +564,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact: "The only country in Africa with Spanish as an official language.",
     level: Level.Normal,
     code: "GNQ",
+    flag: "🇬🇶",
   },
   ERI: {
     name: "Eritrea",
@@ -510,6 +573,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "Home to one of the world's oldest churches, the Church of Our Lady of the Rosary in Asmara.",
     code: "ERI",
+    flag: "🇪🇷",
   },
   EST: {
     name: "Estonia",
@@ -518,6 +582,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "Considered one of the most advanced digital societies in the world, with widespread internet access and e-governance.",
     code: "EST",
+    flag: "🇪🇪",
   },
   SWZ: {
     name: "Eswatini",
@@ -527,6 +592,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "A small landlocked country in Southern Africa known for its wildlife reserves and traditional Swazi culture.",
     level: Level.Normal,
     code: "SWZ",
+    flag: "🇸🇿",
   },
   ETH: {
     name: "Ethiopia",
@@ -535,6 +601,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "Home to the ruins of the ancient city of Aksum and the rock-hewn churches of Lalibela.",
     code: "ETH",
+    flag: "🇪🇹",
   },
   FRO: {
     name: "Faeroe Islands",
@@ -543,6 +610,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "An autonomous territory of Denmark with stunning landscapes and abundant birdlife.",
     code: "FRO",
+    flag: "🇫🇴",
   },
   FLK: {
     name: "Falkland Islands",
@@ -551,6 +619,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "A remote archipelago in the South Atlantic Ocean known for its rugged natural beauty and wildlife, including penguins and seals.",
     code: "FLK",
+    flag: "🇫🇰",
   },
   FJI: {
     name: "Fiji",
@@ -559,6 +628,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "A tropical paradise with pristine beaches, crystal-clear waters, and a unique blend of Melanesian, Polynesian, and Indian cultures.",
     code: "FJI",
+    flag: "🇫🇯",
   },
   FIN: {
     name: "Finland",
@@ -568,6 +638,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "Known as the 'Land of a Thousand Lakes' with stunning landscapes and the magical Northern Lights.",
     level: Level.Easy,
     code: "FIN",
+    flag: "🇫🇮",
   },
   FRA: {
     name: "France",
@@ -577,6 +648,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "Home to the Eiffel Tower, Louvre Museum, and renowned cuisine, and known for its rich history and culture.",
     level: Level.Easy,
     code: "FRA",
+    flag: "🇫🇷",
   },
   GUF: {
     name: "French Guiana",
@@ -585,6 +657,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "An overseas department and region of France located on the northeastern coast of South America.",
     code: "GUF",
+    flag: "🇬🇫",
   },
   PYF: {
     name: "French Polynesia",
@@ -593,6 +666,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "An overseas collectivity of France consisting of 118 islands and known for its stunning turquoise lagoons and overwater bungalows.",
     code: "PYF",
+    flag: "🇵🇫",
   },
   GAB: {
     name: "Gabon",
@@ -601,6 +675,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "Home to a vast array of wildlife, including forest elephants, gorillas, and chimpanzees, in its lush rainforests.",
     code: "GAB",
+    flag: "🇬🇦",
   },
   GMB: {
     name: "Gambia",
@@ -609,6 +684,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "A small country in West Africa known for its beautiful beaches along the Atlantic coast.",
     code: "GMB",
+    flag: "🇬🇲",
   },
   GEO: {
     name: "Georgia",
@@ -617,6 +693,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "Situated at the intersection of Europe and Asia, known for its rich history, ancient churches, and stunning mountain landscapes.",
     code: "GEO",
+    flag: "🇬🇪",
   },
   DEU: {
     name: "Germany",
@@ -626,6 +703,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "Famous for its engineering prowess, Oktoberfest, and fairy tale castles, and home to influential composers like Beethoven and Bach.",
     level: Level.Easy,
     code: "DEU",
+    flag: "🇩🇪",
   },
   GHA: {
     name: "Ghana",
@@ -634,6 +712,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "The first African country to gain independence from colonial rule and known for its vibrant culture and hospitality.",
     code: "GHA",
+    flag: "🇬🇭",
   },
   GIB: {
     name: "Gibraltar",
@@ -642,6 +721,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "A British Overseas Territory located on the southern tip of the Iberian Peninsula, known for its iconic Rock of Gibraltar.",
     code: "GIB",
+    flag: "🇬🇮",
   },
   GRC: {
     name: "Greece",
@@ -651,6 +731,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "Considered the birthplace of Western civilization, known for its ancient ruins, picturesque islands, and delicious Mediterranean cuisine.",
     level: Level.Easy,
     code: "GRC",
+    flag: "🇬🇷",
   },
   GRL: {
     name: "Greenland",
@@ -659,6 +740,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "The world's largest island, known for its vast ice sheet, stunning fjords, and unique Arctic wildlife.",
     code: "GRL",
+    flag: "🇬🇱",
   },
   GRD: {
     name: "Grenada",
@@ -668,6 +750,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "Known as the 'Spice Isle' for its production of nutmeg, cinnamon, and cloves, and famous for its beautiful beaches and waterfalls.",
     level: Level.Normal,
     code: "GRD",
+    flag: "🇬🇩",
   },
   GLP: {
     name: "Guadeloupe",
@@ -676,6 +759,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "An overseas department and region of France located in the Caribbean, known for its stunning beaches and vibrant Creole culture.",
     code: "GLP",
+    flag: "🇬🇵",
   },
   GUM: {
     name: "Guam",
@@ -684,6 +768,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "A U.S. territory in Micronesia with a unique blend of Chamorro and American cultures, known for its pristine beaches and diving spots.",
     code: "GUM",
+    flag: "🇬🇺",
   },
   GTM: {
     name: "Guatemala",
@@ -692,6 +777,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "Home to ancient Mayan ruins, vibrant indigenous cultures, and breathtaking volcanic landscapes.",
     code: "GTM",
+    flag: "🇬🇹",
   },
   GGY: {
     name: "Guernsey",
@@ -700,6 +786,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "A British Crown dependency known for its picturesque landscapes, charming coastal villages, and rich maritime history.",
     code: "GGY",
+    flag: "🇬🇬",
   },
   GIN: {
     name: "Guinea",
@@ -708,6 +795,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "Famous for its diverse wildlife, including chimpanzees and hippos, and known for its vibrant music and cultural traditions.",
     code: "GIN",
+    flag: "🇬🇳",
   },
   GNB: {
     name: "Guinea-Bissau",
@@ -716,6 +804,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "A small country in West Africa known for its pristine coastline, mangrove forests, and wildlife reserves.",
     code: "GNB",
+    flag: "🇬🇼",
   },
   GUY: {
     name: "Guyana",
@@ -725,6 +814,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "Located on the northern mainland of South America, known for its dense rainforests, savannahs, and the mighty Kaieteur Falls.",
     level: Level.Normal,
     code: "GUY",
+    flag: "🇬🇾",
   },
   HTI: {
     name: "Haiti",
@@ -733,6 +823,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "The first independent nation in Latin America and the Caribbean, known for its vibrant culture, music, and historic sites.",
     code: "HTI",
+    flag: "🇭🇹",
   },
   HND: {
     name: "Honduras",
@@ -741,6 +832,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "Home to ancient Mayan ruins, beautiful Caribbean and Pacific coastlines, and diverse ecosystems including rainforests and coral reefs.",
     code: "HND",
+    flag: "🇭🇳",
   },
   HKG: {
     name: "Hong Kong",
@@ -749,6 +841,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "A Special Administrative Region of China known for its iconic skyline, bustling street markets, and delicious Cantonese cuisine.",
     code: "HKG",
+    flag: "🇭🇰",
   },
   HUN: {
     name: "Hungary",
@@ -757,6 +850,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "Famous for its stunning architecture, thermal baths, and rich cultural heritage, and known for its delicious goulash dish.",
     code: "HUN",
+    flag: "🇭🇺",
   },
   ISL: {
     name: "Iceland",
@@ -765,6 +859,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "A Nordic island country known for its breathtaking landscapes, geothermal hot springs, and the stunning Northern Lights.",
     code: "ISL",
+    flag: "🇮🇸",
   },
   IND: {
     name: "India",
@@ -774,6 +869,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "The seventh-largest country by land area and the second-most populous country in the world, known for its rich cultural heritage and diverse cuisine.",
     level: Level.Easy,
     code: "IND",
+    flag: "🇮🇳",
   },
   IDN: {
     name: "Indonesia",
@@ -783,6 +879,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "The world's largest island country, consisting of thousands of islands and known for its stunning beaches, ancient temples, and vibrant arts scene.",
     level: Level.Easy,
     code: "IDN",
+    flag: "🇮🇩",
   },
   IRN: {
     name: "Iran",
@@ -791,6 +888,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "Formerly known as Persia, Iran is home to ancient historical sites, beautiful mosques, and a rich cultural heritage.",
     code: "IRN",
+    flag: "🇮🇷",
   },
   IRQ: {
     name: "Iraq",
@@ -799,6 +897,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "Known as the cradle of civilization, Iraq has a rich history dating back to ancient Mesopotamia and is home to historical sites like Babylon and Ur.",
     code: "IRQ",
+    flag: "🇮🇶",
   },
   IRL: {
     name: "Ireland",
@@ -808,6 +907,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "Also known as the Emerald Isle, Ireland is famous for its lush green landscapes, vibrant music and dance traditions, and friendly people.",
     level: Level.Easy,
     code: "IRL",
+    flag: "🇮🇪",
   },
   IMN: {
     name: "Isle of Man",
@@ -816,6 +916,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "A self-governing British Crown dependency located in the Irish Sea, known for its rugged coastline, motorcycle racing events, and Celtic heritage.",
     code: "IMN",
+    flag: "🇮🇲",
   },
   ISR: {
     name: "Israel",
@@ -825,6 +926,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "A Middle Eastern country with a rich history, diverse culture, and significant religious sites sacred to Judaism, Christianity, and Islam.",
     level: Level.Easy,
     code: "ISR",
+    flag: "🇮🇱",
   },
   ITA: {
     name: "Italy",
@@ -834,6 +936,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "Famous for its art, architecture, cuisine, and iconic landmarks such as the Colosseum, the Leaning Tower of Pisa, and the Vatican City.",
     level: Level.Easy,
     code: "ITA",
+    flag: "🇮🇹",
   },
   CIV: {
     name: "Ivory Coast",
@@ -842,6 +945,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "Also known as Côte d'Ivoire, this West African country is known for its vibrant music, diverse wildlife, and cultural festivals.",
     code: "CIV",
+    flag: "🇨🇮",
   },
   JAM: {
     name: "Jamaica",
@@ -850,6 +954,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "Famous for its reggae music, stunning beaches, and laid-back vibe, Jamaica is also the birthplace of legendary musician Bob Marley.",
     code: "JAM",
+    flag: "🇯🇲",
   },
   JPN: {
     name: "Japan",
@@ -859,6 +964,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "Known for its unique blend of ancient traditions and modern technology, Japan is famous for sushi, cherry blossoms and its bullet train.",
     level: Level.Easy,
     code: "JPN",
+    flag: "🇯🇵",
   },
   JEY: {
     name: "Jersey",
@@ -867,6 +973,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "A British Crown dependency known for its stunning beaches, medieval castles, and the famous Jersey cow.",
     code: "JEY",
+    flag: "🇯🇪",
   },
   JOR: {
     name: "Jordan",
@@ -875,6 +982,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "Home to the ancient city of Petra, Jordan offers a unique mix of history, culture, and natural wonders such as the Dead Sea.",
     code: "JOR",
+    flag: "🇯🇴",
   },
   KAZ: {
     name: "Kazakhstan",
@@ -883,6 +991,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "The world's largest landlocked country, known for its vast steppes, the Baikonur Cosmodrome, and traditional nomadic culture.",
     code: "KAZ",
+    flag: "🇰🇿",
   },
   KEN: {
     name: "Kenya",
@@ -892,6 +1001,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "Famous for its diverse wildlife and stunning landscapes, including the Maasai Mara Reserve and Mount Kilimanjaro.",
     level: Level.Easy,
     code: "KEN",
+    flag: "🇰🇪",
   },
   KIR: {
     name: "Kiribati",
@@ -901,6 +1011,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "A Pacific island nation composed of 33 coral atolls, known for its pristine beaches, abundant marine life, and traditional culture.",
     level: Level.Normal,
     code: "KIR",
+    flag: "🇰🇮",
   },
   KWT: {
     name: "Kuwait",
@@ -909,6 +1020,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "Situated at the tip of the Persian Gulf, Kuwait is known for its modern architecture, vast oil reserves, and rich cultural heritage.",
     code: "KWT",
+    flag: "🇰🇼",
   },
   KGZ: {
     name: "Kyrgyzstan",
@@ -917,6 +1029,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "A mountainous country in Central Asia known for its stunning alpine landscapes, nomadic traditions, and hospitality.",
     code: "KGZ",
+    flag: "🇰🇬",
   },
   LAO: {
     name: "Laos",
@@ -925,6 +1038,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "Landlocked and nestled between Thailand, Vietnam, and Cambodia, Laos offers ancient temples, scenic rivers, and a laid-back atmosphere.",
     code: "LAO",
+    flag: "🇱🇦",
   },
   LVA: {
     name: "Latvia",
@@ -933,6 +1047,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "Situated on the eastern shore of the Baltic Sea, Latvia is known for its picturesque landscapes, historic castles, and vibrant art scene.",
     code: "LVA",
+    flag: "🇱🇻",
   },
   LBN: {
     name: "Lebanon",
@@ -941,6 +1056,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "A Mediterranean country known for its rich history, vibrant culture, and culinary delights, often referred to as the 'Paris of the Middle East'.",
     code: "LBN",
+    flag: "🇱🇧",
   },
   LSO: {
     name: "Lesotho",
@@ -950,6 +1066,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "A highland kingdom entirely surrounded by South Africa, known for its breathtaking mountain landscapes and traditional Basotho culture.",
     level: Level.Normal,
     code: "LSO",
+    flag: "🇱🇸",
   },
   LBR: {
     name: "Liberia",
@@ -958,6 +1075,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "Founded by freed American slaves, Liberia is the oldest republic in Africa and offers beautiful beaches and diverse wildlife.",
     code: "LBR",
+    flag: "🇱🇷",
   },
   LBY: {
     name: "Libya",
@@ -966,6 +1084,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "Located in North Africa, Libya is known for its ancient Roman ruins, Sahara Desert landscapes, and rich historical heritage.",
     code: "LBY",
+    flag: "🇱🇾",
   },
   LIE: {
     name: "Liechtenstein",
@@ -975,6 +1094,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "A small principality nestled between Switzerland and Austria, known for its stunning alpine scenery and low-tax haven status.",
     level: Level.Normal,
     code: "LIE",
+    flag: "🇱🇮",
   },
   LTU: {
     name: "Lithuania",
@@ -983,6 +1103,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "One of the Baltic states, Lithuania is known for its medieval architecture, beautiful lakes, and the Hill of Crosses.",
     code: "LTU",
+    flag: "🇱🇹",
   },
   LUX: {
     name: "Luxembourg",
@@ -991,6 +1112,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "A small landlocked country known for its fairy-tale-like castles, picturesque villages, and thriving financial sector.",
     code: "LUX",
+    flag: "🇱🇺",
   },
   MAC: {
     name: "Macau",
@@ -999,6 +1121,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "A Special Administrative Region of China, Macau is famous for its vibrant casinos, Portuguese architecture, and fusion cuisine.",
     code: "MAC",
+    flag: "🇲🇴",
   },
   MDG: {
     name: "Madagascar",
@@ -1007,6 +1130,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "An island nation off the coast of East Africa, Madagascar is known for its unique wildlife, baobab trees, and stunning biodiversity.",
     code: "MDG",
+    flag: "🇲🇬",
   },
   MWI: {
     name: "Malawi",
@@ -1015,6 +1139,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "Known as the 'Warm Heart of Africa,' Malawi offers stunning landscapes, including Lake Malawi, and rich cultural traditions.",
     code: "MWI",
+    flag: "🇲🇼",
   },
   MYS: {
     name: "Malaysia",
@@ -1024,6 +1149,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "A Southeast Asian country known for its diverse culture, stunning islands, lush rainforests, and iconic Petronas Twin Towers.",
     level: Level.Easy,
     code: "MYS",
+    flag: "🇲🇾",
   },
   MDV: {
     name: "Maldives",
@@ -1033,6 +1159,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "A tropical paradise in the Indian Ocean, the Maldives is famous for its pristine white-sand beaches, coral reefs, and luxury resorts.",
     level: Level.Normal,
     code: "MDV",
+    flag: "🇲🇻",
   },
   MLI: {
     name: "Mali",
@@ -1041,6 +1168,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "A landlocked country in West Africa known for its historic trading city of Timbuktu, vibrant music, and ancient mud-brick mosques.",
     code: "MLI",
+    flag: "🇲🇱",
   },
   MLT: {
     name: "Malta",
@@ -1049,6 +1177,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "Located in the Mediterranean Sea, Malta offers a rich history, stunning architecture, and beautiful beaches.",
     code: "MLT",
+    flag: "🇲🇹",
   },
   MHL: {
     name: "Marshall Islands",
@@ -1058,6 +1187,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "An island nation in the Pacific Ocean, the Marshall Islands are known for their pristine coral reefs, World War II wrecks, and traditional handicrafts.",
     level: Level.Normal,
     code: "MHL",
+    flag: "🇲🇭",
   },
   MTQ: {
     name: "Martinique",
@@ -1066,6 +1196,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "A Caribbean island and overseas department of France, Martinique is famous for its lush rainforests, volcanic landscapes, and Creole culture.",
     code: "MTQ",
+    flag: "🇲🇶",
   },
   MRT: {
     name: "Mauritania",
@@ -1074,6 +1205,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "Mauritania is known for its rich cultural heritage and is home to ancient Saharan cities.",
     code: "MRT",
+    flag: "🇲🇷",
   },
   MUS: {
     name: "Mauritius",
@@ -1082,6 +1214,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "Mauritius is famous for its stunning beaches, turquoise waters, and diverse marine life.",
     code: "MUS",
+    flag: "🇲🇺",
   },
   MYT: {
     name: "Mayotte",
@@ -1090,6 +1223,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "Mayotte is an overseas department and region of France located in the Indian Ocean.",
     code: "MYT",
+    flag: "🇾🇹",
   },
   MEX: {
     name: "Mexico",
@@ -1099,6 +1233,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "Mexico is renowned for its vibrant culture, delicious cuisine, and ancient Mayan ruins.",
     level: Level.Easy,
     code: "MEX",
+    flag: "🇲🇽",
   },
   FSM: {
     name: "Micronesia",
@@ -1108,6 +1243,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "Micronesia is a country located in the western Pacific Ocean, comprising more than 600 islands.",
     level: Level.Normal,
     code: "FSM",
+    flag: "🇫🇲",
   },
   MDA: {
     name: "Moldova",
@@ -1117,6 +1253,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "Moldova is known for its beautiful countryside, vineyards, and traditional winemaking.",
     level: Level.Hard,
     code: "MDA",
+    flag: "🇲🇩",
   },
   MCO: {
     name: "Monaco",
@@ -1126,6 +1263,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "Monaco is the second-smallest country in the world and is famous for its luxury casinos and yacht-lined harbor.",
     level: Level.Normal,
     code: "MCO",
+    flag: "🇲🇨",
   },
   MNG: {
     name: "Mongolia",
@@ -1135,6 +1273,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "Mongolia is known for its vast steppes, nomadic culture, and the Gobi Desert.",
     level: Level.Hard,
     code: "MNG",
+    flag: "🇲🇳",
   },
   MNE: {
     name: "Montenegro",
@@ -1144,6 +1283,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "Montenegro is a small Balkan country known for its breathtaking coastline and rugged mountains.",
     level: Level.Hard,
     code: "MNE",
+    flag: "🇲🇪",
   },
   MSR: {
     name: "Montserrat",
@@ -1152,6 +1292,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "Montserrat is a British Overseas Territory in the Caribbean and is nicknamed the 'Emerald Isle of the Caribbean'.",
     code: "MSR",
+    flag: "🇲🇸",
   },
   MAR: {
     name: "Morocco",
@@ -1160,6 +1301,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "Morocco is famous for its vibrant markets, stunning architecture, and the Sahara Desert.",
     code: "MAR",
+    flag: "🇲🇦",
   },
   MOZ: {
     name: "Mozambique",
@@ -1169,6 +1311,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "Mozambique is located on the southeastern coast of Africa and is known for its beautiful beaches and wildlife reserves.",
     level: Level.Hard,
     code: "MOZ",
+    flag: "🇲🇿",
   },
   MMR: {
     name: "Myanmar",
@@ -1178,6 +1321,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "Myanmar, formerly known as Burma, is home to ancient temples, picturesque landscapes, and diverse ethnic cultures.",
     level: Level.Hard,
     code: "MMR",
+    flag: "🇲🇲",
   },
   NAM: {
     name: "Namibia",
@@ -1187,6 +1331,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "Namibia is home to the Namib Desert, one of the oldest deserts in the world.",
     level: Level.Hard,
     code: "NAM",
+    flag: "🇳🇦",
   },
   NRU: {
     name: "Nauru",
@@ -1195,6 +1340,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact: "Nauru is the smallest island country in the world.",
     level: Level.Normal,
     code: "NRU",
+    flag: "🇳🇷",
   },
   NPL: {
     name: "Nepal",
@@ -1202,6 +1348,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     population: 29609623,
     funFact: "Nepal is home to Mount Everest, the highest peak in the world.",
     code: "NPL",
+    flag: "🇳🇵",
   },
   NLD: {
     name: "Netherlands",
@@ -1211,6 +1358,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "The Netherlands is known for its iconic windmills, tulip fields, and extensive canal systems.",
     level: Level.Easy,
     code: "NLD",
+    flag: "🇳🇱",
   },
   NCL: {
     name: "New Caledonia",
@@ -1219,6 +1367,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "New Caledonia is a French overseas territory located in the South Pacific and is known for its stunning coral reefs.",
     code: "NCL",
+    flag: "🇳🇨",
   },
   NZL: {
     name: "New Zealand",
@@ -1228,6 +1377,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "New Zealand is famous for its breathtaking landscapes, including mountains, fjords, and geothermal areas.",
     level: Level.Easy,
     code: "NZL",
+    flag: "🇳🇿",
   },
   NIC: {
     name: "Nicaragua",
@@ -1237,6 +1387,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "Nicaragua is known as the 'Land of Lakes and Volcanoes' due to its abundance of both natural wonders.",
     level: Level.Hard,
     code: "NIC",
+    flag: "🇳🇮",
   },
   NER: {
     name: "Niger",
@@ -1246,6 +1397,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "Niger is home to the Sahara Desert and is one of the hottest countries in the world.",
     level: Level.Hard,
     code: "NER",
+    flag: "🇳🇪",
   },
   NGA: {
     name: "Nigeria",
@@ -1255,6 +1407,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "Nigeria is the most populous country in Africa and is known for its cultural diversity and vibrant music scene.",
     level: Level.Hard,
     code: "NGA",
+    flag: "🇳🇬",
   },
   NIU: {
     name: "Niue",
@@ -1264,6 +1417,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "Niue is a small island nation located in the South Pacific and is known for its limestone cliffs and coral reefs.",
     level: Level.Normal,
     code: "NIU",
+    flag: "🇳🇺",
   },
   NFK: {
     name: "Norfolk Island",
@@ -1272,6 +1426,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "Norfolk Island is a small Australian territory located in the Pacific Ocean, known for its historic sites and beautiful coastline.",
     code: "NFK",
+    flag: "🇳🇫",
   },
   PRK: {
     name: "North Korea",
@@ -1281,6 +1436,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "North Korea is a highly secretive country and is known for its strict political regime and isolation from the international community.",
     level: Level.Hard,
     code: "PRK",
+    flag: "🇰🇵",
   },
   MKD: {
     name: "North Macedonia",
@@ -1290,6 +1446,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "North Macedonia is a landlocked country located in the Balkan Peninsula and is known for its rich history and diverse cultural heritage.",
     level: Level.Normal,
     code: "MKD",
+    flag: "🇲🇰",
   },
   MNP: {
     name: "Northern Mariana Islands",
@@ -1298,6 +1455,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "The Northern Mariana Islands is a U.S. commonwealth territory in the Pacific Ocean and is known for its tropical beauty and World War II historical sites.",
     code: "MNP",
+    flag: "🇲🇵",
   },
   NOR: {
     name: "Norway",
@@ -1307,6 +1465,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "Norway is famous for its stunning fjords, Northern Lights, and outdoor activities such as hiking and skiing.",
     level: Level.Easy,
     code: "NOR",
+    flag: "🇳🇴",
   },
   OMN: {
     name: "Oman",
@@ -1316,6 +1475,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "Oman is known for its diverse landscapes, including deserts, mountains, and beautiful coastline.",
     level: Level.Hard,
     code: "OMN",
+    flag: "🇴🇲",
   },
   PAK: {
     name: "Pakistan",
@@ -1325,6 +1485,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "Pakistan is home to K2, the second-highest peak in the world, and is known for its rich cultural heritage and historical sites.",
     level: Level.Hard,
     code: "PAK",
+    flag: "🇵🇰",
   },
   PLW: {
     name: "Palau",
@@ -1334,6 +1495,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "Palau is a small island country in the western Pacific Ocean and is renowned for its pristine beaches, coral reefs, and marine biodiversity.",
     level: Level.Normal,
     code: "PLW",
+    flag: "🇵🇼",
   },
   PSE: {
     name: "Palestine",
@@ -1342,6 +1504,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "Palestine is a region with a complex political situation and is known for its historical significance and religious sites.",
     code: "PSE",
+    flag: "🇵🇸",
   },
   PAN: {
     name: "Panama",
@@ -1351,6 +1514,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "Panama is famous for the Panama Canal, an engineering marvel that connects the Atlantic and Pacific Oceans.",
     level: Level.Hard,
     code: "PAN",
+    flag: "🇵🇦",
   },
   PNG: {
     name: "Papua New Guinea",
@@ -1360,6 +1524,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "Papua New Guinea is one of the most culturally diverse countries in the world, with over 800 languages spoken.",
     level: Level.Normal,
     code: "PNG",
+    flag: "🇵🇬",
   },
   PRY: {
     name: "Paraguay",
@@ -1369,6 +1534,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "Paraguay is known for its traditional music and dance, including the lively polka-like genre called polca paraguaya.",
     level: Level.Hard,
     code: "PRY",
+    flag: "🇵🇾",
   },
   PER: {
     name: "Peru",
@@ -1378,6 +1544,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "Peru is home to Machu Picchu, an ancient Incan citadel and one of the New Seven Wonders of the World.",
     level: Level.Hard,
     code: "PER",
+    flag: "🇵🇪",
   },
   PHL: {
     name: "Philippines",
@@ -1387,6 +1554,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "The Philippines is an archipelago consisting of over 7,000 islands and is known for its stunning beaches, rich biodiversity, and vibrant festivals.",
     level: Level.Hard,
     code: "PHL",
+    flag: "🇵🇭",
   },
   PCN: {
     name: "Pitcairn Islands",
@@ -1395,6 +1563,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "The Pitcairn Islands is a British Overseas Territory in the South Pacific and is one of the least populous jurisdictions in the world.",
     code: "PCN",
+    flag: "🇵🇳",
   },
   POL: {
     name: "Poland",
@@ -1404,6 +1573,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "Poland is famous for its medieval architecture, picturesque cities, and delicious cuisine, including dishes like pierogi and kielbasa.",
     level: Level.Hard,
     code: "POL",
+    flag: "🇵🇱",
   },
   PRT: {
     name: "Portugal",
@@ -1413,6 +1583,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "Portugal is known for its beautiful coastline, historic landmarks, and being the birthplace of explorers like Vasco da Gama.",
     level: Level.Easy,
     code: "PRT",
+    flag: "🇵🇹",
   },
   PRI: {
     name: "Puerto Rico",
@@ -1421,6 +1592,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "Puerto Rico is a U.S. territory in the Caribbean known for its vibrant culture, stunning beaches, and bioluminescent bays.",
     code: "PRI",
+    flag: "🇵🇷",
   },
   QAT: {
     name: "Qatar",
@@ -1430,6 +1602,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "Qatar is one of the richest countries in the world and will be hosting the FIFA World Cup in 2022.",
     level: Level.Hard,
     code: "QAT",
+    flag: "🇶🇦",
   },
   REU: {
     name: "Réunion",
@@ -1439,6 +1612,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "Réunion is an overseas department and region of France located in the Indian Ocean and is known for its volcanic landscapes and biodiversity.",
     level: Level.Hard,
     code: "REU",
+    flag: "🇷🇪",
   },
   ROU: {
     name: "Romania",
@@ -1447,6 +1621,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "Romania is home to the legendary region of Transylvania and the famous Bran Castle, often associated with the story of Dracula.",
     code: "ROU",
+    flag: "🇷🇴",
   },
   RUS: {
     name: "Russia",
@@ -1456,6 +1631,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "Russia is the largest country in the world, spanning across two continents, and is known for its rich history, diverse culture, and iconic landmarks like the Red Square and the Kremlin.",
     level: Level.Easy,
     code: "RUS",
+    flag: "🇷🇺",
   },
   RWA: {
     name: "Rwanda",
@@ -1465,6 +1641,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "Rwanda is known as the 'Land of a Thousand Hills' and has made significant progress in economic development and conservation efforts.",
     level: Level.Hard,
     code: "RWA",
+    flag: "🇷🇼",
   },
   BLM: {
     name: "Saint Barthélemy",
@@ -1474,6 +1651,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "Saint Barthélemy is a Caribbean island and an overseas collectivity of France known for its luxury resorts, white sandy beaches, and vibrant nightlife.",
     level: Level.Hard,
     code: "BLM",
+    flag: "🇧🇱",
   },
   SHN: {
     name: "Saint Helena",
@@ -1483,6 +1661,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "Saint Helena is a remote volcanic island in the South Atlantic Ocean and is famously known as the place of Napoleon Bonaparte's exile and death.",
     level: Level.Hard,
     code: "SHN",
+    flag: "🇸🇭",
   },
   KNA: {
     name: "Saint Kitts and Nevis",
@@ -1492,6 +1671,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "Saint Kitts and Nevis is a dual-island nation in the Caribbean and is a popular tourist destination known for its beautiful beaches and historic sites.",
     level: Level.Normal,
     code: "KNA",
+    flag: "🇰🇳",
   },
   LCA: {
     name: "Saint Lucia",
@@ -1501,6 +1681,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "Saint Lucia is a tropical paradise in the Eastern Caribbean and is famous for its stunning landscapes, including the iconic Pitons.",
     level: Level.Hard,
     code: "LCA",
+    flag: "🇱🇨",
   },
   MAF: {
     name: "Saint Martin (French part)",
@@ -1510,6 +1691,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "Saint Martin is a Caribbean island divided between France and the Netherlands and is known for its beautiful beaches, water sports, and lively culture.",
     level: Level.Hard,
     code: "MAF",
+    flag: "🇲🇫",
   },
   SPM: {
     name: "Saint Pierre and Miquelon",
@@ -1519,6 +1701,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "Saint Pierre and Miquelon is a small archipelago off the coast of Canada and is an overseas collectivity of France known for its French heritage and seafood cuisine.",
     level: Level.Hard,
     code: "SPM",
+    flag: "🇵🇲",
   },
   VCT: {
     name: "Saint Vincent and the Grenadines",
@@ -1528,6 +1711,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "Saint Vincent and the Grenadines is an island country in the Caribbean and is famous for its pristine beaches, coral reefs, and sailing opportunities.",
     level: Level.Normal,
     code: "VCT",
+    flag: "🇻🇨",
   },
   WSM: {
     name: "Samoa",
@@ -1537,6 +1721,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "Samoa is a Polynesian country in the South Pacific known for its traditional fa'a Samoa culture, natural beauty, and rugby passion.",
     level: Level.Hard,
     code: "WSM",
+    flag: "🇼🇸",
   },
   SMR: {
     name: "San Marino",
@@ -1546,6 +1731,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "San Marino is a microstate surrounded by Italy and is known for its medieval architecture and being one of the oldest republics in the world.",
     level: Level.Normal,
     code: "SMR",
+    flag: "🇸🇲",
   },
   STP: {
     name: "São Tomé and Príncipe",
@@ -1555,6 +1741,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "São Tomé and Príncipe is an island nation in the Gulf of Guinea and is known for its stunning beaches, lush rainforests, and cocoa production.",
     level: Level.Normal,
     code: "STP",
+    flag: "🇸🇹",
   },
   SAU: {
     name: "Saudi Arabia",
@@ -1564,6 +1751,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "Saudi Arabia is the birthplace of Islam and is home to the two holiest cities of Islam, Mecca and Medina.",
     level: Level.Easy,
     code: "SAU",
+    flag: "🇸🇦",
   },
   SEN: {
     name: "Senegal",
@@ -1573,6 +1761,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "Senegal is known for its vibrant music and dance scene, rich cultural heritage, and the stunning natural beauty of places like the Pink Lake (Lac Rose).",
     level: Level.Hard,
     code: "SEN",
+    flag: "🇸🇳",
   },
   SRB: {
     name: "Serbia",
@@ -1582,6 +1771,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "Serbia is known for its rich history, delicious cuisine, and vibrant music festivals, including the world-famous Exit festival.",
     level: Level.Hard,
     code: "SRB",
+    flag: "🇷🇸",
   },
   SYC: {
     name: "Seychelles",
@@ -1591,6 +1781,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "Seychelles is an archipelago in the Indian Ocean known for its stunning beaches, coral reefs, and diverse marine life, including the giant Aldabra tortoises.",
     level: Level.Normal,
     code: "SYC",
+    flag: "🇸🇨",
   },
   SLE: {
     name: "Sierra Leone",
@@ -1600,6 +1791,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "Sierra Leone is known for its beautiful beaches, wildlife reserves, and the unique Krio language, which blends English with several African languages.",
     level: Level.Hard,
     code: "SLE",
+    flag: "🇸🇱",
   },
   SGP: {
     name: "Singapore",
@@ -1609,6 +1801,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "Singapore is a city-state and island country known for its modern skyline, multicultural society, and efficient public transportation system.",
     level: Level.Easy,
     code: "SGP",
+    flag: "🇸🇬",
   },
   SXM: {
     name: "Sint Maarten (Dutch part)",
@@ -1618,6 +1811,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "Sint Maarten is a small island divided between the Netherlands and France, known for its beautiful beaches, vibrant nightlife, and duty-free shopping.",
     level: Level.Hard,
     code: "SXM",
+    flag: "🇸🇽",
   },
   SVK: {
     name: "Slovakia",
@@ -1627,6 +1821,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "Slovakia is a landlocked country in Central Europe known for its picturesque castles, stunning mountainous landscapes, and traditional folk culture.",
     level: Level.Hard,
     code: "SVK",
+    flag: "🇸🇰",
   },
   SVN: {
     name: "Slovenia",
@@ -1636,6 +1831,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "Slovenia is a country known for its breathtaking natural beauty, including Lake Bled and the Julian Alps, as well as its excellent wines and outdoor activities.",
     level: Level.Hard,
     code: "SVN",
+    flag: "🇸🇮",
   },
   SLB: {
     name: "Solomon Islands",
@@ -1645,6 +1841,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "The Solomon Islands is an archipelago in the South Pacific known for its stunning coral reefs, World War II history, and traditional Melanesian culture.",
     level: Level.Normal,
     code: "SLB",
+    flag: "🇸🇧",
   },
   SOM: {
     name: "Somalia",
@@ -1654,6 +1851,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "Somalia is located in the Horn of Africa and is known for its rich cultural heritage, ancient cities like Mogadishu, and beautiful coastline along the Indian Ocean.",
     level: Level.Hard,
     code: "SOM",
+    flag: "🇸🇴",
   },
   ZAF: {
     name: "South Africa",
@@ -1664,6 +1862,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "South Africa is a diverse country known for its wildlife safaris, stunning landscapes, vibrant cities like Johannesburg and Cape Town, and its rich history, including the legacy of Nelson Mandela.",
     level: Level.Easy,
     code: "ZAF",
+    flag: "🇿🇦",
   },
   SGS: {
     name: "South Georgia and the South Sandwich Islands",
@@ -1673,6 +1872,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "South Georgia and the South Sandwich Islands are a remote British overseas territory in the South Atlantic Ocean known for their rugged beauty, abundant wildlife, and historical whaling stations.",
     level: Level.Hard,
     code: "SGS",
+    flag: "🇬🇸",
   },
   KOR: {
     name: "South Korea",
@@ -1682,6 +1882,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "South Korea is known for its technological advancements, K-pop music, vibrant street markets, delicious cuisine, and ancient palaces, such as Gyeongbokgung.",
     level: Level.Easy,
     code: "KOR",
+    flag: "🇰🇷",
   },
   SSD: {
     name: "South Sudan",
@@ -1691,6 +1892,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "South Sudan is the youngest country in the world, gaining independence from Sudan in 2011. It is home to diverse ethnic groups, wildlife, and the vast Sudd wetland.",
     level: Level.Hard,
     code: "SSD",
+    flag: "🇸🇸",
   },
   ESP: {
     name: "Spain",
@@ -1700,6 +1902,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "Spain is known for its rich history, vibrant culture, stunning architecture (such as Sagrada Familia and Alhambra), world-famous cuisine, and beautiful beaches.",
     level: Level.Easy,
     code: "ESP",
+    flag: "🇪🇸",
   },
   LKA: {
     name: "Sri Lanka",
@@ -1709,6 +1912,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "Sri Lanka, often referred to as the 'Pearl of the Indian Ocean,' is famous for its ancient ruins, vibrant festivals, flavorful cuisine, and stunning tea plantations.",
     level: Level.Hard,
     code: "LKA",
+    flag: "🇱🇰",
   },
   SDN: {
     name: "Sudan",
@@ -1718,6 +1922,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "Sudan is the third-largest country in Africa and is known for its ancient pyramids, diverse cultures, the Nile River, and vast desert landscapes.",
     level: Level.Hard,
     code: "SDN",
+    flag: "🇸🇩",
   },
   SUR: {
     name: "Suriname",
@@ -1727,6 +1932,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "Suriname is a small country on the northeastern coast of South America known for its diverse ethnic makeup, lush rainforests, and the historic capital city of Paramaribo.",
     level: Level.Normal,
     code: "SUR",
+    flag: "🇸🇷",
   },
   SWE: {
     name: "Sweden",
@@ -1736,6 +1942,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "Sweden is known for its stunning landscapes, including forests, lakes, and coastal islands. It is also famous for its design, ABBA, meatballs, and the Northern Lights.",
     level: Level.Easy,
     code: "SWE",
+    flag: "🇸🇪",
   },
   CHE: {
     name: "Switzerland",
@@ -1745,6 +1952,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "Switzerland is renowned for its beautiful Alps, Swiss watches, delicious chocolate, efficient public transportation, and being a global hub for diplomacy and finance.",
     level: Level.Easy,
     code: "CHE",
+    flag: "🇨🇭",
   },
   SYR: {
     name: "Syria",
@@ -1754,6 +1962,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "Syria is an ancient country with a rich history and is known for its historic sites, such as the ancient city of Palmyra, as well as its diverse cultural heritage.",
     level: Level.Hard,
     code: "SYR",
+    flag: "🇸🇾",
   },
   TWN: {
     name: "Taiwan",
@@ -1763,6 +1972,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "Taiwan, officially known as the Republic of China (ROC), is an island nation famous for its technological innovation, night markets, beautiful scenery, and delicious street food.",
     level: Level.Hard,
     code: "TWN",
+    flag: "🇹🇼",
   },
   TJK: {
     name: "Tajikistan",
@@ -1772,6 +1982,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "Tajikistan is a mountainous country in Central Asia known for its rugged landscapes, ancient Silk Road cities, and traditional arts and crafts, such as handwoven carpets and intricate metalwork.",
     level: Level.Hard,
     code: "TJK",
+    flag: "🇹🇯",
   },
   TZA: {
     name: "Tanzania",
@@ -1780,6 +1991,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "Tanzania is home to Mount Kilimanjaro, the highest peak in Africa, as well as the Serengeti National Park and the stunning Zanzibar Archipelago, known for its beautiful beaches and rich cultural heritage.",
     code: "TZA",
+    flag: "🇹🇿",
   },
   THA: {
     name: "Thailand",
@@ -1789,6 +2001,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "Thailand, also known as the 'Land of Smiles,' is famous for its rich history, ornate temples (such as Wat Arun and Wat Phra Kaew), delicious cuisine (including pad Thai and green curry), and vibrant street markets.",
     level: Level.Easy,
     code: "THA",
+    flag: "🇹🇭",
   },
   TLS: {
     name: "Timor-Leste",
@@ -1798,6 +2011,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "Timor-Leste, also known as East Timor, is a Southeast Asian country known for its stunning beaches, diverse marine life, and vibrant cultural traditions.",
     level: Level.Normal,
     code: "TLS",
+    flag: "🇹🇱",
   },
   TGO: {
     name: "Togo",
@@ -1806,6 +2020,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "Togo is a small West African country known for its palm-fringed beaches, traditional voodoo practices, vibrant markets, and the Koutammakou landscape, a UNESCO World Heritage site.",
     code: "TGO",
+    flag: "🇹🇬",
   },
   TKL: {
     name: "Tokelau",
@@ -1814,6 +2029,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "Tokelau is a group of three coral atolls in the South Pacific Ocean. With a small population and a remote location, Tokelau is known for its pristine natural beauty and traditional Polynesian culture.",
     code: "TKL",
+    flag: "🇹🇰",
   },
   TON: {
     name: "Tonga",
@@ -1823,6 +2039,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "Tonga is an archipelago in the South Pacific known for its stunning beaches, coral reefs, and warm hospitality. It is the only monarchy in the Pacific region.",
     level: Level.Normal,
     code: "TON",
+    flag: "🇹🇴",
   },
   TTO: {
     name: "Trinidad and Tobago",
@@ -1831,6 +2048,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "Trinidad and Tobago is a twin-island nation in the Caribbean known for its vibrant Carnival celebrations, diverse cultural heritage, and beautiful beaches.",
     code: "TTO",
+    flag: "🇹🇹",
   },
   TUN: {
     name: "Tunisia",
@@ -1839,6 +2057,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "Tunisia is a North African country known for its ancient ruins, such as Carthage and the Roman amphitheater of El Djem, as well as its beautiful Mediterranean coastline.",
     code: "TUN",
+    flag: "🇹🇳",
   },
   TUR: {
     name: "Turkey",
@@ -1848,6 +2067,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "Turkey is a transcontinental country located at the crossroads of Europe and Asia. It is known for its rich history, iconic landmarks (such as Hagia Sophia and Cappadocia), delicious cuisine, and vibrant bazaars.",
     level: Level.Easy,
     code: "TUR",
+    flag: "🇹🇷",
   },
   TKM: {
     name: "Turkmenistan",
@@ -1856,6 +2076,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "Turkmenistan is a Central Asian country known for its vast deserts, ancient Silk Road sites, and impressive white marble architecture in the capital city of Ashgabat.",
     code: "TKM",
+    flag: "🇹🇲",
   },
   TCA: {
     name: "Turks and Caicos Islands",
@@ -1864,6 +2085,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "The Turks and Caicos Islands are a British Overseas Territory in the Caribbean. Known for their pristine beaches, turquoise waters, and vibrant coral reefs, they are a popular destination for luxury resorts and water sports.",
     code: "TCA",
+    flag: "🇹🇨",
   },
   TUV: {
     name: "Tuvalu",
@@ -1873,6 +2095,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "Tuvalu is a small island nation in the Pacific Ocean. It is known for its stunning seascapes, traditional Polynesian culture, and being one of the world's least populated countries.",
     level: Level.Normal,
     code: "TUV",
+    flag: "🇹🇻",
   },
   UGA: {
     name: "Uganda",
@@ -1881,6 +2104,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "Uganda is often referred to as the 'Pearl of Africa' due to its diverse wildlife, including mountain gorillas in Bwindi Impenetrable National Park, and stunning natural landscapes such as Murchison Falls and Lake Victoria.",
     code: "UGA",
+    flag: "🇺🇬",
   },
   UKR: {
     name: "Ukraine",
@@ -1889,6 +2113,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "Ukraine is the largest country in Europe. It is known for its rich history, diverse architecture, including UNESCO World Heritage sites like Kyiv's Saint Sophia Cathedral, and its cultural contributions, particularly in literature and music.",
     code: "UKR",
+    flag: "🇺🇦",
   },
   ARE: {
     name: "United Arab Emirates",
@@ -1898,6 +2123,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "The United Arab Emirates is a federation of seven emirates located in the Middle East. Known for its modern architecture, luxurious resorts, and vibrant cities like Dubai and Abu Dhabi, it is a popular tourist destination.",
     level: Level.Easy,
     code: "ARE",
+    flag: "🇦🇪",
   },
   GBR: {
     name: "United Kingdom",
@@ -1907,6 +2133,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "The United Kingdom, consisting of four countries (England, Scotland, Wales, and Northern Ireland), is known for its rich history, iconic landmarks (such as the Big Ben and Stonehenge), vibrant cultural scene, and royal traditions.",
     level: Level.Easy,
     code: "GBR",
+    flag: "🇬🇧",
   },
   USA: {
     name: "United States",
@@ -1916,6 +2143,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "The United States is a vast country known for its diverse landscapes, cultural melting pot, iconic cities (such as New York City and Los Angeles), and landmarks like the Statue of Liberty and the Grand Canyon.",
     level: Level.Easy,
     code: "USA",
+    flag: "🇺🇸",
   },
   VIR: {
     name: "United States Virgin Islands",
@@ -1924,6 +2152,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "The United States Virgin Islands is a group of islands in the Caribbean Sea. Known for their beautiful beaches, crystal-clear waters, and vibrant coral reefs, they are a popular destination for snorkeling, diving, and sailing.",
     code: "VIR",
+    flag: "🇻🇮",
   },
   URY: {
     name: "Uruguay",
@@ -1932,6 +2161,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "Uruguay is a South American country known for its stunning coastline, vibrant culture, and progressive social policies. It is the birthplace of tango and home to beautiful colonial towns like Colonia del Sacramento.",
     code: "URY",
+    flag: "🇺🇾",
   },
   UZB: {
     name: "Uzbekistan",
@@ -1940,6 +2170,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "Uzbekistan is a Central Asian country known for its rich history along the Silk Road. It is famous for its stunning Islamic architecture, such as the Registan Square in Samarkand and the Kalon Minaret in Bukhara.",
     code: "UZB",
+    flag: "🇺🇿",
   },
   VUT: {
     name: "Vanuatu",
@@ -1949,6 +2180,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "Vanuatu is a South Pacific island nation known for its stunning natural beauty, including active volcanoes, pristine beaches, and vibrant coral reefs. It is also famous for its unique tribal cultures and traditional ceremonies.",
     level: Level.Normal,
     code: "VUT",
+    flag: "🇻🇺",
   },
   VAT: {
     name: "Vatican City",
@@ -1957,6 +2189,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "Vatican City is the smallest independent state in the world, both in terms of area and population. It is the spiritual and administrative headquarters of the Roman Catholic Church, and home to St. Peter's Basilica and the Vatican Museums.",
     code: "VAT",
+    flag: "🇻🇦",
   },
   VEN: {
     name: "Venezuela",
@@ -1965,6 +2198,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "Venezuela is a South American country known for its stunning landscapes, including the world's tallest waterfall, Angel Falls. It is also famous for its rich biodiversity, vibrant music and dance, and the delicious arepas.",
     code: "VEN",
+    flag: "🇻🇪",
   },
   VNM: {
     name: "Vietnam",
@@ -1973,6 +2207,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "Vietnam is a Southeast Asian country known for its diverse culture, ancient temples, beautiful landscapes, and delicious cuisine. From the bustling streets of Hanoi to the iconic limestone formations of Halong Bay, Vietnam offers a wide range of experiences.",
     code: "VNM",
+    flag: "🇻🇳",
   },
   WLF: {
     name: "Wallis and Futuna",
@@ -1982,6 +2217,7 @@ export const COUNTRIES: { [key: string]: Country } = {
       "Wallis and Futuna is a French overseas collectivity in the South Pacific. It is made up of three main volcanic islands and is known for its stunning lagoons, traditional Polynesian culture, and beautiful handicrafts.",
     level: Level.Normal,
     code: "WLF",
+    flag: "🇼🇫",
   },
   ESH: {
     name: "Western Sahara",
@@ -1990,6 +2226,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "Western Sahara is a disputed territory in North Africa. It is known for its vast desert landscapes, including the world's largest non-polar desert, the Sahara. The status of Western Sahara is the subject of ongoing international negotiations.",
     code: "ESH",
+    flag: "🇪🇭",
   },
   YEM: {
     name: "Yemen",
@@ -1998,6 +2235,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "Yemen is a country located in the southern part of the Arabian Peninsula. It is known for its rich history, ancient architecture (such as the UNESCO World Heritage Site of Old Sana'a), and unique blend of cultures.",
     code: "YEM",
+    flag: "🇾🇪",
   },
   ZMB: {
     name: "Zambia",
@@ -2006,6 +2244,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "Zambia is a landlocked country in Southern Africa known for its diverse wildlife, stunning landscapes (including Victoria Falls), and vibrant culture. It is also one of the world's largest producers of copper.",
     code: "ZMB",
+    flag: "🇿🇲",
   },
   ZWE: {
     name: "Zimbabwe",
@@ -2014,6 +2253,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "Zimbabwe is a landlocked country in Southern Africa known for its diverse wildlife, ancient ruins (such as Great Zimbabwe), and beautiful national parks (such as Hwange National Park and Mana Pools National Park).",
     code: "ZWE",
+    flag: "🇿🇼",
   },
 
   // Special Cases
@@ -2023,6 +2263,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     population: 6000,
     funFact: "A U.S. Naval base located in Guantanamo Bay, Cuba.",
     code: "USG",
+    flag: "🇺🇸",
   },
   UMI: {
     name: "U.S. Minor Outlying Islands",
@@ -2031,6 +2272,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "Consists of multiple uninhabited U.S. territories in the Pacific Ocean and the Caribbean Sea.",
     code: "UMI",
+    flag: "🇺🇸",
   },
   BJN: {
     name: "Bajo Nuevo Bank",
@@ -2039,6 +2281,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "An uninhabited reef in the western Caribbean Sea, claimed by the United States, Colombia, and Jamaica.",
     code: "BJN",
+    flag: "🇺🇸",
   },
   SER: {
     name: "Serranilla Bank",
@@ -2047,6 +2290,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "An uninhabited reef in the western Caribbean Sea, claimed by the United States, Colombia, and Nicaragua.",
     code: "SER",
+    flag: "🇺🇸",
   },
   ESB: {
     name: "Dhekelia",
@@ -2054,6 +2298,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     population: 7500,
     funFact: "A British Overseas Territory located in Cyprus.",
     code: "ESB",
+    flag: "🇬🇧",
   },
   PSX: {
     name: "Palestine",
@@ -2062,6 +2307,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "A state recognized by the United Nations, with its status and borders subject to ongoing disputes.",
     code: "PSX",
+    flag: "🇵🇸",
   },
   CYN: {
     name: "Northern Cyprus",
@@ -2070,6 +2316,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "A self-declared state recognized only by Turkey and occupying the northern portion of the island of Cyprus.",
     code: "CYN",
+    flag: "🇹🇷",
   },
   CNM: {
     name: "Cyprus U.N. Buffer Zone",
@@ -2078,6 +2325,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "A demilitarized zone administered by the United Nations, dividing Cyprus into two parts.",
     code: "CNM",
+    flag: "🇨🇾",
   },
   KAS: {
     name: "Siachen Glacier",
@@ -2086,6 +2334,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "A disputed territory located in the eastern Karakoram range of the Himalayas, claimed by India and Pakistan.",
     code: "KAS",
+    flag: "🇮🇳",
   },
   KAB: {
     name: "Baikonur",
@@ -2094,6 +2343,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "A city in Kazakhstan known for the Baikonur Cosmodrome, the world's first and largest operational space launch facility.",
     code: "KAB",
+    flag: "🇰🇿",
   },
   WSB: {
     name: "Akrotiri",
@@ -2101,6 +2351,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     population: 15000,
     funFact: "A British Overseas Territory located on the island of Cyprus.",
     code: "WSB",
+    flag: "🇬🇧",
   },
   IOA: {
     name: "British Indian Ocean Territory",
@@ -2109,6 +2360,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "A British Overseas Territory in the Indian Ocean, known for the strategic military base of Diego Garcia.",
     code: "IOA",
+    flag: "🇬🇧",
   },
   PGA: {
     name: "Spratly Islands",
@@ -2117,6 +2369,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "A disputed archipelago in the South China Sea, claimed in whole or in part by several countries.",
     code: "PGA",
+    flag: "🇨🇳",
   },
   SCR: {
     name: "Scarborough Reef",
@@ -2125,6 +2378,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "An atoll reef in the South China Sea, claimed by China, Taiwan, and the Philippines.",
     code: "SCR",
+    flag: "🇨🇳",
   },
   BRI: {
     name: "Brazilian Island",
@@ -2133,6 +2387,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "An uninhabited island in the South Atlantic Ocean, administered by Brazil.",
     code: "BRI",
+    flag: "🇧🇷",
   },
   SPI: {
     name: "Southern Patagonian Ice Field",
@@ -2141,6 +2396,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "One of the largest non-polar ice fields in the world, located in southern Chile and Argentina.",
     code: "SPI",
+    flag: "🇨🇱",
   },
   SDS: {
     name: "South Sudan",
@@ -2149,6 +2405,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "The youngest country in the world, having gained independence from Sudan in 2011.",
     code: "SDS",
+    flag: "🇸🇸",
   },
   SOL: {
     name: "Somaliland",
@@ -2157,6 +2414,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "A self-declared state internationally recognized as an autonomous region of Somalia.",
     code: "SOL",
+    flag: "🇸🇴",
   },
   SAH: {
     name: "Western Sahara",
@@ -2165,6 +2423,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "A disputed territory in North Africa, claimed by both Morocco and the Sahrawi Arab Democratic Republic.",
     code: "SAH",
+    flag: "🇲🇦",
   },
   BRT: {
     name: "Bir Tawil",
@@ -2173,6 +2432,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "An area along the border between Egypt and Sudan, claimed by neither country due to a territorial dispute.",
     code: "BRT",
+    flag: "🇪🇬",
   },
   KOS: {
     name: "Kosovo",
@@ -2181,6 +2441,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "A partially recognized state in Southeastern Europe, with a complex political status and ongoing disputes.",
     code: "KOS",
+    flag: "🇽🇰",
   },
   ALD: {
     name: "Åland Islands",
@@ -2189,6 +2450,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "An autonomous territory of Finland, known for its Swedish-speaking population and picturesque archipelago.",
     code: "ALD",
+    flag: "🇫🇮",
   },
   CSI: {
     name: "Coral Sea Islands",
@@ -2197,6 +2459,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "An external territory of Australia comprising numerous small islands and reefs in the Coral Sea.",
     code: "CSI",
+    flag: "🇦🇺",
   },
   ATC: {
     name: "Ashmore and Cartier Islands",
@@ -2205,6 +2468,7 @@ export const COUNTRIES: { [key: string]: Country } = {
     funFact:
       "An external territory of Australia located in the Indian Ocean, known for its rich marine biodiversity.",
     code: "ATC",
+    flag: "🇦🇺",
   },
 };
 
