@@ -41,6 +41,10 @@ const getGeoStyle = (isCountryGuessed: boolean, theme: WithCSSVar<any>) => ({
 
 const MIN_ZOOM = 0.5;
 const MAX_ZOOM = 4;
+const DEFAULT_POSITION: Position = {
+  coordinates: [0, 10],
+  zoom: 1,
+};
 
 interface Position {
   coordinates: [number, number];
@@ -76,10 +80,7 @@ const WorldMap: FC<WorldMapProps> = ({
   geoProjection = "geoMercator",
   geoAspect = "European - Africa centric",
 }) => {
-  const [position, setPosition] = useState<Position>({
-    coordinates: [0, 0],
-    zoom: 1,
-  });
+  const [position, setPosition] = useState<Position>(DEFAULT_POSITION);
   const [rotation, setRotation] = useState<Rotate>(
     getRotationFromGeoAspect(geoAspect)
   );
@@ -87,6 +88,7 @@ const WorldMap: FC<WorldMapProps> = ({
 
   useEffect(() => {
     setRotation(getRotationFromGeoAspect(geoAspect));
+    setPosition(DEFAULT_POSITION);
   }, [geoAspect]);
 
   const handleGeographyClick = useCallback(
