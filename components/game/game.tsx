@@ -2,15 +2,19 @@ import useDeviceSize from "@/hooks/useDeviceSize";
 import { Country, getCountries } from "@/utils/countries";
 import { GeoAspect, getRandomGeoAspect } from "@/utils/geo-aspects";
 import { GeoProjection, getRandomGeoProjection } from "@/utils/geo-projections";
-import { Level, getNextLevel } from "@/utils/rules";
+import {
+  Level,
+  getLossCondition,
+  getNextLevel,
+  getSampleSize,
+  getWinCondition,
+} from "@/utils/rules";
 import { FC, useCallback, useState, useEffect } from "react";
 import { useTheme, useToast } from "@chakra-ui/react";
 import Gauge from "@/components/game/gauge";
 import UpperBar from "@/components/game/upper-bar";
 import EndGameScreen from "@/components/menu/end-game-screen";
 import WorldMap from "@/components/world-map/world-map";
-
-export const SAMPLE_SIZE = 20;
 
 interface GameProps {
   level: Level;
@@ -93,11 +97,13 @@ const Game: FC<GameProps> = ({ level }) => {
 
   useEffect(() => {
     if (currentCountryIndex >= countries.length) {
-      setAttempts(SAMPLE_SIZE);
+      const sampleSize = getSampleSize(currentLevel);
+      setAttempts(sampleSize);
     }
-  }, [currentCountryIndex, countries]);
+  }, [currentCountryIndex, countries, currentLevel]);
 
-  const winCondition = Math.round(SAMPLE_SIZE * 0.7);
+  const winCondition = getWinCondition(currentLevel);
+  const losingCondition = getLossCondition(currentLevel);
 
   const handlePlayAgain = () => {
     setCurrentCountryIndex(0);
@@ -119,7 +125,7 @@ const Game: FC<GameProps> = ({ level }) => {
   const countryToGuess =
     countries.length > 0 ? countries[currentCountryIndex] : null;
   const isGameWon = score >= winCondition;
-  const isGameLost = attempts >= SAMPLE_SIZE;
+  const isGameLost = attempts >= losingCondition;
   const isGameOver = isGameWon || isGameLost;
 
   return (
@@ -132,6 +138,7 @@ const Game: FC<GameProps> = ({ level }) => {
         countryToGuess={countryToGuess}
         geoProjection={geoProjection}
         level={currentLevel}
+        losingCondition={losingCondition}
       />
       <Gauge score={score} winCondition={winCondition} />
       {isGameOver && (

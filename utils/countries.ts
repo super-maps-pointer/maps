@@ -1,5 +1,4 @@
-import { SAMPLE_SIZE } from "@/components/game/game";
-import { Level } from "@/utils/rules";
+import { Level, getSampleSize } from "@/utils/rules";
 import { sampleSize } from "lodash";
 
 export interface Country {
@@ -2630,6 +2629,7 @@ const getCountriesByLevel = (level: Level): Country[] => {
 
 export const getCountries = (level: Level): Country[] => {
   const countriesByLevel = getCountriesByLevel(level);
-  const randomSample = sampleSize(countriesByLevel, SAMPLE_SIZE);
+  const sampleSizeNumber = getSampleSize(level);
+  const randomSample = sampleSize(countriesByLevel, sampleSizeNumber);
   return randomSample;
 };
