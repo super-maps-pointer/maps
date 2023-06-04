@@ -1,4 +1,4 @@
-import { SAMPLE_SIZE } from "@/app/game";
+import { SAMPLE_SIZE } from "@/components/game/game";
 import { Level } from "@/utils/rules";
 import { sampleSize } from "lodash";
 

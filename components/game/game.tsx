@@ -1,14 +1,14 @@
-import EndGameScreen from "@/app/end-game-screen";
-import Gauge from "@/app/gauge";
-import UpperBar from "@/app/upper-bar";
-import WorldMap from "@/app/world-map";
 import useDeviceSize from "@/hooks/useDeviceSize";
 import { Country, getCountries } from "@/utils/countries";
 import { GeoAspect, getRandomGeoAspect } from "@/utils/geo-aspects";
 import { GeoProjection, getRandomGeoProjection } from "@/utils/geo-projections";
 import { Level, getNextLevel } from "@/utils/rules";
 import { FC, useCallback, useState, useEffect } from "react";
-import { toast } from "react-toastify";
+import { useTheme, useToast } from "@chakra-ui/react";
+import Gauge from "@/components/game/gauge";
+import UpperBar from "@/components/game/upper-bar";
+import EndGameScreen from "@/components/menu/end-game-screen";
+import WorldMap from "@/components/world-map/world-map";
 
 export const SAMPLE_SIZE = 20;
 
@@ -28,6 +28,8 @@ const Game: FC<GameProps> = ({ level }) => {
   const [geoAspect, setGeoAspect] = useState<GeoAspect>(
     "European - Africa centric"
   );
+  const toast = useToast();
+  const theme = useTheme();
 
   const generateNewGeoProjection = useCallback(() => {
     let newGeoProjection: GeoProjection;
@@ -54,13 +56,26 @@ const Game: FC<GameProps> = ({ level }) => {
       if (code === countries[currentCountryIndex].code) {
         const country = countries[currentCountryIndex];
 
-        toast.success("Good!");
+        toast({
+          title: "Good!",
+          status: "success",
+          duration: 2000,
+          isClosable: true,
+          position: "bottom-left",
+        });
         setGuessedCountries((prevGuessedCountries) => [
           ...prevGuessedCountries,
           country,
         ]);
       } else {
-        toast.error(`Wrong! You clicked ${name}`);
+        toast({
+          title: "Wrong!",
+          status: "error",
+          description: `You clicked ${name}`,
+          duration: 2000,
+          isClosable: true,
+          position: "bottom-left",
+        });
       }
 
       generateNewGeoProjection();
@@ -72,6 +87,7 @@ const Game: FC<GameProps> = ({ level }) => {
       currentCountryIndex,
       generateNewGeoAspects,
       generateNewGeoProjection,
+      toast,
     ]
   );
 
@@ -107,7 +123,10 @@ const Game: FC<GameProps> = ({ level }) => {
   const isGameOver = isGameWon || isGameLost;
 
   return (
-    <div className="relative">
+    <div
+      className="relative "
+      style={{ backgroundColor: theme.colors.third.main }}
+    >
       <UpperBar
         tries={attempts}
         countryToGuess={countryToGuess}

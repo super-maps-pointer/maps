@@ -1,11 +1,9 @@
 "use client";
 import { useCallback, useState } from "react";
-import Game from "@/app/game";
+import Game from "@/components/game/game";
 import Head from "next/head";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import IntroductionScreen from "@/app/introduction-screen";
 import { Level } from "@/utils/rules";
+import IntroductionScreen from "@/components/menu/introduction-screen";
 
 function Home() {
   const [showIntroduction, setShowIntroduction] = useState(true);
@@ -16,9 +14,8 @@ function Home() {
 
   return (
     <>
-      <ToastContainer position="bottom-left" autoClose={2000} hideProgressBar />
       <Head>
-        <title>Interactive World Map</title>
+        <title>Super Maps Pointer</title>
         <link
           rel="apple-touch-icon"
           sizes="180x180"

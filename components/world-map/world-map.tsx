@@ -6,30 +6,34 @@ import {
   Graticule,
   ZoomableGroup,
 } from "react-simple-maps";
-import { COLORS } from "@/utils/colors";
 import { Country } from "@/utils/countries";
 import { GeoAspect, getRotationFromGeoAspect } from "@/utils/geo-aspects";
 import { GeoProjection } from "@/utils/geo-projections";
 import { Sphere } from "react-simple-maps";
-import Zoom from "@/app/zoom";
-import Rotation from "@/app/rotation";
+import { WithCSSVar, useTheme } from "@chakra-ui/react";
+import Zoom from "@/components/world-map/zoom";
+import Rotation from "@/components/world-map/rotation";
 
-const getGeoStyle = (isCountryGuessed: boolean) => ({
+const getGeoStyle = (isCountryGuessed: boolean, theme: WithCSSVar<any>) => ({
   default: {
-    fill: isCountryGuessed ? COLORS.guessed : COLORS.default,
-    stroke: COLORS.stroke,
+    fill: isCountryGuessed ? theme.colors.fifth.main : theme.colors.map.default,
+    stroke: theme.colors.map.stroke,
     strokeWidth: 0.5,
     outline: "none",
   },
   hover: {
-    fill: isCountryGuessed ? COLORS.guessed : COLORS.hover,
-    stroke: COLORS.stroke,
+    fill: isCountryGuessed
+      ? theme.colors.fifth.main
+      : theme.colors.forth["600"],
+    stroke: theme.colors.map.stroke,
     strokeWidth: 0.5,
     outline: "none",
   },
   pressed: {
-    fill: isCountryGuessed ? COLORS.guessed : COLORS.selected,
-    stroke: COLORS.stroke,
+    fill: isCountryGuessed
+      ? theme.colors.fifth.main
+      : theme.colors.forth["800"],
+    stroke: theme.colors.map.stroke,
     strokeWidth: 0.5,
     outline: "none",
   },
@@ -79,6 +83,7 @@ const WorldMap: FC<WorldMapProps> = ({
   const [rotation, setRotation] = useState<Rotate>(
     getRotationFromGeoAspect(geoAspect)
   );
+  const theme = useTheme();
 
   useEffect(() => {
     setRotation(getRotationFromGeoAspect(geoAspect));
@@ -139,8 +144,13 @@ const WorldMap: FC<WorldMapProps> = ({
           onMoveEnd={handleMoveEnd}
           minZoom={MIN_ZOOM}
         >
-          <Sphere id={"sphere"} fill="#FFF" stroke="#EAEAEC" strokeWidth={1} />
-          <Graticule stroke="#EAEAEC" strokeWidth={0.5} />
+          <Sphere
+            id={"sphere"}
+            fill="#FFF"
+            stroke={theme.colors.map.graticules}
+            strokeWidth={1}
+          />
+          <Graticule stroke={theme.colors.map.graticules} strokeWidth={0.5} />
           <Geographies geography="/middle-res-world-map.geo.json">
             {({ geographies }) => {
               return geographies.map((geography) => {
@@ -153,7 +163,7 @@ const WorldMap: FC<WorldMapProps> = ({
                     geography={geography}
                     stroke="none"
                     onClick={() => handleGeographyClick(geography)}
-                    style={getGeoStyle(isCountryGuessed)}
+                    style={getGeoStyle(isCountryGuessed, theme)}
                   />
                 );
               });

@@ -1,3 +1,4 @@
+import { useTheme, Text } from "@chakra-ui/react";
 import { FC } from "react";
 
 interface GaugeProps {
@@ -7,25 +8,26 @@ interface GaugeProps {
 
 const Gauge: FC<GaugeProps> = ({ score, winCondition }) => {
   const gaugeScore = (score / winCondition) * 100;
+  const theme = useTheme();
 
   return (
     <div className="absolute top-1/2 right-5 transform -translate-y-1/2 text-center">
       <div className="flex flex-col items-center">
         <div
-          className="h-80 w-4 bg-gray-300 mb-4 transform rotate-180 rounded-lg"
+          className="h-80 w-4 bg-white mb-4 transform rotate-180 rounded-lg border border-black shadow-sm"
           style={{ marginBottom: "4px" }}
         >
           <div
             className="h-full rounded-lg"
             style={{
               height: `${gaugeScore}%`,
-              background: `linear-gradient(to top, #59c75c ${gaugeScore}%, #b6e3b9 100%)`,
+              background: `linear-gradient(to top, ${theme.colors.primary.main} ${gaugeScore}%, ${theme.colors.primary["200"]} 100%)`,
             }}
           />
         </div>
-        <p>
+        <Text>
           {score} / {winCondition}
-        </p>
+        </Text>
       </div>
     </div>
   );
