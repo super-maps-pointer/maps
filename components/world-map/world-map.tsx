@@ -10,9 +10,9 @@ import { Country } from "@/utils/countries";
 import { GeoAspect, getRotationFromGeoAspect } from "@/utils/geo-aspects";
 import { GeoProjection } from "@/utils/geo-projections";
 import { Sphere } from "react-simple-maps";
-import Zoom from "@/app/zoom";
-import Rotation from "@/app/rotation";
 import { WithCSSVar, useTheme } from "@chakra-ui/react";
+import Zoom from "@/components/world-map/zoom";
+import Rotation from "@/components/world-map/rotation";
 
 const getGeoStyle = (isCountryGuessed: boolean, theme: WithCSSVar<any>) => ({
   default: {

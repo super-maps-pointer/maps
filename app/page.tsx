@@ -1,9 +1,9 @@
 "use client";
 import { useCallback, useState } from "react";
-import Game from "@/app/game";
+import Game from "@/components/game/game";
 import Head from "next/head";
-import IntroductionScreen from "@/app/introduction-screen";
 import { Level } from "@/utils/rules";
+import IntroductionScreen from "@/components/menu/introduction-screen";
 
 function Home() {
   const [showIntroduction, setShowIntroduction] = useState(true);

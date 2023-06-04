@@ -1,7 +1,3 @@
-import EndGameScreen from "@/app/end-game-screen";
-import Gauge from "@/app/gauge";
-import UpperBar from "@/app/upper-bar";
-import WorldMap from "@/app/world-map";
 import useDeviceSize from "@/hooks/useDeviceSize";
 import { Country, getCountries } from "@/utils/countries";
 import { GeoAspect, getRandomGeoAspect } from "@/utils/geo-aspects";
@@ -9,6 +5,10 @@ import { GeoProjection, getRandomGeoProjection } from "@/utils/geo-projections";
 import { Level, getNextLevel } from "@/utils/rules";
 import { FC, useCallback, useState, useEffect } from "react";
 import { useTheme, useToast } from "@chakra-ui/react";
+import Gauge from "@/components/game/gauge";
+import UpperBar from "@/components/game/upper-bar";
+import EndGameScreen from "@/components/menu/end-game-screen";
+import WorldMap from "@/components/world-map/world-map";
 
 export const SAMPLE_SIZE = 20;
 

@@ -1,4 +1,4 @@
-import { SAMPLE_SIZE } from "@/app/game";
+import { SAMPLE_SIZE } from "@/components/game/game";
 import { Country } from "@/utils/countries";
 import { GeoProjection } from "@/utils/geo-projections";
 import { Level, displayLevel } from "@/utils/rules";
