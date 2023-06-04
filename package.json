@@ -6,8 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "prepare": "husky install"
+    "lint": "next lint"
   },
   "dependencies": {
     "@chakra-ui/next-js": "^2.1.4",
@@ -35,16 +34,6 @@
   "devDependencies": {
     "@types/d3": "^7.4.0",
     "@types/lodash": "^4.14.194",
-    "@types/react-simple-maps": "^3.0.0",
-    "husky": "^8.0.3",
-    "lint-staged": "^13.2.2"
-  },
-  "lint-staged": {
-    "*.+(js|jsx|ts|tsx)": [
-      "eslint --fix"
-    ],
-    "*.+(js|jsx|ts|tsx|css|md)": [
-      "prettier --write"
-    ]
+    "@types/react-simple-maps": "^3.0.0"
   }
 }
