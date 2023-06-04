@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.0](https://github.com/super-maps-pointer/maps/compare/v1.3.0...v1.4.0) (2023-06-04)
+
+
+### Features
+
+* add design theme with chakra and color palette ([#12](https://github.com/super-maps-pointer/maps/issues/12)) ([8801d28](https://github.com/super-maps-pointer/maps/commit/8801d28a4bbda9d3806780c29194aaa0420870e4))
+
 ## [1.3.0](https://github.com/super-maps-pointer/maps/compare/v1.2.0...v1.3.0) (2023-06-03)
 
 
