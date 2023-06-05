@@ -1,4 +1,3 @@
-import { SAMPLE_SIZE } from "@/components/game/game";
 import { Country } from "@/utils/countries";
 import { GeoProjection } from "@/utils/geo-projections";
 import { Level, displayLevel } from "@/utils/rules";
@@ -7,6 +6,7 @@ import { FC } from "react";
 
 interface UpperBarProps {
   tries: number;
+  losingCondition: number;
   countryToGuess: Country | null;
   level: Level;
   geoProjection: GeoProjection;
@@ -17,6 +17,7 @@ const UpperBar: FC<UpperBarProps> = ({
   countryToGuess,
   level,
   geoProjection,
+  losingCondition,
 }) => {
   const theme = useTheme();
 
@@ -30,7 +31,7 @@ const UpperBar: FC<UpperBarProps> = ({
         <div className="flex items-center">
           <div className="flex-col flex-1">
             <Text className="text-left" color="white" fontSize="lg">
-              Tries: {tries} / {SAMPLE_SIZE}
+              Tries: {tries} / {losingCondition}
             </Text>
             <Text className="text-left" color="white" fontSize="lg">
               Projection: {geoProjection}

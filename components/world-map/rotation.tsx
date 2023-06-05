@@ -1,5 +1,6 @@
 import React, { FC } from "react";
-import { Button } from "@chakra-ui/react";
+import { IconButton } from "@chakra-ui/react";
+import { ArrowLeftIcon, ArrowRightIcon } from "@chakra-ui/icons";
 
 interface RotationProps {
   onRotateClockwise: () => void;
@@ -13,23 +14,23 @@ const Rotation: FC<RotationProps> = ({
   return (
     <div className="fixed bottom-20 left-0 w-full flex justify-center">
       <div className="flex flex-row justify-center">
-        <Button
+        <IconButton
           className="mr-2"
           rounded="full"
           variant="solid"
           colorScheme="secondary"
           onClick={onRotateClockwise}
-        >
-          Rotate Clockwise
-        </Button>
-        <Button
+          icon={<ArrowLeftIcon />}
+          aria-label={"rotateClockwise"}
+        />
+        <IconButton
           rounded="full"
           colorScheme="secondary"
           variant="solid"
           onClick={onRotateCounterClockwise}
-        >
-          Rotate Counter-Clockwise
-        </Button>
+          icon={<ArrowRightIcon />}
+          aria-label={"rotateCounterClockwise"}
+        />
       </div>
     </div>
   );
