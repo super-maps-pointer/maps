@@ -6,7 +6,6 @@ import {
   extendTheme,
   type ThemeConfig,
 } from "@chakra-ui/react";
-import { CacheProvider } from "@chakra-ui/next-js";
 
 const raleway = Raleway({ weight: "400", subsets: ["latin"] });
 
