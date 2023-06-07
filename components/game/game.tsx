@@ -13,20 +13,20 @@ import { FC, useCallback, useState, useEffect } from "react";
 import { useTheme, useToast } from "@chakra-ui/react";
 import Gauge from "@/components/game/gauge";
 import UpperBar from "@/components/game/upper-bar";
-import EndGameScreen from "@/components/menu/end-game-screen";
 import WorldMap from "@/components/world-map/world-map";
 
 interface GameProps {
   level: Level;
+  onNextLevel: () => void;
+  onFailLevel: () => void;
 }
 
-const Game: FC<GameProps> = ({ level }) => {
+const Game: FC<GameProps> = ({ level, onNextLevel, onFailLevel }) => {
   const [currentCountryIndex, setCurrentCountryIndex] = useState(0);
-  const [countries, setCountries] = useState<Country[]>(getCountries(level));
+  const [countries, _] = useState<Country[]>(getCountries(level));
   const [attempts, setAttempts] = useState(0);
   const [guessedCountries, setGuessedCountries] = useState<Country[]>([]);
   const [width, height] = useDeviceSize();
-  const [currentLevel, setCurrentLevel] = useState(level);
   const [geoProjection, setGeoProjection] =
     useState<GeoProjection>("geoMercator");
   const [geoAspect, setGeoAspect] = useState<GeoAspect>(
@@ -97,36 +97,27 @@ const Game: FC<GameProps> = ({ level }) => {
 
   useEffect(() => {
     if (currentCountryIndex >= countries.length) {
-      const sampleSize = getSampleSize(currentLevel);
+      const sampleSize = getSampleSize(level);
       setAttempts(sampleSize);
     }
-  }, [currentCountryIndex, countries, currentLevel]);
+  }, [currentCountryIndex, countries, level]);
 
-  const winCondition = getWinCondition(currentLevel);
-  const losingCondition = getLossCondition(currentLevel);
-
-  const handlePlayAgain = () => {
-    setCurrentCountryIndex(0);
-    setAttempts(0);
-    setGuessedCountries([]);
-    setCountries(getCountries(currentLevel));
-  };
-
-  const handleNextLevel = () => {
-    const nextLevel = getNextLevel(currentLevel);
-    setCurrentLevel(nextLevel);
-    setCurrentCountryIndex(0);
-    setAttempts(0);
-    setGuessedCountries([]);
-    setCountries(getCountries(nextLevel));
-  };
-
+  const winCondition = getWinCondition(level);
+  const losingCondition = getLossCondition(level);
   const score = guessedCountries.length;
   const countryToGuess =
     countries.length > 0 ? countries[currentCountryIndex] : null;
   const isGameWon = score >= winCondition;
   const isGameLost = attempts >= losingCondition;
-  const isGameOver = isGameWon || isGameLost;
+
+  useEffect(() => {
+    if (isGameWon) {
+      onNextLevel();
+    }
+    if (isGameLost) {
+      onFailLevel();
+    }
+  }, [isGameWon, isGameLost, onNextLevel, onFailLevel]);
 
   return (
     <div
@@ -137,19 +128,10 @@ const Game: FC<GameProps> = ({ level }) => {
         tries={attempts}
         countryToGuess={countryToGuess}
         geoProjection={geoProjection}
-        level={currentLevel}
+        level={level}
         losingCondition={losingCondition}
       />
       <Gauge score={score} winCondition={winCondition} />
-      {isGameOver && (
-        <div className="fixed inset-0 flex items-center justify-center">
-          <EndGameScreen
-            isGameWon={isGameWon}
-            handleNextLevel={handleNextLevel}
-            handlePlayAgain={handlePlayAgain}
-          />
-        </div>
-      )}
       <WorldMap
         onCountryClick={handleCountryClick}
         selectedCountry={countryToGuess}
