@@ -1,6 +1,5 @@
 "use client";
-
-import { useCallback, useState } from "react";
+import { ReactNode, useCallback, useState } from "react";
 import Game from "@/components/game/game";
 import Head from "next/head";
 import { Level, getNextLevel } from "@/utils/rules";
@@ -36,6 +35,20 @@ function Home() {
     setActiveState("retryLevel");
   }, []);
 
+  const componentMap: Record<ActiveState, ReactNode> = {
+    introduction: <IntroductionScreen onPlay={handlePlay} />,
+    nextLevel: <NextLevelScreen level={level} onPlay={handlePlay} />,
+    retryLevel: <RetryLevelScreen onPlay={handlePlay} />,
+    endGame: <EndGameScreen />,
+    game: (
+      <Game
+        level={level}
+        onNextLevel={handleNextLevel}
+        onFailLevel={handleFailLevel}
+      />
+    ),
+  };
+
   return (
     <>
       <Head>
@@ -59,21 +72,7 @@ function Home() {
         />
         <link rel="manifest" href="/site.webmanifest" />
       </Head>
-      {activeState === "introduction" && (
-        <IntroductionScreen onPlay={handlePlay} />
-      )}
-      {activeState === "nextLevel" && (
-        <NextLevelScreen level={level} onPlay={handlePlay} />
-      )}
-      {activeState === "retryLevel" && <RetryLevelScreen onPlay={handlePlay} />}
-      {activeState === "endGame" && <EndGameScreen />}
-      {activeState === "game" && (
-        <Game
-          level={level}
-          onNextLevel={handleNextLevel}
-          onFailLevel={handleFailLevel}
-        />
-      )}
+      {componentMap[activeState]}
     </>
   );
 }
