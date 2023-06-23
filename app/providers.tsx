@@ -16,9 +16,10 @@ const theme: ThemeConfig = extendTheme({
   },
   colors: {
     map: {
-      graticules: "#EAEAEC",
+      graticules: "#afafb6",
       default: "#FFFFFF",
       stroke: "#333333",
+      ocean: "#f2f2f2",
     },
     primary: {
       main: "#065758",
