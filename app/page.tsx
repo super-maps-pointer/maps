@@ -9,36 +9,31 @@ import NextLevelScreen from "@/components/menu/next-level-screen";
 import EndGameScreen from "@/components/menu/end-game-screen";
 import RetryLevelScreen from "@/components/menu/retry-level-screen";
 
+type ActiveState =
+  | "introduction"
+  | "nextLevel"
+  | "retryLevel"
+  | "endGame"
+  | "game";
+
 function Home() {
-  const [showIntroduction, setShowIntroduction] = useState(true);
-  const [showNextLevel, setShowNextLevel] = useState(false);
-  const [showEndGame, setShowEndGame] = useState(false);
-  const [showRetryLevel, setShowRetryLevel] = useState(false);
-  const [showGame, setShowGame] = useState(false);
-  const [level, setLevel] = useState(Level.Easy);
+  const [activeState, setActiveState] = useState<ActiveState>("introduction");
+  const [level, setLevel] = useState<Level>(Level.Easy);
 
   const handlePlay = useCallback(() => {
-    setShowIntroduction(false);
-    setShowNextLevel(false);
-    setShowRetryLevel(false);
-    setShowEndGame(false);
-    setShowGame(true);
+    setActiveState("game");
   }, []);
 
   const handleNextLevel = useCallback(() => {
-    setShowGame(false);
-    if (level === Level.Extreme) {
-      setShowEndGame(true);
-    } else {
+    setActiveState(level === Level.Extreme ? "endGame" : "nextLevel");
+    if (level !== Level.Extreme) {
       const nextLevel = getNextLevel(level);
       setLevel(nextLevel);
-      setShowNextLevel(true);
     }
   }, [level]);
 
   const handleFailLevel = useCallback(() => {
-    setShowGame(false);
-    setShowRetryLevel(true);
+    setActiveState("retryLevel");
   }, []);
 
   return (
@@ -64,11 +59,15 @@ function Home() {
         />
         <link rel="manifest" href="/site.webmanifest" />
       </Head>
-      {showIntroduction && <IntroductionScreen onPlay={handlePlay} />}
-      {showNextLevel && <NextLevelScreen level={level} onPlay={handlePlay} />}
-      {showRetryLevel && <RetryLevelScreen onPlay={handlePlay} />}
-      {showEndGame && <EndGameScreen />}
-      {showGame && (
+      {activeState === "introduction" && (
+        <IntroductionScreen onPlay={handlePlay} />
+      )}
+      {activeState === "nextLevel" && (
+        <NextLevelScreen level={level} onPlay={handlePlay} />
+      )}
+      {activeState === "retryLevel" && <RetryLevelScreen onPlay={handlePlay} />}
+      {activeState === "endGame" && <EndGameScreen />}
+      {activeState === "game" && (
         <Game
           level={level}
           onNextLevel={handleNextLevel}

@@ -3,8 +3,8 @@ import { Text } from "@chakra-ui/react";
 
 const EndGameScreen: FC = () => {
   return (
-    <div className="flex flex-col items-center justify-center h-screen">
-      <Text>You finish the game! Amazing</Text>
+    <div className="flex items-center justify-center h-screen flex-col">
+      <Text className="text-center">You finish the game! Amazing</Text>
     </div>
   );
 };

@@ -7,10 +7,12 @@ interface RetryLevelScreenProps {
 
 const RetryLevelScreen: FC<RetryLevelScreenProps> = ({ onPlay }) => {
   return (
-    <div className="flex flex-col items-center justify-center">
+    <div className="flex items-center justify-center h-screen flex-col">
       <Text className="text-center">Game over! You failed.</Text>
       <Button
-        className="px-4 py-2 bg-blue-500 text-white rounded mt-4"
+        rounded="full"
+        colorScheme="secondary"
+        variant="solid"
         onClick={onPlay}
       >
         Play Again
