@@ -1,16 +1,53 @@
 "use client";
-import { useCallback, useState } from "react";
+import { ReactNode, useCallback, useState } from "react";
 import Game from "@/components/game/game";
 import Head from "next/head";
-import { Level } from "@/utils/rules";
+import { Level, getNextLevel } from "@/utils/rules";
 import IntroductionScreen from "@/components/menu/introduction-screen";
+import NextLevelScreen from "@/components/menu/next-level-screen";
+import EndGameScreen from "@/components/menu/end-game-screen";
+import RetryLevelScreen from "@/components/menu/retry-level-screen";
+
+type ActiveState =
+  | "introduction"
+  | "nextLevel"
+  | "retryLevel"
+  | "endGame"
+  | "game";
 
 function Home() {
-  const [showIntroduction, setShowIntroduction] = useState(true);
+  const [activeState, setActiveState] = useState<ActiveState>("introduction");
+  const [level, setLevel] = useState<Level>(Level.Easy);
 
   const handlePlay = useCallback(() => {
-    setShowIntroduction(false);
+    setActiveState("game");
   }, []);
+
+  const handleNextLevel = useCallback(() => {
+    setActiveState(level === Level.Extreme ? "endGame" : "nextLevel");
+    if (level !== Level.Extreme) {
+      const nextLevel = getNextLevel(level);
+      setLevel(nextLevel);
+    }
+  }, [level]);
+
+  const handleFailLevel = useCallback(() => {
+    setActiveState("retryLevel");
+  }, []);
+
+  const componentMap: Record<ActiveState, ReactNode> = {
+    introduction: <IntroductionScreen onPlay={handlePlay} />,
+    nextLevel: <NextLevelScreen level={level} onPlay={handlePlay} />,
+    retryLevel: <RetryLevelScreen onPlay={handlePlay} />,
+    endGame: <EndGameScreen />,
+    game: (
+      <Game
+        level={level}
+        onNextLevel={handleNextLevel}
+        onFailLevel={handleFailLevel}
+      />
+    ),
+  };
 
   return (
     <>
@@ -35,11 +72,7 @@ function Home() {
         />
         <link rel="manifest" href="/site.webmanifest" />
       </Head>
-      {showIntroduction ? (
-        <IntroductionScreen onPlay={handlePlay} />
-      ) : (
-        <Game level={Level.Easy} />
-      )}
+      {componentMap[activeState]}
     </>
   );
 }

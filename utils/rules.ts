@@ -29,7 +29,7 @@ const RULES: { [key: string]: Rules } = {
   },
   extreme: {
     sampleSize: 50,
-    goal: 30,
+    goal: 25,
     tries: 40,
   },
 };

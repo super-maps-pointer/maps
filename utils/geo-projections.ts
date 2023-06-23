@@ -3,7 +3,6 @@ export type GeoProjection =
   | "geoAlbers"
   | "geoAzimuthalEqualArea"
   | "geoAzimuthalEquidistant"
-  | "geoOrthographic"
   | "geoConicConformal"
   | "geoConicEquidistant"
   | "geoStereographic"
@@ -15,7 +14,6 @@ const geoProjections: GeoProjection[] = [
   "geoAlbers",
   "geoAzimuthalEqualArea",
   "geoAzimuthalEquidistant",
-  "geoOrthographic",
   "geoConicConformal",
   "geoConicEquidistant",
   "geoStereographic",
