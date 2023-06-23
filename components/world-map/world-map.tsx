@@ -14,6 +14,16 @@ import { WithCSSVar, useTheme } from "@chakra-ui/react";
 import Zoom from "@/components/world-map/zoom";
 import Rotation from "@/components/world-map/rotation";
 
+const WORLD_MAP_FILE = "/ne_50m_countries.json";
+const OCEAN_MAP_FILE = "/ne_50m_ocean.json";
+
+const MIN_ZOOM = 0.5;
+const MAX_ZOOM = 4;
+const DEFAULT_POSITION: Position = {
+  coordinates: [0, 10],
+  zoom: 1,
+};
+
 const getGeoStyle = (isCountryGuessed: boolean, theme: WithCSSVar<any>) => ({
   default: {
     fill: isCountryGuessed ? theme.colors.fifth.main : theme.colors.map.default,
@@ -39,13 +49,6 @@ const getGeoStyle = (isCountryGuessed: boolean, theme: WithCSSVar<any>) => ({
   },
 });
 
-const MIN_ZOOM = 0.5;
-const MAX_ZOOM = 4;
-const DEFAULT_POSITION: Position = {
-  coordinates: [0, 10],
-  zoom: 1,
-};
-
 interface Position {
   coordinates: [number, number];
   zoom: number;
@@ -66,8 +69,8 @@ interface WorldMapProps {
 interface GeographyProps {
   rsmKey: string;
   properties: {
-    name: string;
-    adm0_a3: string;
+    NAME: string;
+    ADM0_A3: string;
   };
 }
 
@@ -93,8 +96,8 @@ const WorldMap: FC<WorldMapProps> = ({
 
   const handleGeographyClick = useCallback(
     (geography: GeographyProps) => {
-      const { name, adm0_a3 } = geography.properties;
-      onCountryClick(name, adm0_a3);
+      const { NAME, ADM0_A3 } = geography.properties;
+      onCountryClick(NAME, ADM0_A3);
     },
     [onCountryClick]
   );
@@ -152,11 +155,35 @@ const WorldMap: FC<WorldMapProps> = ({
             stroke={theme.colors.map.graticules}
             strokeWidth={1}
           />
+          <Geographies geography={OCEAN_MAP_FILE}>
+            {({ geographies }) =>
+              geographies.map((geography) => {
+                return (
+                  <Geography
+                    key={geography.rsmKey}
+                    geography={geography}
+                    fill={theme.colors.map.ocean}
+                    stroke="none"
+                    style={{
+                      default: {
+                        outline: "none",
+                      },
+                      hover: {
+                        outline: "none",
+                      },
+                      pressed: { outline: "none" },
+                    }}
+                  />
+                );
+              })
+            }
+          </Geographies>
           <Graticule stroke={theme.colors.map.graticules} strokeWidth={0.5} />
-          <Geographies geography="/middle-res-world-map.geo.json">
+
+          <Geographies geography={WORLD_MAP_FILE}>
             {({ geographies }) => {
               return geographies.map((geography) => {
-                const countryCode = geography.properties.adm0_a3;
+                const countryCode = geography.properties.ADM0_A3;
                 const isCountryGuessed = isGuessed(countryCode);
 
                 return (
