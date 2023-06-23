@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.4.0](https://github.com/super-maps-pointer/maps/compare/v1.3.0...v1.4.0) (2023-06-23)
+
+
+### Features
+
+* add design theme with chakra and color palette ([#12](https://github.com/super-maps-pointer/maps/issues/12)) ([8801d28](https://github.com/super-maps-pointer/maps/commit/8801d28a4bbda9d3806780c29194aaa0420870e4))
+* add husky and lint-staged as pre-commit hooks ([#16](https://github.com/super-maps-pointer/maps/issues/16)) ([5dd54b9](https://github.com/super-maps-pointer/maps/commit/5dd54b9f3b786640b741818f1eff0e4b5ace68c2))
+* reset pos between projections ([#18](https://github.com/super-maps-pointer/maps/issues/18)) ([09b376f](https://github.com/super-maps-pointer/maps/commit/09b376f0cbd1d11c39c4526d25ca5992cecc3f4a))
+
+
+### Bug Fixes
+
+* rules and design ([#19](https://github.com/super-maps-pointer/maps/issues/19)) ([25e92e1](https://github.com/super-maps-pointer/maps/commit/25e92e11e3ce067939cdce0a623a8d5677fd3758))
+
 ## [1.3.0](https://github.com/super-maps-pointer/maps/compare/v1.2.0...v1.3.0) (2023-06-03)
 
 
