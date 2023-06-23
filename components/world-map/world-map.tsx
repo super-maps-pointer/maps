@@ -49,6 +49,16 @@ const getGeoStyle = (isCountryGuessed: boolean, theme: WithCSSVar<any>) => ({
   },
 });
 
+const oceanGeoStyle = {
+  default: {
+    outline: "none",
+  },
+  hover: {
+    outline: "none",
+  },
+  pressed: { outline: "none" },
+};
+
 interface Position {
   coordinates: [number, number];
   zoom: number;
@@ -164,15 +174,7 @@ const WorldMap: FC<WorldMapProps> = ({
                     geography={geography}
                     fill={theme.colors.map.ocean}
                     stroke="none"
-                    style={{
-                      default: {
-                        outline: "none",
-                      },
-                      hover: {
-                        outline: "none",
-                      },
-                      pressed: { outline: "none" },
-                    }}
+                    style={oceanGeoStyle}
                   />
                 );
               })

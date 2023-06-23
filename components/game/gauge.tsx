@@ -20,7 +20,9 @@ const Gauge: FC<GaugeProps> = ({ score, winCondition }) => {
           className="h-full rounded-lg"
           style={{
             width: `${gaugeScore}%`,
-            background: `linear-gradient(to left, ${theme.colors.secondary.main} ${gaugeScore}%, ${theme.colors.secondary["200"]} 100%)`,
+            background: `linear-gradient(to right, ${theme.colors.secondary.seconday} ${gaugeScore}%, ${theme.colors.secondary["200"]} ${gaugeScore}%)`,
+            transform: "scaleX(-1)",
+            transformOrigin: "right",
           }}
         />
       </div>
