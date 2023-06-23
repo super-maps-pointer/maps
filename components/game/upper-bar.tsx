@@ -1,3 +1,4 @@
+import Gauge from "@/components/game/gauge";
 import { Country } from "@/utils/countries";
 import { GeoProjection } from "@/utils/geo-projections";
 import { Level, displayLevel } from "@/utils/rules";
@@ -6,7 +7,9 @@ import { FC } from "react";
 
 interface UpperBarProps {
   tries: number;
+  score: number;
   losingCondition: number;
+  winCondition: number;
   countryToGuess: Country | null;
   level: Level;
   geoProjection: GeoProjection;
@@ -18,6 +21,8 @@ const UpperBar: FC<UpperBarProps> = ({
   level,
   geoProjection,
   losingCondition,
+  winCondition,
+  score,
 }) => {
   const theme = useTheme();
 
@@ -31,22 +36,14 @@ const UpperBar: FC<UpperBarProps> = ({
         <div className="flex items-center">
           <div className="flex-col flex-1">
             <Text className="text-left" color="white" fontSize="lg">
-              Tries: {tries} / {losingCondition}
+              Find the country on the map
             </Text>
             <Text className="text-left" color="white" fontSize="lg">
               Projection: {geoProjection}
             </Text>
           </div>
           <div className="flex-3">
-            <Heading as="h1" size="xl" color="white">
-              Guess the Country on the Map!
-            </Heading>
-            <Heading
-              as="h2"
-              color="white"
-              fontSize="lg"
-              className="text-center"
-            >
+            <Heading as="h1" color="white" size="xl" className="text-center">
               {countryToGuess?.flag} {countryToGuess?.name.toUpperCase()}
             </Heading>
           </div>
@@ -54,6 +51,12 @@ const UpperBar: FC<UpperBarProps> = ({
             <Text color="white" className="text-right">
               {displayLevel(level)}
             </Text>
+            <Text className="text-right" color="white" fontSize="lg">
+              Tries: {tries} / {losingCondition}
+            </Text>
+            <div className="flex-1 flex items-center justify-end">
+              <Gauge score={score} winCondition={winCondition} />
+            </div>
           </div>
         </div>
       </div>

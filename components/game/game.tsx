@@ -82,17 +82,12 @@ const Game: FC<GameProps> = ({ level, onNextLevel, onFailLevel }) => {
         });
       }
 
-      generateNewGeoProjection();
-      generateNewGeoAspects();
+      // A new GeoProjection after each country is too much
+      // generateNewGeoProjection();
+      // generateNewGeoAspects();
       setCurrentCountryIndex((prevIndex) => prevIndex + 1);
     },
-    [
-      countries,
-      currentCountryIndex,
-      generateNewGeoAspects,
-      generateNewGeoProjection,
-      toast,
-    ]
+    [countries, currentCountryIndex, toast]
   );
 
   useEffect(() => {
@@ -121,7 +116,7 @@ const Game: FC<GameProps> = ({ level, onNextLevel, onFailLevel }) => {
 
   return (
     <div
-      className="relative "
+      className="relative"
       style={{ backgroundColor: theme.colors.third.main }}
     >
       <UpperBar
@@ -130,8 +125,9 @@ const Game: FC<GameProps> = ({ level, onNextLevel, onFailLevel }) => {
         geoProjection={geoProjection}
         level={level}
         losingCondition={losingCondition}
+        winCondition={winCondition}
+        score={score}
       />
-      <Gauge score={score} winCondition={winCondition} />
       <WorldMap
         onCountryClick={handleCountryClick}
         selectedCountry={countryToGuess}
