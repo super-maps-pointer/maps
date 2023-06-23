@@ -35,4 +35,5 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 ## Resources
 
-https://geojson-maps.ash.ms/
+- https://www.naturalearthdata.com/
+- https://geojson-maps.ash.ms/
