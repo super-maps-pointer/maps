@@ -94,13 +94,9 @@ const WorldMap: FC<WorldMapProps> = ({
   geoAspect = "European - Africa centric",
 }) => {
   const [position, setPosition] = useState<Position>(DEFAULT_POSITION);
-  const [rotation, setRotation] = useState<Rotate>(
-    getRotationFromGeoAspect(geoAspect)
-  );
   const theme = useTheme();
 
   useEffect(() => {
-    setRotation(getRotationFromGeoAspect(geoAspect));
     setPosition(DEFAULT_POSITION);
   }, [geoAspect]);
 
@@ -125,14 +121,6 @@ const WorldMap: FC<WorldMapProps> = ({
     setPosition((pos: Position) => ({ ...pos, zoom: pos.zoom / 2 }));
   };
 
-  const handleRotateClockwise = () => {
-    setRotation((rot: Rotate) => [rot[0] + 10, rot[1], rot[2]]);
-  };
-
-  const handleRotateCounterClockwise = () => {
-    setRotation((rot: Rotate) => [rot[0] - 10, rot[1], rot[2]]);
-  };
-
   const handleMoveEnd = (position: Position) => {
     setPosition(position);
   };
@@ -140,15 +128,10 @@ const WorldMap: FC<WorldMapProps> = ({
   return (
     <div style={{ width: "100%", height: "100%" }}>
       <Zoom onZoomIn={handleZoomIn} onZoomOut={handleZoomOut} />
-      <Rotation
-        onRotateClockwise={handleRotateClockwise}
-        onRotateCounterClockwise={handleRotateCounterClockwise}
-      />
       <ComposableMap
-        projection={geoProjection}
+        projection={"geoMercator"}
         projectionConfig={{
           scale: width / 5,
-          rotate: rotation,
         }}
         width={width}
         height={height}
