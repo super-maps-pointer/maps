@@ -13,16 +13,14 @@ const Gauge: FC<GaugeProps> = ({ score, winCondition }) => {
   return (
     <div className="flex flex-row items-center">
       <div
-        className="h-4 w-80 bg-white mr-4 transform rotate-180 rounded-lg border border-black shadow-sm"
+        className="h-4 w-80 bg-white mr-4 rounded-lg border border-black shadow-sm"
         style={{ marginRight: "4px" }}
       >
         <div
           className="h-full rounded-lg"
           style={{
             width: `${gaugeScore}%`,
-            background: `linear-gradient(to right, ${theme.colors.secondary.main} ${gaugeScore}%, ${theme.colors.secondary["200"]} ${gaugeScore}%)`,
-            transform: "scaleX(-1)",
-            transformOrigin: "right",
+            backgroundColor: theme.colors.secondary.main,
           }}
         />
       </div>
