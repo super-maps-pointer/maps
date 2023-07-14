@@ -5,15 +5,14 @@ import { GeoProjection, getRandomGeoProjection } from "@/utils/geo-projections";
 import {
   Level,
   getLossCondition,
-  getNextLevel,
   getSampleSize,
   getWinCondition,
 } from "@/utils/rules";
-import { FC, useCallback, useState, useEffect } from "react";
+import { FC, useCallback, useState, useEffect, useRef } from "react";
 import { useTheme, useToast } from "@chakra-ui/react";
-import Gauge from "@/components/game/gauge";
 import UpperBar from "@/components/game/upper-bar";
 import WorldMap from "@/components/world-map/world-map";
+import Confetti from "@/components/game/confetti";
 
 interface GameProps {
   level: Level;
@@ -34,6 +33,7 @@ const Game: FC<GameProps> = ({ level, onNextLevel, onFailLevel }) => {
   );
   const toast = useToast();
   const theme = useTheme();
+  const confettiRef = useRef<any | null>(null);
 
   const generateNewGeoProjection = useCallback(() => {
     let newGeoProjection: GeoProjection;
@@ -60,6 +60,7 @@ const Game: FC<GameProps> = ({ level, onNextLevel, onFailLevel }) => {
       if (code === countries[currentCountryIndex].code) {
         const country = countries[currentCountryIndex];
 
+        confettiRef.current?.fire();
         toast({
           title: "Good!",
           status: "success",
@@ -119,6 +120,7 @@ const Game: FC<GameProps> = ({ level, onNextLevel, onFailLevel }) => {
       className="relative"
       style={{ backgroundColor: theme.colors.third.main }}
     >
+      <Confetti ref={confettiRef} />
       <UpperBar
         tries={attempts}
         countryToGuess={countryToGuess}

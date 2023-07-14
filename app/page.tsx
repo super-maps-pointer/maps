@@ -7,6 +7,7 @@ import IntroductionScreen from "@/components/menu/introduction-screen";
 import NextLevelScreen from "@/components/menu/next-level-screen";
 import EndGameScreen from "@/components/menu/end-game-screen";
 import RetryLevelScreen from "@/components/menu/retry-level-screen";
+import Confetti from "@/components/game/confetti";
 
 type ActiveState =
   | "introduction"
@@ -71,7 +72,7 @@ function Home() {
           href="/favicon-16x16.png"
         />
         <link rel="manifest" href="/site.webmanifest" />
-      </Head>
+      </Head>{" "}
       {componentMap[activeState]}
     </>
   );
