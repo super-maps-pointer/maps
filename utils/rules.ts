@@ -14,22 +14,22 @@ interface Rules {
 const RULES: { [key: string]: Rules } = {
   easy: {
     sampleSize: 20,
-    goal: 10,
+    goal: 5,
     tries: 20,
   },
   normal: {
     sampleSize: 30,
-    goal: 15,
+    goal: 10,
     tries: 25,
   },
   hard: {
     sampleSize: 40,
-    goal: 20,
+    goal: 15,
     tries: 30,
   },
   extreme: {
     sampleSize: 50,
-    goal: 25,
+    goal: 20,
     tries: 40,
   },
 };
@@ -44,6 +44,19 @@ export const displayLevel = (level: Level) => {
       return "Level 3 🤯";
     case "extreme":
       return "Level 4 🫡";
+  }
+};
+
+export const getLevelRules = (level: Level) => {
+  switch (level) {
+    case "easy":
+      return "You have 20 tries to find 5 countries to guess.";
+    case "normal":
+      return "You have 25 tries to find 10 countries to guess.\nNew challenge, the map have a new representation!";
+    case "hard":
+      return "You have 30 tries to find 15 countries to guess.";
+    case "extreme":
+      return "You have 40 tries to find 20 countries to guess.";
   }
 };
 

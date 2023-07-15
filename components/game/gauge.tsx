@@ -11,24 +11,22 @@ const Gauge: FC<GaugeProps> = ({ score, winCondition }) => {
   const theme = useTheme();
 
   return (
-    <div className="absolute top-1/2 right-5 transform -translate-y-1/2 text-center">
-      <div className="flex flex-col items-center">
+    <div className="flex flex-row items-center">
+      <div
+        className="h-4 w-80 bg-white mr-4 rounded-lg border border-black shadow-sm"
+        style={{ marginRight: "4px" }}
+      >
         <div
-          className="h-80 w-4 bg-white mb-4 transform rotate-180 rounded-lg border border-black shadow-sm"
-          style={{ marginBottom: "4px" }}
-        >
-          <div
-            className="h-full rounded-lg"
-            style={{
-              height: `${gaugeScore}%`,
-              background: `linear-gradient(to top, ${theme.colors.primary.main} ${gaugeScore}%, ${theme.colors.primary["200"]} 100%)`,
-            }}
-          />
-        </div>
-        <Text>
-          {score} / {winCondition}
-        </Text>
+          className="h-full rounded-lg"
+          style={{
+            width: `${gaugeScore}%`,
+            backgroundColor: theme.colors.secondary.main,
+          }}
+        />
       </div>
+      <Text color="white" fontSize="lg">
+        {score} / {winCondition}
+      </Text>
     </div>
   );
 };

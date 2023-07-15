@@ -10,15 +10,9 @@ export type GeoProjection =
   | "geoTransverseMercator";
 
 const geoProjections: GeoProjection[] = [
-  "geoEqualEarth",
-  "geoAlbers",
-  "geoAzimuthalEqualArea",
-  "geoAzimuthalEquidistant",
-  "geoConicConformal",
-  "geoConicEquidistant",
-  "geoStereographic",
-  "geoMercator",
-  "geoTransverseMercator",
+  "geoEqualEarth", // rounded border
+  "geoMercator", // most classical map representation
+  "geoTransverseMercator", // flat but centered on the pole
 ];
 
 export const getRandomGeoProjection = (): GeoProjection => {
