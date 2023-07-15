@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.5.0](https://github.com/super-maps-pointer/maps/compare/v1.4.0...v1.5.0) (2023-07-15)
+
+
+### Features
+
+* add water and change map a bit ([#22](https://github.com/super-maps-pointer/maps/issues/22)) ([5614f28](https://github.com/super-maps-pointer/maps/commit/5614f28888611086288e6b4a08ea28e918862390))
+* victory animation ([#25](https://github.com/super-maps-pointer/maps/issues/25)) ([6a6a5cb](https://github.com/super-maps-pointer/maps/commit/6a6a5cbdd0db85b3cce3c992de7efdcb83e1dce9))
+
 ## [1.4.0](https://github.com/super-maps-pointer/maps/compare/v1.3.0...v1.4.0) (2023-06-23)
 
 
