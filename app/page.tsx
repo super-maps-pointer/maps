@@ -7,7 +7,8 @@ import IntroductionScreen from "@/components/menu/introduction-screen";
 import NextLevelScreen from "@/components/menu/next-level-screen";
 import EndGameScreen from "@/components/menu/end-game-screen";
 import RetryLevelScreen from "@/components/menu/retry-level-screen";
-import Confetti from "@/components/game/confetti";
+import useSound from "use-sound";
+import { SOUNDS } from "@/utils/sounds";
 
 type ActiveState =
   | "introduction"
@@ -19,10 +20,12 @@ type ActiveState =
 function Home() {
   const [activeState, setActiveState] = useState<ActiveState>("introduction");
   const [level, setLevel] = useState<Level>(Level.Easy);
+  const [playStartSound] = useSound(SOUNDS.start);
 
   const handlePlay = useCallback(() => {
+    playStartSound();
     setActiveState("game");
-  }, []);
+  }, [playStartSound]);
 
   const handleNextLevel = useCallback(() => {
     setActiveState(level === Level.Extreme ? "endGame" : "nextLevel");
