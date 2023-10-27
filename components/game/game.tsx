@@ -12,7 +12,8 @@ import { FC, useCallback, useState, useEffect, useRef } from "react";
 import { useTheme, useToast } from "@chakra-ui/react";
 import UpperBar from "@/components/game/upper-bar";
 import WorldMap from "@/components/world-map/world-map";
-import Confetti from "@/components/game/confetti";
+import useSound from "use-sound";
+import { SOUNDS } from "@/utils/sounds";
 
 interface GameProps {
   level: Level;
@@ -31,9 +32,21 @@ const Game: FC<GameProps> = ({ level, onNextLevel, onFailLevel }) => {
   const [geoAspect, setGeoAspect] = useState<GeoAspect>(
     "European - Africa centric"
   );
+  const [isSoundEnabled, setIsSoundEnabled] = useState(true);
+  const [playGoodSound] = useSound(SOUNDS.good, {
+    soundEnabled: isSoundEnabled,
+  });
+  const [playBadSound] = useSound(SOUNDS.bad, { soundEnabled: isSoundEnabled });
+  const [playStartSound] = useSound(SOUNDS.start, {
+    soundEnabled: isSoundEnabled,
+  });
   const toast = useToast();
   const theme = useTheme();
-  const confettiRef = useRef<any | null>(null);
+
+  useEffect(() => {
+    playStartSound();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const generateNewGeoProjection = useCallback(() => {
     let newGeoProjection: GeoProjection;
@@ -60,7 +73,7 @@ const Game: FC<GameProps> = ({ level, onNextLevel, onFailLevel }) => {
       if (code === countries[currentCountryIndex].code) {
         const country = countries[currentCountryIndex];
 
-        confettiRef.current?.fire();
+        playGoodSound();
         toast({
           title: "Good!",
           status: "success",
@@ -73,6 +86,7 @@ const Game: FC<GameProps> = ({ level, onNextLevel, onFailLevel }) => {
           country,
         ]);
       } else {
+        playBadSound();
         toast({
           title: "Wrong!",
           status: "error",
@@ -88,7 +102,7 @@ const Game: FC<GameProps> = ({ level, onNextLevel, onFailLevel }) => {
       // generateNewGeoAspects();
       setCurrentCountryIndex((prevIndex) => prevIndex + 1);
     },
-    [countries, currentCountryIndex, toast]
+    [countries, currentCountryIndex, playBadSound, playGoodSound, toast]
   );
 
   useEffect(() => {
@@ -120,7 +134,6 @@ const Game: FC<GameProps> = ({ level, onNextLevel, onFailLevel }) => {
       className="relative"
       style={{ backgroundColor: theme.colors.third.main }}
     >
-      <Confetti ref={confettiRef} />
       <UpperBar
         tries={attempts}
         countryToGuess={countryToGuess}
@@ -129,6 +142,8 @@ const Game: FC<GameProps> = ({ level, onNextLevel, onFailLevel }) => {
         losingCondition={losingCondition}
         winCondition={winCondition}
         score={score}
+        onSoundToggle={() => setIsSoundEnabled(!isSoundEnabled)}
+        isSoundEnabled={isSoundEnabled}
       />
       <WorldMap
         onCountryClick={handleCountryClick}

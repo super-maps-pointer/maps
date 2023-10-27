@@ -2,8 +2,10 @@ import Gauge from "@/components/game/gauge";
 import { Country } from "@/utils/countries";
 import { GeoProjection } from "@/utils/geo-projections";
 import { Level, displayLevel } from "@/utils/rules";
-import { Heading, Text, Box, useTheme } from "@chakra-ui/react";
+import { Heading, Text, Box, useTheme, IconButton } from "@chakra-ui/react";
 import { FC } from "react";
+import VolumeUpIcon from "@mui/icons-material/VolumeUp";
+import VolumeOffIcon from "@mui/icons-material/VolumeOff";
 
 interface UpperBarProps {
   tries: number;
@@ -13,6 +15,8 @@ interface UpperBarProps {
   countryToGuess: Country | null;
   level: Level;
   geoProjection: GeoProjection;
+  onSoundToggle: () => void;
+  isSoundEnabled: boolean;
 }
 
 const UpperBar: FC<UpperBarProps> = ({
@@ -23,6 +27,8 @@ const UpperBar: FC<UpperBarProps> = ({
   losingCondition,
   winCondition,
   score,
+  onSoundToggle,
+  isSoundEnabled,
 }) => {
   const theme = useTheme();
 
@@ -48,14 +54,27 @@ const UpperBar: FC<UpperBarProps> = ({
             </Heading>
           </div>
           <div className="flex-1">
-            <Text color="white" className="text-right">
-              {displayLevel(level)}
-            </Text>
-            <Text className="text-right" color="white" fontSize="lg">
-              Tries: {tries} / {losingCondition}
-            </Text>
-            <div className="flex-1 flex items-center justify-end">
-              <Gauge score={score} winCondition={winCondition} />
+            <div>
+              <div className="flex-1 flex items-center justify-end">
+                <IconButton
+                  className="mb-2"
+                  rounded="full"
+                  variant="solid"
+                  colorScheme="secondary"
+                  icon={isSoundEnabled ? <VolumeUpIcon /> : <VolumeOffIcon />}
+                  onClick={onSoundToggle}
+                  aria-label={"sound"}
+                />
+              </div>
+              <Text color="white" className="text-right">
+                {displayLevel(level)}
+              </Text>
+              <Text className="text-right" color="white" fontSize="lg">
+                Tries: {tries} / {losingCondition}
+              </Text>
+              <div className="flex-1 flex items-center justify-end">
+                <Gauge score={score} winCondition={winCondition} />
+              </div>
             </div>
           </div>
         </div>
