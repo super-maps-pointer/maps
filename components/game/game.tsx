@@ -32,10 +32,21 @@ const Game: FC<GameProps> = ({ level, onNextLevel, onFailLevel }) => {
   const [geoAspect, setGeoAspect] = useState<GeoAspect>(
     "European - Africa centric"
   );
-  const [playGoodSound] = useSound(SOUNDS.good);
-  const [playBadSound] = useSound(SOUNDS.bad);
+  const [isSoundEnabled, setIsSoundEnabled] = useState(true);
+  const [playGoodSound] = useSound(SOUNDS.good, {
+    soundEnabled: isSoundEnabled,
+  });
+  const [playBadSound] = useSound(SOUNDS.bad, { soundEnabled: isSoundEnabled });
+  const [playStartSound] = useSound(SOUNDS.start, {
+    soundEnabled: isSoundEnabled,
+  });
   const toast = useToast();
   const theme = useTheme();
+
+  useEffect(() => {
+    playStartSound();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const generateNewGeoProjection = useCallback(() => {
     let newGeoProjection: GeoProjection;
@@ -131,6 +142,8 @@ const Game: FC<GameProps> = ({ level, onNextLevel, onFailLevel }) => {
         losingCondition={losingCondition}
         winCondition={winCondition}
         score={score}
+        onSoundToggle={() => setIsSoundEnabled(!isSoundEnabled)}
+        isSoundEnabled={isSoundEnabled}
       />
       <WorldMap
         onCountryClick={handleCountryClick}
