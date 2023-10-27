@@ -2,12 +2,15 @@ import { FC } from "react";
 import Image from "next/image";
 import { IMAGES } from "@/utils/images";
 import { Button } from "@chakra-ui/react";
+import { useTranslation } from "next-i18next";
 
 interface IntroductionScreenProps {
   onPlay: () => void;
 }
 
 const IntroductionScreen: FC<IntroductionScreenProps> = ({ onPlay }) => {
+  const { t } = useTranslation();
+
   return (
     <div className="flex flex-col items-center justify-center h-screen">
       <div className="mb-4">
@@ -19,19 +22,15 @@ const IntroductionScreen: FC<IntroductionScreenProps> = ({ onPlay }) => {
           priority
         />
       </div>
-      <h1 className="text-4xl font-bold mb-4">
-        Welcome to Super Maps Pointer!
-      </h1>
-      <p className="text-xl mb-8">
-        Get ready to test your geography knowledge!
-      </p>
+      <h1 className="text-4xl font-bold mb-4">{t("introduction.title")}</h1>
+      <p className="text-xl mb-8">{t("introduction.getReady")}</p>
       <Button
         rounded="full"
         colorScheme="secondary"
         variant="solid"
         onClick={onPlay}
       >
-        Start Level 1
+        {t("introduction.start")}
       </Button>
     </div>
   );
