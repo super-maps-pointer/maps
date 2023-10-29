@@ -45,8 +45,7 @@ const Game: FC<GameProps> = ({ level, onNextLevel, onFailLevel }) => {
 
   useEffect(() => {
     playStartSound();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [playStartSound]);
 
   const generateNewGeoProjection = useCallback(() => {
     let newGeoProjection: GeoProjection;
