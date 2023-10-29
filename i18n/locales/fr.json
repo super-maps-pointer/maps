@@ -1,0 +1,19 @@
+{
+  "introduction": {
+    "title": "Bienvenue sur Super Maps Pointer !",
+    "getReady": "Préparez-vous à tester vos connaissances géographiques !",
+    "start": "Start Level 1"
+  },
+  "next": {
+    "congratulations": "Félicitations ! Vous avez gagné !",
+    "nextStep": "Prochaine étape : niveau {{level}}!",
+    "areYouReady": "Es-tu prêt ?"
+  },
+  "retry": {
+    "gameOver": "Game over ! Vous avez échoué.",
+    "playAgain": "Rejouer"
+  },
+  "end": {
+    "congratulations": "Vous avez fini le jeu ! Incroyable !"
+  }
+}

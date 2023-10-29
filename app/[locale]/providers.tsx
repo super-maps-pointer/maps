@@ -1,12 +1,9 @@
-"use client";
-
 import { Raleway } from "next/font/google";
 import {
   ChakraProvider,
   extendTheme,
   type ThemeConfig,
 } from "@chakra-ui/react";
-import { CacheProvider } from "@chakra-ui/next-js";
 
 const raleway = Raleway({ weight: "400", subsets: ["latin"] });
 
@@ -92,8 +89,8 @@ const theme: ThemeConfig = extendTheme({
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
-    <CacheProvider>
-      <ChakraProvider theme={theme}>{children}</ChakraProvider>
-    </CacheProvider>
+    // <CacheProvider>
+    <ChakraProvider theme={theme}>{children}</ChakraProvider>
+    // </CacheProvider>
   );
 }
