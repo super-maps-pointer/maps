@@ -2,7 +2,14 @@ import Gauge from "@/components/game/gauge";
 import { Country } from "@/utils/countries";
 import { GeoProjection } from "@/utils/geo-projections";
 import { Level, displayLevel } from "@/utils/rules";
-import { Heading, Text, Box, useTheme, IconButton } from "@chakra-ui/react";
+import {
+  Heading,
+  Text,
+  Box,
+  useTheme,
+  IconButton,
+  Button,
+} from "@chakra-ui/react";
 import { FC } from "react";
 import VolumeUpIcon from "@mui/icons-material/VolumeUp";
 import VolumeOffIcon from "@mui/icons-material/VolumeOff";
@@ -15,8 +22,9 @@ interface UpperBarProps {
   countryToGuess: Country | null;
   level: Level;
   geoProjection: GeoProjection;
-  onSoundToggle: () => void;
   isSoundEnabled: boolean;
+  onSoundToggle: () => void;
+  onClickSkip: () => void;
 }
 
 const UpperBar: FC<UpperBarProps> = ({
@@ -29,6 +37,7 @@ const UpperBar: FC<UpperBarProps> = ({
   score,
   onSoundToggle,
   isSoundEnabled,
+  onClickSkip,
 }) => {
   const theme = useTheme();
 
@@ -56,6 +65,15 @@ const UpperBar: FC<UpperBarProps> = ({
           <div className="flex-1">
             <div>
               <div className="flex-1 flex items-center justify-end">
+                <Button
+                  className="mb-2 mr-2"
+                  rounded="full"
+                  colorScheme="secondary"
+                  variant="solid"
+                  onClick={onClickSkip}
+                >
+                  Skip
+                </Button>
                 <IconButton
                   className="mb-2"
                   rounded="full"
