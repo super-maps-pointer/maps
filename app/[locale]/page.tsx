@@ -1,5 +1,5 @@
 "use client";
-import { ReactNode, useCallback, useState } from "react";
+import { ReactNode, useCallback, useEffect, useState } from "react";
 import Game from "@/components/game/game";
 import Head from "next/head";
 import { Level, getNextLevel } from "@/utils/rules";
@@ -7,7 +7,6 @@ import IntroductionScreen from "@/components/menu/introduction-screen";
 import NextLevelScreen from "@/components/menu/next-level-screen";
 import EndGameScreen from "@/components/menu/end-game-screen";
 import RetryLevelScreen from "@/components/menu/retry-level-screen";
-import { useTranslation } from "@/i18n/client";
 
 type ActiveState =
   | "introduction"
@@ -16,8 +15,7 @@ type ActiveState =
   | "endGame"
   | "game";
 
-function Home({ params }: { params: { locale: string } }) {
-  const { t } = useTranslation(params.locale);
+function Home() {
   const [activeState, setActiveState] = useState<ActiveState>("introduction");
   const [level, setLevel] = useState<Level>(Level.Easy);
 
