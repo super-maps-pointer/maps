@@ -47,6 +47,22 @@ const Game: FC<GameProps> = ({ level, onNextLevel, onFailLevel }) => {
     playStartSound();
   }, [playStartSound]);
 
+  const setNextCountry = useCallback(() => {
+    const handleNewCountryIndex = (prevIndex: number): number => {
+      let newIndex = prevIndex + 1;
+      if (newIndex >= countries.length) {
+        newIndex = 0;
+      }
+      if (guessedCountries.includes(countries[newIndex])) {
+        return handleNewCountryIndex(newIndex);
+      } else {
+        return newIndex;
+      }
+    };
+
+    setCurrentCountryIndex(handleNewCountryIndex);
+  }, [countries, guessedCountries]);
+
   const generateNewGeoProjection = useCallback(() => {
     let newGeoProjection: GeoProjection;
 
@@ -99,10 +115,21 @@ const Game: FC<GameProps> = ({ level, onNextLevel, onFailLevel }) => {
       // A new GeoProjection after each country is too much
       // generateNewGeoProjection();
       // generateNewGeoAspects();
-      setCurrentCountryIndex((prevIndex) => prevIndex + 1);
+      setNextCountry();
     },
-    [countries, currentCountryIndex, playBadSound, playGoodSound, toast]
+    [
+      countries,
+      currentCountryIndex,
+      playBadSound,
+      playGoodSound,
+      setNextCountry,
+      toast,
+    ]
   );
+
+  const handleSkipClick = useCallback(() => {
+    setNextCountry();
+  }, [setNextCountry]);
 
   useEffect(() => {
     if (currentCountryIndex >= countries.length) {
@@ -143,6 +170,7 @@ const Game: FC<GameProps> = ({ level, onNextLevel, onFailLevel }) => {
         score={score}
         onSoundToggle={() => setIsSoundEnabled(!isSoundEnabled)}
         isSoundEnabled={isSoundEnabled}
+        onClickSkip={handleSkipClick}
       />
       <WorldMap
         onCountryClick={handleCountryClick}
