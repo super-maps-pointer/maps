@@ -13,6 +13,7 @@ import {
 import { FC } from "react";
 import VolumeUpIcon from "@mui/icons-material/VolumeUp";
 import VolumeOffIcon from "@mui/icons-material/VolumeOff";
+import Timer from "@/components/game/timer";
 
 interface UpperBarProps {
   tries: number;
@@ -50,6 +51,7 @@ const UpperBar: FC<UpperBarProps> = ({
       <div className="flex flex-col justify-between">
         <div className="flex items-center">
           <div className="flex-col flex-1">
+            <Timer maxTime={3600} />
             <Text className="text-left" color="white" fontSize="lg">
               Find the country on the map
             </Text>
