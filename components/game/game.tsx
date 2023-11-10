@@ -100,6 +100,7 @@ const Game: FC<GameProps> = ({ level, onNextLevel, onFailLevel }) => {
           ...prevGuessedCountries,
           country,
         ]);
+        setNextCountry();
       } else {
         playBadSound();
         toast({
@@ -115,7 +116,6 @@ const Game: FC<GameProps> = ({ level, onNextLevel, onFailLevel }) => {
       // A new GeoProjection after each country is too much
       // generateNewGeoProjection();
       // generateNewGeoAspects();
-      setNextCountry();
     },
     [
       countries,
