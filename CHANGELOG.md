@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.7.0](https://github.com/super-maps-pointer/maps/compare/v1.6.0...v1.7.0) (2023-11-10)
+
+
+### Features
+
+* next country only on success ([#36](https://github.com/super-maps-pointer/maps/issues/36)) ([0fdabfd](https://github.com/super-maps-pointer/maps/commit/0fdabfd641b51d5041edf6509685cae6a2e6ed9c))
+* timer ([#38](https://github.com/super-maps-pointer/maps/issues/38)) ([949e3d2](https://github.com/super-maps-pointer/maps/commit/949e3d2ef600cfd31063a1e6f260e17911112845))
+
 ## [1.6.0](https://github.com/super-maps-pointer/maps/compare/v1.5.0...v1.6.0) (2023-11-01)
 
 
