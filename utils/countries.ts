@@ -2616,6 +2616,8 @@ export const COUNTRIES: { [key: string]: Country } = {
   },
 };
 
+export const MICRO_COUNTRIES = ["SMR", "VAT", "MCO", "AND", "LIE", "SGP"];
+
 const getCountriesByLevel = (level: Level): Country[] => {
   let countries: Country[] = [];
 

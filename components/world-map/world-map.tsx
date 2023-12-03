@@ -7,7 +7,7 @@ import {
   Marker,
   ZoomableGroup,
 } from "react-simple-maps";
-import { Country } from "@/utils/countries";
+import { Country, MICRO_COUNTRIES } from "@/utils/countries";
 import { GeoAspect, getRotationFromGeoAspect } from "@/utils/geo-aspects";
 import { GeoProjection } from "@/utils/geo-projections";
 import { Sphere } from "react-simple-maps";
@@ -192,7 +192,7 @@ const WorldMap: FC<WorldMapProps> = ({
                 const countryCode = geography.properties.ADM0_A3;
                 const isCountryGuessed = isGuessed(countryCode);
 
-                if (geography.properties.scalerank === 6) {
+                if (MICRO_COUNTRIES.includes(countryCode)) {
                   return (
                     <GeoCircle
                       key={`circle-${geography.rsmKey}`}
