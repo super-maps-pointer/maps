@@ -4,15 +4,17 @@ import {
   Geographies,
   Geography,
   Graticule,
+  Marker,
   ZoomableGroup,
 } from "react-simple-maps";
-import { Country } from "@/utils/countries";
+import { Country, MICRO_COUNTRIES } from "@/utils/countries";
 import { GeoAspect, getRotationFromGeoAspect } from "@/utils/geo-aspects";
 import { GeoProjection } from "@/utils/geo-projections";
 import { Sphere } from "react-simple-maps";
 import { WithCSSVar, useTheme } from "@chakra-ui/react";
 import Zoom from "@/components/world-map/zoom";
 import Rotation from "@/components/world-map/rotation";
+import GeoCircle from "@/components/world-map/geo-circle";
 
 const WORLD_MAP_FILE = "/ne_50m_countries.json";
 const OCEAN_MAP_FILE = "/ne_50m_ocean.json";
@@ -170,6 +172,7 @@ const WorldMap: FC<WorldMapProps> = ({
               return geographies.map((geography) => {
                 const countryCode = geography.properties.ADM0_A3;
                 const isCountryGuessed = isGuessed(countryCode);
+                const geoStyle = getGeoStyle(isCountryGuessed, theme);
 
                 return (
                   <Geography
@@ -177,9 +180,30 @@ const WorldMap: FC<WorldMapProps> = ({
                     geography={geography}
                     stroke="none"
                     onClick={() => handleGeographyClick(geography)}
-                    style={getGeoStyle(isCountryGuessed, theme)}
+                    style={geoStyle}
                   />
                 );
+              });
+            }}
+          </Geographies>
+          <Geographies geography={WORLD_MAP_FILE}>
+            {({ geographies }) => {
+              return geographies.map((geography) => {
+                const countryCode = geography.properties.ADM0_A3;
+                const isCountryGuessed = isGuessed(countryCode);
+
+                if (MICRO_COUNTRIES.includes(countryCode)) {
+                  return (
+                    <GeoCircle
+                      key={`circle-${geography.rsmKey}`}
+                      isCountryGuessed={isCountryGuessed}
+                      handleGeographyClick={handleGeographyClick}
+                      geography={geography}
+                    />
+                  );
+                }
+
+                return <div key={`circle-${geography.rsmKey}`}></div>;
               });
             }}
           </Geographies>
