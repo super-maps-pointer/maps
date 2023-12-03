@@ -2616,7 +2616,9 @@ export const COUNTRIES: { [key: string]: Country } = {
   },
 };
 
-export const MICRO_COUNTRIES = ["SMR", "VAT", "MCO", "AND", "LIE", "SGP"];
+// https://en.wikipedia.org/wiki/Microstate
+// San Marino, Vatican City, Monaco, Andorra, Liechtenstein, Malta, Bahrain, Singapore
+export const MICRO_COUNTRIES = ["SMR", "VAT", "MCO", "AND", "LIE", "MLT", "BHR", "SGP"];
 
 const getCountriesByLevel = (level: Level): Country[] => {
   let countries: Country[] = [];
