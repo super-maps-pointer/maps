@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.8.0](https://github.com/super-maps-pointer/maps/compare/v1.7.0...v1.8.0) (2023-12-03)
+
+
+### Features
+
+* make micro-countries bigger ([#39](https://github.com/super-maps-pointer/maps/issues/39)) ([3a8c7a5](https://github.com/super-maps-pointer/maps/commit/3a8c7a56ddfc09e2758d8fa08b274fc5cee771ae))
+
 ## [1.7.0](https://github.com/super-maps-pointer/maps/compare/v1.6.0...v1.7.0) (2023-11-10)
 
 
