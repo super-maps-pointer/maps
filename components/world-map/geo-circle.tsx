@@ -8,7 +8,7 @@ interface GeoCircleProps {
   geography: any;
 }
 
-const Circle = ({
+const GeoCircle = ({
   isCountryGuessed,
   handleGeographyClick,
   geography,
@@ -43,4 +43,4 @@ const Circle = ({
   );
 };
 
-export default Circle;
+export default GeoCircle;
