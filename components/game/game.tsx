@@ -1,12 +1,11 @@
 import { useCallback, useEffect, useState } from "react";
-import useSound from "use-sound";
+import { useSound } from "use-sound";
 import UpperBar from "@/components/game/upper-bar";
 import { toaster } from "@/components/ui/toaster";
 import WorldMap from "@/components/world-map/world-map";
 import useDeviceSize from "@/hooks/useDeviceSize";
 import { type Country, getCountries } from "@/utils/countries";
 import { colorVar } from "@/utils/css-var";
-import type { GeoAspect } from "@/utils/geo-aspects";
 import type { GeoProjection } from "@/utils/geo-projections";
 import { type Level, getLossCondition, getWinCondition } from "@/utils/rules";
 import { SOUNDS } from "@/utils/sounds";
@@ -25,9 +24,8 @@ export default function Game({ level, onNextLevel, onFailLevel }: GameProps) {
   const [attempts, setAttempts] = useState(0);
   const [guessedCountries, setGuessedCountries] = useState<Country[]>([]);
   const [width, height] = useDeviceSize();
-  // Projection and aspect are fixed for now: changing them after each country was too much
+  // Fixed for now: changing the projection after each country was too much
   const geoProjection: GeoProjection = "geoMercator";
-  const geoAspect: GeoAspect = "European - Africa centric";
   const [isSoundEnabled, setIsSoundEnabled] = useState(true);
   const [playGoodSound] = useSound(SOUNDS.good, { soundEnabled: isSoundEnabled });
   const [playBadSound] = useSound(SOUNDS.bad, { soundEnabled: isSoundEnabled });
@@ -116,7 +114,6 @@ export default function Game({ level, onNextLevel, onFailLevel }: GameProps) {
         width={width}
         height={height}
         geoProjection={geoProjection}
-        geoAspect={geoAspect}
       />
     </div>
   );

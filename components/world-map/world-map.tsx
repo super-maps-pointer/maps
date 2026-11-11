@@ -1,11 +1,10 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import { ComposableMap, Geographies, Geography, Graticule, Sphere, ZoomableGroup } from "react-simple-maps";
 import type { ZoomPanCallbackProps } from "react-simple-maps";
 import GeoCircle from "@/components/world-map/geo-circle";
 import Zoom from "@/components/world-map/zoom";
 import { type Country, MICRO_COUNTRIES } from "@/utils/countries";
 import { colorVar } from "@/utils/css-var";
-import type { GeoAspect } from "@/utils/geo-aspects";
 import type { GeoProjection } from "@/utils/geo-projections";
 import { type CountryGeography, isCountryGeography } from "@/utils/geography";
 
@@ -28,15 +27,10 @@ interface WorldMapProps {
   width: number;
   height: number;
   geoProjection: GeoProjection;
-  geoAspect: GeoAspect;
 }
 
-export default function WorldMap({ onCountryClick, guessedCountries, width, height, geoProjection, geoAspect }: WorldMapProps) {
+export default function WorldMap({ onCountryClick, guessedCountries, width, height, geoProjection }: WorldMapProps) {
   const [position, setPosition] = useState<Position>(DEFAULT_POSITION);
-
-  useEffect(() => {
-    setPosition(DEFAULT_POSITION);
-  }, [geoAspect]);
 
   const handleGeographyClick = useCallback(
     (geography: CountryGeography) => {

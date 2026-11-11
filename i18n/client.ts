@@ -1,6 +1,6 @@
 "use client";
 
-import i18next from "i18next";
+import { createInstance } from "i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 import resourcesToBackend from "i18next-resources-to-backend";
 import { useParams } from "next/navigation";
@@ -13,7 +13,7 @@ const runsOnServerSide = typeof window === "undefined";
 
 const { lng: _lng, ...clientOptions } = getOptions();
 
-void i18next
+void createInstance()
   .use(initReactI18next)
   .use(LanguageDetector)
   .use(resourcesToBackend((language: string) => import(`./locales/${language}.json`)))

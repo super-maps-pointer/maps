@@ -19,13 +19,13 @@ const SHOTS = [
   { particleRatio: 0.1, spread: 120, startVelocity: 45 },
 ];
 
+const fire: TOnInitComponentFn = ({ confetti }) => {
+  for (const { particleRatio, ...options } of SHOTS) {
+    void confetti({ ...options, origin: { y: 0.7 }, particleCount: Math.floor(200 * particleRatio) });
+  }
+};
+
 /** Fires a single burst of confetti as soon as it mounts. */
 export default function Confetti() {
-  const fire: TOnInitComponentFn = ({ confetti }) => {
-    for (const { particleRatio, ...options } of SHOTS) {
-      void confetti({ ...options, origin: { y: 0.7 }, particleCount: Math.floor(200 * particleRatio) });
-    }
-  };
-
   return <ReactCanvasConfetti onInit={fire} style={canvasStyles} />;
 }

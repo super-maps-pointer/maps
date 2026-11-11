@@ -9,7 +9,7 @@ export function ColorModeProvider(props: ThemeProviderProps) {
   return <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange {...props} />;
 }
 
-export function useColorMode() {
+function useColorMode() {
   const { resolvedTheme, setTheme, forcedTheme } = useTheme();
   const colorMode = forcedTheme ?? resolvedTheme;
   const toggleColorMode = () => {

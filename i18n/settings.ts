@@ -9,7 +9,7 @@ export type Locale = typeof Locale.Type;
 export const isLocale = Schema.is(Locale);
 
 export const fallbackLng: Locale = "en";
-export const defaultNS = "translation";
+const defaultNS = "translation";
 export const cookieName = "i18next";
 
 export function getOptions(lng: Locale = fallbackLng, ns: string = defaultNS) {

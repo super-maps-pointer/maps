@@ -12,7 +12,7 @@ export interface Country {
   level?: Level;
 }
 
-export const COUNTRIES: Record<string, Country> = {
+const COUNTRIES: Record<string, Country> = {
   AFG: {
     name: "Afghanistan",
     capital: "Kabul",
