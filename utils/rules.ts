@@ -72,7 +72,12 @@ export const getSampleSize = (level: Level) => {
   return RULES[level].sampleSize;
 };
 
-const LEVEL_ORDER = [Level.Easy, Level.Normal, Level.Hard, Level.Extreme] as const;
+const LEVEL_ORDER = [
+  Level.Easy,
+  Level.Normal,
+  Level.Hard,
+  Level.Extreme,
+] as const;
 
 /** Next level, or the current one when the last level is reached. */
 export function getNextLevel(currentLevel: Level): Level {

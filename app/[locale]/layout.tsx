@@ -6,7 +6,11 @@ import { isLocale, languages } from "@/i18n/settings";
 import { Providers } from "./providers";
 import "./globals.css";
 
-const raleway = Raleway({ weight: "400", subsets: ["latin"], variable: "--font-raleway" });
+const raleway = Raleway({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-raleway",
+});
 
 export const metadata: Metadata = {
   title: "Super Maps Pointer",

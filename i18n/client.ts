@@ -6,8 +6,17 @@ import resourcesToBackend from "i18next-resources-to-backend";
 import { useParams } from "next/navigation";
 import { useEffect } from "react";
 import { useCookies } from "react-cookie";
-import { initReactI18next, useTranslation as useTranslationOrg } from "react-i18next";
-import { cookieName, fallbackLng, getOptions, isLocale, languages } from "./settings";
+import {
+  initReactI18next,
+  useTranslation as useTranslationOrg,
+} from "react-i18next";
+import {
+  cookieName,
+  fallbackLng,
+  getOptions,
+  isLocale,
+  languages,
+} from "./settings";
 
 const runsOnServerSide = typeof window === "undefined";
 
@@ -16,7 +25,11 @@ const { lng: _lng, ...clientOptions } = getOptions();
 void createInstance()
   .use(initReactI18next)
   .use(LanguageDetector)
-  .use(resourcesToBackend((language: string) => import(`./locales/${language}.json`)))
+  .use(
+    resourcesToBackend(
+      (language: string) => import(`./locales/${language}.json`),
+    ),
+  )
   .init({
     // no `lng`: the language detector picks it on the client side
     ...clientOptions,

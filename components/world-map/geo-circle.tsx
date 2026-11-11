@@ -7,7 +7,11 @@ interface GeoCircleProps {
   geography: CountryGeography;
 }
 
-export default function GeoCircle({ isCountryGuessed, onClick, geography }: GeoCircleProps) {
+export default function GeoCircle({
+  isCountryGuessed,
+  onClick,
+  geography,
+}: GeoCircleProps) {
   const { LABEL_X, LABEL_Y } = geography.properties;
 
   return (

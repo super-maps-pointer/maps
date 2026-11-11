@@ -20,20 +20,13 @@
     "node": true,
     "es2024": true
   },
-  "ignorePatterns": [
-    ".next/**",
-    "node_modules/**",
-    "next-env.d.ts"
-  ],
+  "ignorePatterns": [".next/**", "node_modules/**", "next-env.d.ts"],
   "rules": {
     "react/react-in-jsx-scope": "off",
     "import/no-unassigned-import": [
       "error",
       {
-        "allow": [
-          "**/*.css",
-          "@total-typescript/ts-reset"
-        ]
+        "allow": ["**/*.css", "@total-typescript/ts-reset"]
       }
     ]
   }

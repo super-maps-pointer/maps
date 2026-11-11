@@ -2618,9 +2618,23 @@ const COUNTRIES: Record<string, Country> = {
 
 // https://en.wikipedia.org/wiki/Microstate
 // San Marino, Vatican City, Monaco, Andorra, Liechtenstein, Malta, Bahrain, Singapore
-export const MICRO_COUNTRIES = ["SMR", "VAT", "MCO", "AND", "LIE", "MLT", "BHR", "SGP"];
+export const MICRO_COUNTRIES = [
+  "SMR",
+  "VAT",
+  "MCO",
+  "AND",
+  "LIE",
+  "MLT",
+  "BHR",
+  "SGP",
+];
 
 export const getCountries = (level: Level): Country[] => {
-  const countriesByLevel = Object.values(COUNTRIES).filter((country) => country.level === level);
-  return sampleSize(countriesByLevel, Math.min(getSampleSize(level), countriesByLevel.length));
+  const countriesByLevel = Object.values(COUNTRIES).filter(
+    (country) => country.level === level,
+  );
+  return sampleSize(
+    countriesByLevel,
+    Math.min(getSampleSize(level), countriesByLevel.length),
+  );
 };

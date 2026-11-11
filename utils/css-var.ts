@@ -9,4 +9,5 @@ type MapToken =
   | "map.graticules";
 
 /** CSS variable of a semantic color token from `theme/system.ts` (follows light/dark mode). */
-export const colorVar = (token: MapToken) => `var(--chakra-colors-${token.replace(".", "-")})`;
+export const colorVar = (token: MapToken) =>
+  `var(--chakra-colors-${token.replace(".", "-")})`;

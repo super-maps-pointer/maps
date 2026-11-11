@@ -11,7 +11,12 @@ export default function RetryLevelScreen({ onPlay }: RetryLevelScreenProps) {
   return (
     <div className="flex h-screen flex-col items-center justify-center">
       <Text className="text-center">{t("retry.gameOver")}</Text>
-      <Button rounded="full" colorPalette="secondary" variant="solid" onClick={onPlay}>
+      <Button
+        rounded="full"
+        colorPalette="secondary"
+        variant="solid"
+        onClick={onPlay}
+      >
         {t("retry.playAgain")}
       </Button>
     </div>

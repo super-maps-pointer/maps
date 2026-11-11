@@ -27,9 +27,13 @@ export default function Game({ level, onNextLevel, onFailLevel }: GameProps) {
   // Fixed for now: changing the projection after each country was too much
   const geoProjection: GeoProjection = "geoMercator";
   const [isSoundEnabled, setIsSoundEnabled] = useState(true);
-  const [playGoodSound] = useSound(SOUNDS.good, { soundEnabled: isSoundEnabled });
+  const [playGoodSound] = useSound(SOUNDS.good, {
+    soundEnabled: isSoundEnabled,
+  });
   const [playBadSound] = useSound(SOUNDS.bad, { soundEnabled: isSoundEnabled });
-  const [playStartSound] = useSound(SOUNDS.start, { soundEnabled: isSoundEnabled });
+  const [playStartSound] = useSound(SOUNDS.start, {
+    soundEnabled: isSoundEnabled,
+  });
 
   useEffect(() => {
     playStartSound();
@@ -59,7 +63,12 @@ export default function Game({ level, onNextLevel, onFailLevel }: GameProps) {
 
       if (code === countryToGuess.code) {
         playGoodSound();
-        toaster.create({ title: "Good!", type: "success", duration: TOAST_DURATION, closable: true });
+        toaster.create({
+          title: "Good!",
+          type: "success",
+          duration: TOAST_DURATION,
+          closable: true,
+        });
         const nextGuessed = [...guessedCountries, countryToGuess];
         setGuessedCountries(nextGuessed);
         setNextCountry(nextGuessed);
@@ -74,7 +83,13 @@ export default function Game({ level, onNextLevel, onFailLevel }: GameProps) {
         });
       }
     },
-    [countryToGuess, guessedCountries, playBadSound, playGoodSound, setNextCountry],
+    [
+      countryToGuess,
+      guessedCountries,
+      playBadSound,
+      playGoodSound,
+      setNextCountry,
+    ],
   );
 
   const handleSkipClick = useCallback(() => {

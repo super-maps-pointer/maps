@@ -8,7 +8,8 @@ import NextLevelScreen from "@/components/menu/next-level-screen";
 import RetryLevelScreen from "@/components/menu/retry-level-screen";
 import { Level, getNextLevel } from "@/utils/rules";
 
-type ActiveState = "introduction" | "nextLevel" | "retryLevel" | "endGame" | "game";
+type ActiveState =
+  "introduction" | "nextLevel" | "retryLevel" | "endGame" | "game";
 
 export default function Home() {
   const [activeState, setActiveState] = useState<ActiveState>("introduction");
@@ -36,7 +37,13 @@ export default function Home() {
     nextLevel: <NextLevelScreen level={level} onPlay={handlePlay} />,
     retryLevel: <RetryLevelScreen onPlay={handlePlay} />,
     endGame: <EndGameScreen />,
-    game: <Game level={level} onNextLevel={handleNextLevel} onFailLevel={handleFailLevel} />,
+    game: (
+      <Game
+        level={level}
+        onNextLevel={handleNextLevel}
+        onFailLevel={handleFailLevel}
+      />
+    ),
   };
 
   return screens[activeState];

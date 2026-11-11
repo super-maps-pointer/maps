@@ -1,5 +1,12 @@
 import { useCallback, useState } from "react";
-import { ComposableMap, Geographies, Geography, Graticule, Sphere, ZoomableGroup } from "react-simple-maps";
+import {
+  ComposableMap,
+  Geographies,
+  Geography,
+  Graticule,
+  Sphere,
+  ZoomableGroup,
+} from "react-simple-maps";
 import type { ZoomPanCallbackProps } from "react-simple-maps";
 import GeoCircle from "@/components/world-map/geo-circle";
 import Zoom from "@/components/world-map/zoom";
@@ -29,7 +36,13 @@ interface WorldMapProps {
   geoProjection: GeoProjection;
 }
 
-export default function WorldMap({ onCountryClick, guessedCountries, width, height, geoProjection }: WorldMapProps) {
+export default function WorldMap({
+  onCountryClick,
+  guessedCountries,
+  width,
+  height,
+  geoProjection,
+}: WorldMapProps) {
   const [position, setPosition] = useState<Position>(DEFAULT_POSITION);
 
   const handleGeographyClick = useCallback(
@@ -40,7 +53,8 @@ export default function WorldMap({ onCountryClick, guessedCountries, width, heig
     [onCountryClick],
   );
 
-  const isGuessed = (countryCode: string) => guessedCountries.some((country) => country.code === countryCode);
+  const isGuessed = (countryCode: string) =>
+    guessedCountries.some((country) => country.code === countryCode);
 
   const handleZoomIn = () => {
     if (position.zoom >= MAX_ZOOM) return;
@@ -60,11 +74,24 @@ export default function WorldMap({ onCountryClick, guessedCountries, width, heig
   return (
     <div style={{ width: "100%", height: "100%" }}>
       <Zoom onZoomIn={handleZoomIn} onZoomOut={handleZoomOut} />
-      <ComposableMap projection={geoProjection} projectionConfig={{ scale: width / 5 }} width={width} height={height}>
-        <ZoomableGroup zoom={position.zoom} center={position.coordinates} onMoveEnd={handleMoveEnd} minZoom={MIN_ZOOM}>
+      <ComposableMap
+        projection={geoProjection}
+        projectionConfig={{ scale: width / 5 }}
+        width={width}
+        height={height}
+      >
+        <ZoomableGroup
+          zoom={position.zoom}
+          center={position.coordinates}
+          onMoveEnd={handleMoveEnd}
+          minZoom={MIN_ZOOM}
+        >
           <Sphere
             id="sphere"
-            style={{ fill: colorVar("map.sphere"), stroke: colorVar("map.graticules") }}
+            style={{
+              fill: colorVar("map.sphere"),
+              stroke: colorVar("map.graticules"),
+            }}
             strokeWidth={1}
           />
           <Geographies geography={OCEAN_MAP_FILE}>
@@ -73,12 +100,19 @@ export default function WorldMap({ onCountryClick, guessedCountries, width, heig
                 <Geography
                   key={geography.rsmKey}
                   geography={geography}
-                  style={{ fill: colorVar("map.ocean"), stroke: "none", outline: "none" }}
+                  style={{
+                    fill: colorVar("map.ocean"),
+                    stroke: "none",
+                    outline: "none",
+                  }}
                 />
               ))
             }
           </Geographies>
-          <Graticule style={{ stroke: colorVar("map.graticules") }} strokeWidth={0.5} />
+          <Graticule
+            style={{ stroke: colorVar("map.graticules") }}
+            strokeWidth={0.5}
+          />
           <Geographies geography={WORLD_MAP_FILE}>
             {({ geographies }) =>
               geographies.filter(isCountryGeography).map((geography) => (
@@ -99,7 +133,9 @@ export default function WorldMap({ onCountryClick, guessedCountries, width, heig
             {({ geographies }) =>
               geographies
                 .filter(isCountryGeography)
-                .filter((geography) => MICRO_COUNTRIES.includes(geography.properties.ADM0_A3))
+                .filter((geography) =>
+                  MICRO_COUNTRIES.includes(geography.properties.ADM0_A3),
+                )
                 .map((geography) => (
                   <GeoCircle
                     key={`circle-${geography.rsmKey}`}

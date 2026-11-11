@@ -15,7 +15,13 @@ export default function Gauge({ score, winCondition }: GaugeProps) {
         className="mr-1 h-4 w-80 rounded-lg border border-black shadow-sm"
         style={{ backgroundColor: colorVar("gauge.track") }}
       >
-        <div className="h-full rounded-lg" style={{ width: `${String(gaugeScore)}%`, backgroundColor: colorVar("gauge.fill") }} />
+        <div
+          className="h-full rounded-lg"
+          style={{
+            width: `${String(gaugeScore)}%`,
+            backgroundColor: colorVar("gauge.fill"),
+          }}
+        />
       </div>
       <Text color="white" fontSize="lg">
         {score} / {winCondition}

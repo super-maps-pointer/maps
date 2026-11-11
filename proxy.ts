@@ -26,5 +26,10 @@ export function proxy(request: NextRequest) {
   if (isLocale(firstSegment)) return NextResponse.next();
 
   const locale = detectLocale(request);
-  return NextResponse.redirect(new URL(`/${locale}${pathname === "/" ? "" : pathname}${search}`, request.url));
+  return NextResponse.redirect(
+    new URL(
+      `/${locale}${pathname === "/" ? "" : pathname}${search}`,
+      request.url,
+    ),
+  );
 }

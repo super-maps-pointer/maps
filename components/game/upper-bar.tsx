@@ -36,7 +36,10 @@ export default function UpperBar({
   return (
     <Box
       className="absolute top-0 left-0 w-full border-b px-4 py-2"
-      style={{ backgroundColor: colorVar("bar.bg"), borderBottomColor: colorVar("bar.border") }}
+      style={{
+        backgroundColor: colorVar("bar.bg"),
+        borderBottomColor: colorVar("bar.border"),
+      }}
     >
       <div className="flex items-center">
         <div className="flex-1 flex-col">
@@ -55,7 +58,12 @@ export default function UpperBar({
         </div>
         <div className="flex-1">
           <div className="mb-2 flex flex-1 items-center justify-end gap-2">
-            <Button rounded="full" colorPalette="secondary" variant="solid" onClick={onClickSkip}>
+            <Button
+              rounded="full"
+              colorPalette="secondary"
+              variant="solid"
+              onClick={onClickSkip}
+            >
               Skip
             </Button>
             <IconButton

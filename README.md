@@ -16,7 +16,6 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-
 ## Vercel
 
 Here is a quick access to the [Vercel project](https://vercel.com/super-maps-pointer/maps)

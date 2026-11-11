@@ -8,7 +8,10 @@ interface NextLevelScreenProps {
   onPlay: () => void;
 }
 
-export default function NextLevelScreen({ level, onPlay }: NextLevelScreenProps) {
+export default function NextLevelScreen({
+  level,
+  onPlay,
+}: NextLevelScreenProps) {
   const { t } = useTranslation();
 
   return (
@@ -19,7 +22,12 @@ export default function NextLevelScreen({ level, onPlay }: NextLevelScreenProps)
         <Text className="mb-5">{t("next.nextStep", { level })}</Text>
         <Text className="mb-5">{getLevelRules(level)}</Text>
         <Text className="mb-20">{t("next.areYouReady")}</Text>
-        <Button rounded="full" colorPalette="secondary" variant="solid" onClick={onPlay}>
+        <Button
+          rounded="full"
+          colorPalette="secondary"
+          variant="solid"
+          onClick={onPlay}
+        >
           {t("next.nextLevel")}
         </Button>
       </div>

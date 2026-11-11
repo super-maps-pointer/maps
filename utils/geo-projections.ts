@@ -1,1 +1,2 @@
-export type GeoProjection = "geoEqualEarth" | "geoMercator" | "geoTransverseMercator";
+export type GeoProjection =
+  "geoEqualEarth" | "geoMercator" | "geoTransverseMercator";
