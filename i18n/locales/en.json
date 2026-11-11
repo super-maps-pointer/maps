@@ -25,5 +25,17 @@
     "name": "Level {{number}}",
     "goal": "Find {{goal}} countries in {{tries}} tries.",
     "newProjection": "New challenge, the map changes projection!"
+  },
+  "game": {
+    "findCountry": "Find the country on the map",
+    "projection": "Projection: {{name}}",
+    "skip": "Skip",
+    "tries": "Tries: {{tries}} / {{max}}",
+    "mute": "Mute sound",
+    "unmute": "Unmute sound",
+    "toggleColorMode": "Toggle color mode",
+    "good": "Good!",
+    "wrong": "Wrong!",
+    "youClicked": "You clicked {{name}}"
   }
 }

@@ -10,8 +10,8 @@
   },
   "next": {
     "congratulations": "Félicitations ! Vous avez gagné !",
-    "nextStep": "Prochaine étape : niveau {{level}}!",
-    "areYouReady": "Es-tu prêt ?",
+    "nextStep": "Prochaine étape : niveau {{level}} !",
+    "areYouReady": "Êtes-vous prêt ?",
     "nextLevel": "Prochain Niveau"
   },
   "retry": {
@@ -25,5 +25,17 @@
     "name": "Niveau {{number}}",
     "goal": "Trouvez {{goal}} pays en {{tries}} essais.",
     "newProjection": "Nouveau défi, la carte change de projection !"
+  },
+  "game": {
+    "findCountry": "Trouvez le pays sur la carte",
+    "projection": "Projection : {{name}}",
+    "skip": "Passer",
+    "tries": "Essais : {{tries}} / {{max}}",
+    "mute": "Couper le son",
+    "unmute": "Activer le son",
+    "toggleColorMode": "Changer de thème",
+    "good": "Bravo !",
+    "wrong": "Raté !",
+    "youClicked": "Vous avez cliqué sur {{name}}"
   }
 }
