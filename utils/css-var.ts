@@ -6,6 +6,8 @@ type MapToken =
   | "gauge.fill"
   | "map.sphere"
   | "map.ocean"
-  | "map.graticules";
+  | "map.graticules"
+  | "splash.hero"
+  | "splash.section";
 export const colorVar = (token: MapToken) =>
   `var(--chakra-colors-${token.replace(".", "-")})`;

@@ -3,10 +3,11 @@ import { Volume2, VolumeX } from "lucide-react";
 import Gauge from "@/components/game/gauge";
 import Timer from "@/components/game/timer";
 import { ColorModeButton } from "@/components/ui/color-mode";
+import { useLevelTexts } from "@/hooks/useLevelTexts";
 import type { Country } from "@/utils/countries";
 import { colorVar } from "@/utils/css-var";
 import type { GeoProjection } from "@/utils/geo-projections";
-import { type Level, displayLevel } from "@/utils/rules";
+import type { Level } from "@/utils/rules";
 
 interface UpperBarProps {
   tries: number;
@@ -33,6 +34,8 @@ export default function UpperBar({
   isSoundEnabled,
   onClickSkip,
 }: UpperBarProps) {
+  const levelTexts = useLevelTexts();
+
   return (
     <Box
       className="absolute top-0 left-0 w-full border-b px-4 py-2"
@@ -78,7 +81,7 @@ export default function UpperBar({
             <ColorModeButton />
           </div>
           <Text color="white" className="text-right">
-            {displayLevel(level)}
+            {levelTexts.name(level)}
           </Text>
           <Text className="text-right" color="white" fontSize="lg">
             Tries: {tries} / {losingCondition}

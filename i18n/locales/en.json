@@ -2,7 +2,11 @@
   "introduction": {
     "title": "Welcome to Super Maps Pointer!",
     "getReady": "Get ready to test your geography knowledge!",
-    "start": "Start Level 1"
+    "start": "Start Level 1",
+    "howToPlay": {
+      "title": "How to play",
+      "principle": "A country is shown: find it and click on it on the map. Reach the goal before running out of tries to move on to the next level."
+    }
   },
   "next": {
     "congratulations": "Congratulations! You won!",
@@ -16,5 +20,10 @@
   },
   "end": {
     "congratulations": "You finished the game! Amazing!"
+  },
+  "level": {
+    "name": "Level {{number}}",
+    "goal": "Find {{goal}} countries in {{tries}} tries.",
+    "newProjection": "New challenge, the map changes projection!"
   }
 }

@@ -2,7 +2,11 @@
   "introduction": {
     "title": "Bienvenue sur Super Maps Pointer !",
     "getReady": "Préparez-vous à tester vos connaissances géographiques !",
-    "start": "Start Niveau 1"
+    "start": "Start Niveau 1",
+    "howToPlay": {
+      "title": "Comment jouer",
+      "principle": "Un pays s'affiche : trouvez-le et cliquez dessus sur la carte. Atteignez l'objectif avant d'épuiser vos essais pour passer au niveau suivant."
+    }
   },
   "next": {
     "congratulations": "Félicitations ! Vous avez gagné !",
@@ -16,5 +20,10 @@
   },
   "end": {
     "congratulations": "Vous avez fini le jeu ! Incroyable !"
+  },
+  "level": {
+    "name": "Niveau {{number}}",
+    "goal": "Trouvez {{goal}} pays en {{tries}} essais.",
+    "newProjection": "Nouveau défi, la carte change de projection !"
   }
 }
