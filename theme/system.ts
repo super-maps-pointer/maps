@@ -4,8 +4,6 @@ const palette = (shades: Record<string, string>) =>
   Object.fromEntries(
     Object.entries(shades).map(([shade, value]) => [shade, { value }]),
   );
-
-/** Semantic tokens Chakra needs for `colorPalette="<name>"` to work on components. */
 const paletteSemantics = (name: string) => ({
   solid: {
     value: { _light: `{colors.${name}.500}`, _dark: `{colors.${name}.400}` },

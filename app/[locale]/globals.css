@@ -1,16 +1,10 @@
-/*
- * Tailwind v4 without preflight: Chakra already ships its own CSS reset.
- * Layer order: Chakra's layers (reset, base, tokens, recipes) first, then
- * Tailwind's, so utility classes win over Chakra's reset and recipes.
- */
+/* Chakra layers first so Tailwind utilities win over Chakra's reset and recipes */
 @layer reset, base, tokens, recipes, theme, components, utilities;
 @import "tailwindcss/theme.css" layer(theme);
 @import "tailwindcss/utilities.css" layer(utilities);
 
-/* next-themes toggles the `dark` class on <html> */
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* react-simple-maps v5 only sizes the SVG through CSS */
 .rsm-svg {
   width: 100%;
   height: 100%;

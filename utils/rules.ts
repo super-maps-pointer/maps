@@ -78,8 +78,6 @@ const LEVEL_ORDER = [
   Level.Hard,
   Level.Extreme,
 ] as const;
-
-/** Next level, or the current one when the last level is reached. */
 export function getNextLevel(currentLevel: Level): Level {
   return LEVEL_ORDER[LEVEL_ORDER.indexOf(currentLevel) + 1] ?? currentLevel;
 }

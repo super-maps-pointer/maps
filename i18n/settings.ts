@@ -1,8 +1,6 @@
 import { Schema } from "effect";
 
 export const languages = ["en", "fr"] as const;
-
-/** Single source of truth for the supported locales. */
 export const Locale = Schema.Literals(languages);
 export type Locale = typeof Locale.Type;
 

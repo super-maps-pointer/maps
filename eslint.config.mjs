@@ -43,8 +43,6 @@ export default defineConfig(
       ],
     },
   },
-
-  // Config files are plain JS/TS outside the type-checked app code
   {
     files: ["**/*.mjs"],
     extends: [tseslint.configs.disableTypeChecked],

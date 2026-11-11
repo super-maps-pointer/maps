@@ -34,8 +34,6 @@ const fire: TOnInitComponentFn = ({ confetti }) => {
     });
   }
 };
-
-/** Fires a single burst of confetti as soon as it mounts. */
 export default function Confetti() {
   return <ReactCanvasConfetti onInit={fire} style={canvasStyles} />;
 }

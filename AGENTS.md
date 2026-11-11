@@ -30,3 +30,4 @@ Node 26 (`nvm use`). Before committing, all of these must pass with 0 errors:
 - Supported locales are defined once by the Effect Schema `Locale` in `i18n/settings.ts`. `proxy.ts` redirects locale-less URLs.
 - Tailwind v4 is loaded without preflight (Chakra owns the CSS reset).
 - No `eslint-disable` comments. Fix the code, or change the rule in `eslint.config.mjs` / `.oxlintrc.json` with a justification.
+- No code comments unless absolutely necessary. Prefer clear names and small functions. A comment is only acceptable for a non-obvious constraint the code cannot express (e.g. an ordering that must not change). Never comment what the code does, never leave commented-out code.

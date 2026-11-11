@@ -128,7 +128,6 @@ export default function WorldMap({
               ))
             }
           </Geographies>
-          {/* Micro-countries get a clickable circle, drawn on top of every country */}
           <Geographies geography={WORLD_MAP_FILE}>
             {({ geographies }) =>
               geographies

@@ -31,13 +31,10 @@ void createInstance()
     ),
   )
   .init({
-    // no `lng`: the language detector picks it on the client side
     ...clientOptions,
     detection: { order: ["path", "htmlTag", "cookie", "navigator"] },
     preload: runsOnServerSide ? [...languages] : [],
   });
-
-/** Translation hook bound to the `[locale]` segment of the current URL. */
 export function useTranslation() {
   const { locale } = useParams<{ locale: string }>();
   const lng = isLocale(locale) ? locale : fallbackLng;

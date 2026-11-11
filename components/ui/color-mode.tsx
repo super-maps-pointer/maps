@@ -36,7 +36,6 @@ export function ColorModeButton() {
       colorPalette="secondary"
       aria-label="Toggle color mode"
     >
-      {/* Both icons render; CSS picks one so server and client markup match */}
       <Sun className="hidden dark:block" />
       <Moon className="block dark:hidden" />
     </IconButton>

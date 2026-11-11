@@ -1,11 +1,7 @@
 import type { GeographiesProps } from "react-simple-maps";
-
-/** Feature handed to `<Geographies>` children (the package exports `Geography` as a component only). */
 type Geography = Parameters<
   GeographiesProps["children"]
 >[0]["geographies"][number];
-
-/** Natural Earth properties we read from `public/ne_50m_countries.json`. */
 interface CountryProperties {
   NAME: string;
   ADM0_A3: string;

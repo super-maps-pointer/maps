@@ -5,7 +5,6 @@ import { cookieName, fallbackLng, isLocale, languages } from "@/i18n/settings";
 acceptLanguage.languages([...languages]);
 
 export const config = {
-  // Skip Next internals, API routes and every file with an extension (images, sounds, geo JSON, favicons…)
   matcher: ["/((?!api|_next/static|_next/image|.*\\..*).*)"],
 };
 

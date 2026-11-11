@@ -23,8 +23,6 @@ export const metadata: Metadata = {
     apple: { url: "/apple-touch-icon.png", sizes: "180x180" },
   },
 };
-
-// Any locale outside `languages` is a 404
 export const dynamicParams = false;
 
 export function generateStaticParams() {
@@ -42,7 +40,6 @@ export default async function RootLayout({
   if (!isLocale(locale)) notFound();
 
   return (
-    // next-themes sets the `class` attribute on <html> before hydration
     <html lang={locale} className={raleway.variable} suppressHydrationWarning>
       <body>
         <Providers>{children}</Providers>

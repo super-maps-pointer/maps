@@ -24,7 +24,6 @@ export default function Game({ level, onNextLevel, onFailLevel }: GameProps) {
   const [attempts, setAttempts] = useState(0);
   const [guessedCountries, setGuessedCountries] = useState<Country[]>([]);
   const [width, height] = useDeviceSize();
-  // Fixed for now: changing the projection after each country was too much
   const geoProjection: GeoProjection = "geoMercator";
   const [isSoundEnabled, setIsSoundEnabled] = useState(true);
   const [playGoodSound] = useSound(SOUNDS.good, {
@@ -44,7 +43,6 @@ export default function Game({ level, onNextLevel, onFailLevel }: GameProps) {
   const setNextCountry = useCallback(
     (guessed: Country[]) => {
       setCurrentCountryIndex((prevIndex) => {
-        // Walk forward (wrapping around) to the next country not guessed yet
         for (let step = 1; step <= countries.length; step++) {
           const index = (prevIndex + step) % countries.length;
           const country = countries[index];
