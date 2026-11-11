@@ -23,6 +23,7 @@ Node 26 (`nvm use`). Before committing, all of these must pass with 0 errors:
 - `npm run format:check`
 - `npm run knip`: no unused files, exports or dependencies
 - `npm run build`
+- `npm run test`: Vitest (jsdom, React Testing Library). Work test-first: write a failing test, make it pass, then refactor. Tests live next to the code as `*.test.ts(x)`. `npm run test:watch` while developing
 
 ## Conventions
 
