@@ -26,7 +26,11 @@
     "import/no-unassigned-import": [
       "error",
       {
-        "allow": ["**/*.css", "@total-typescript/ts-reset"]
+        "allow": [
+          "**/*.css",
+          "@total-typescript/ts-reset",
+          "@testing-library/jest-dom/vitest"
+        ]
       }
     ]
   }
