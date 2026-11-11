@@ -1,35 +1,30 @@
-import { FC, useEffect, useRef } from "react";
 import { Button, Text } from "@chakra-ui/react";
-import { Level, getLevelRules } from "@/utils/rules";
 import Confetti from "@/components/game/confetti";
 import { useTranslation } from "@/i18n/client";
+import { type Level, getLevelRules } from "@/utils/rules";
 
 interface NextLevelScreenProps {
   level: Level;
   onPlay: () => void;
 }
 
-const NextLevelScreen: FC<NextLevelScreenProps> = ({ level, onPlay }) => {
-  const confettiRef = useRef<any | null>(null);
+export default function NextLevelScreen({
+  level,
+  onPlay,
+}: NextLevelScreenProps) {
   const { t } = useTranslation();
-
-  useEffect(() => {
-    confettiRef.current?.fire();
-  }, []);
 
   return (
     <>
-      <Confetti ref={confettiRef} />
-      <div className="flex items-center justify-center h-screen flex-col">
+      <Confetti />
+      <div className="flex h-screen flex-col items-center justify-center">
         <Text className="text-center">{t("next.congratulations")}</Text>
         <Text className="mb-5">{t("next.nextStep", { level })}</Text>
-
         <Text className="mb-5">{getLevelRules(level)}</Text>
         <Text className="mb-20">{t("next.areYouReady")}</Text>
-
         <Button
           rounded="full"
-          colorScheme="secondary"
+          colorPalette="secondary"
           variant="solid"
           onClick={onPlay}
         >
@@ -38,6 +33,4 @@ const NextLevelScreen: FC<NextLevelScreenProps> = ({ level, onPlay }) => {
       </div>
     </>
   );
-};
-
-export default NextLevelScreen;
+}

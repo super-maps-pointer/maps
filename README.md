@@ -2,20 +2,28 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-First, install the dependencies:
+Requires Node.js 26 (see `.nvmrc`):
 
 ```bash
+nvm use
 npm install
-```
-
-Then, run the development server:
-
-```bash
 npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+## Scripts
+
+| Script              | What it does                                  |
+| ------------------- | --------------------------------------------- |
+| `npm run dev`       | Dev server (Turbopack)                        |
+| `npm run build`     | Production build                              |
+| `npm run lint`      | Oxlint, then ESLint (type-aware rules)        |
+| `npm run typecheck` | `tsc --noEmit`                                |
+| `npm run format`    | Format with Prettier (`format:check` in CI)   |
+| `npm run knip`      | Report unused files, exports and dependencies |
+
+A pre-commit hook (husky + lint-staged) formats and lints staged files. CI runs every check above on each pull request.
 
 ## Vercel
 

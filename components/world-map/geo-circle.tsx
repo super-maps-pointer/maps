@@ -1,46 +1,29 @@
-import { useTheme } from "@chakra-ui/react";
-import React, { useState } from "react";
 import { Marker } from "react-simple-maps";
+import type { CountryGeography } from "@/utils/geography";
 
 interface GeoCircleProps {
   isCountryGuessed: boolean;
-  handleGeographyClick: (geography: any) => void;
-  geography: any;
+  onClick: (geography: CountryGeography) => void;
+  geography: CountryGeography;
 }
 
-const GeoCircle = ({
+export default function GeoCircle({
   isCountryGuessed,
-  handleGeographyClick,
+  onClick,
   geography,
-}: GeoCircleProps) => {
-  const [isHovered, setIsHovered] = useState(false);
-  const theme = useTheme();
-  const { LABEL_X: cordinateX, LABEL_Y: cordinateY } = geography.properties;
-
-  const handleMouseEnter = () => {
-    setIsHovered(true);
-  };
-
-  const handleMouseLeave = () => {
-    setIsHovered(false);
-  };
-
-  const isFilled =
-    isCountryGuessed || isHovered ? theme.colors.fifth.main : "white";
+}: GeoCircleProps) {
+  const { LABEL_X, LABEL_Y } = geography.properties;
 
   return (
-    <Marker coordinates={[cordinateX, cordinateY]}>
+    <Marker coordinates={[LABEL_X, LABEL_Y]}>
       <circle
         r={2}
-        stroke="black"
-        strokeWidth={0.5}
-        onClick={() => handleGeographyClick(geography)}
-        fill={isFilled}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
+        className="micro-country"
+        data-guessed={isCountryGuessed}
+        onClick={() => {
+          onClick(geography);
+        }}
       />
     </Marker>
   );
-};
-
-export default GeoCircle;
+}

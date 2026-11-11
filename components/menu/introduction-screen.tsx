@@ -1,18 +1,19 @@
-import { FC } from "react";
-import Image from "next/image";
-import { IMAGES } from "@/utils/images";
 import { Button } from "@chakra-ui/react";
+import Image from "next/image";
 import { useTranslation } from "@/i18n/client";
+import { IMAGES } from "@/utils/images";
 
 interface IntroductionScreenProps {
   onPlay: () => void;
 }
 
-const IntroductionScreen: FC<IntroductionScreenProps> = ({ onPlay }) => {
+export default function IntroductionScreen({
+  onPlay,
+}: IntroductionScreenProps) {
   const { t } = useTranslation();
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen">
+    <div className="flex h-screen flex-col items-center justify-center">
       <div className="mb-4">
         <Image
           src={IMAGES.logo}
@@ -22,11 +23,11 @@ const IntroductionScreen: FC<IntroductionScreenProps> = ({ onPlay }) => {
           priority
         />
       </div>
-      <h1 className="text-4xl font-bold mb-4">{t("introduction.title")}</h1>
-      <p className="text-xl mb-8">{t("introduction.getReady")}</p>
+      <h1 className="mb-4 text-4xl font-bold">{t("introduction.title")}</h1>
+      <p className="mb-8 text-xl">{t("introduction.getReady")}</p>
       <Button
         rounded="full"
-        colorScheme="secondary"
+        colorPalette="secondary"
         variant="solid"
         onClick={onPlay}
       >
@@ -34,6 +35,4 @@ const IntroductionScreen: FC<IntroductionScreenProps> = ({ onPlay }) => {
       </Button>
     </div>
   );
-};
-
-export default IntroductionScreen;
+}

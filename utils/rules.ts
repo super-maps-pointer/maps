@@ -11,23 +11,23 @@ interface Rules {
   tries: number;
 }
 
-const RULES: { [key: string]: Rules } = {
-  easy: {
+const RULES: Record<Level, Rules> = {
+  [Level.Easy]: {
     sampleSize: 20,
     goal: 5,
     tries: 20,
   },
-  normal: {
+  [Level.Normal]: {
     sampleSize: 30,
     goal: 10,
     tries: 25,
   },
-  hard: {
+  [Level.Hard]: {
     sampleSize: 40,
     goal: 15,
     tries: 30,
   },
-  extreme: {
+  [Level.Extreme]: {
     sampleSize: 50,
     goal: 20,
     tries: 40,
@@ -36,26 +36,26 @@ const RULES: { [key: string]: Rules } = {
 
 export const displayLevel = (level: Level) => {
   switch (level) {
-    case "easy":
+    case Level.Easy:
       return "Level 1";
-    case "normal":
+    case Level.Normal:
       return "Level 2 🏴‍☠️";
-    case "hard":
+    case Level.Hard:
       return "Level 3 🤯";
-    case "extreme":
+    case Level.Extreme:
       return "Level 4 🫡";
   }
 };
 
 export const getLevelRules = (level: Level) => {
   switch (level) {
-    case "easy":
+    case Level.Easy:
       return "You have 20 tries to find 5 countries to guess.";
-    case "normal":
+    case Level.Normal:
       return "You have 25 tries to find 10 countries to guess.\nNew challenge, the map have a new representation!";
-    case "hard":
+    case Level.Hard:
       return "You have 30 tries to find 15 countries to guess.";
-    case "extreme":
+    case Level.Extreme:
       return "You have 40 tries to find 20 countries to guess.";
   }
 };
@@ -72,15 +72,12 @@ export const getSampleSize = (level: Level) => {
   return RULES[level].sampleSize;
 };
 
+const LEVEL_ORDER = [
+  Level.Easy,
+  Level.Normal,
+  Level.Hard,
+  Level.Extreme,
+] as const;
 export function getNextLevel(currentLevel: Level): Level {
-  const levelValues = Object.values(Level);
-  const currentIndex = levelValues.findIndex((level) => level === currentLevel);
-  const nextIndex = currentIndex + 1;
-
-  if (nextIndex >= levelValues.length) {
-    // Special case: Reached the last level, finish the game
-    return currentLevel;
-  }
-
-  return levelValues[nextIndex] as Level;
+  return LEVEL_ORDER[LEVEL_ORDER.indexOf(currentLevel) + 1] ?? currentLevel;
 }

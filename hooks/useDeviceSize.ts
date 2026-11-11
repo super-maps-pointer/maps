@@ -1,23 +1,18 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
-const useDeviceSize = () => {
-  const [width, setWidth] = useState(0);
-  const [height, setHeight] = useState(0);
-
-  const handleWindowResize = () => {
-    setWidth(window.innerWidth);
-    setHeight(window.innerHeight);
-  };
+export default function useDeviceSize(): [width: number, height: number] {
+  const [size, setSize] = useState<[number, number]>([0, 0]);
 
   useEffect(() => {
-    // component is mounted and window is available
+    const handleWindowResize = () => {
+      setSize([window.innerWidth, window.innerHeight]);
+    };
     handleWindowResize();
     window.addEventListener("resize", handleWindowResize);
-    // unsubscribe from the event on component unmount
-    return () => window.removeEventListener("resize", handleWindowResize);
+    return () => {
+      window.removeEventListener("resize", handleWindowResize);
+    };
   }, []);
 
-  return [width, height];
-};
-
-export default useDeviceSize;
+  return size;
+}
