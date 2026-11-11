@@ -1,26 +1,19 @@
+import { Box, Button, Heading, IconButton, Text } from "@chakra-ui/react";
+import { Volume2, VolumeX } from "lucide-react";
 import Gauge from "@/components/game/gauge";
-import { Country } from "@/utils/countries";
-import { GeoProjection } from "@/utils/geo-projections";
-import { Level, displayLevel } from "@/utils/rules";
-import {
-  Heading,
-  Text,
-  Box,
-  useTheme,
-  IconButton,
-  Button,
-} from "@chakra-ui/react";
-import { FC } from "react";
-import VolumeUpIcon from "@mui/icons-material/VolumeUp";
-import VolumeOffIcon from "@mui/icons-material/VolumeOff";
 import Timer from "@/components/game/timer";
+import { ColorModeButton } from "@/components/ui/color-mode";
+import type { Country } from "@/utils/countries";
+import { colorVar } from "@/utils/css-var";
+import type { GeoProjection } from "@/utils/geo-projections";
+import { type Level, displayLevel } from "@/utils/rules";
 
 interface UpperBarProps {
   tries: number;
   score: number;
   losingCondition: number;
   winCondition: number;
-  countryToGuess: Country | null;
+  countryToGuess: Country | undefined;
   level: Level;
   geoProjection: GeoProjection;
   isSoundEnabled: boolean;
@@ -28,7 +21,7 @@ interface UpperBarProps {
   onClickSkip: () => void;
 }
 
-const UpperBar: FC<UpperBarProps> = ({
+export default function UpperBar({
   tries,
   countryToGuess,
   level,
@@ -39,68 +32,54 @@ const UpperBar: FC<UpperBarProps> = ({
   onSoundToggle,
   isSoundEnabled,
   onClickSkip,
-}) => {
-  const theme = useTheme();
-
+}: UpperBarProps) {
   return (
     <Box
-      bg={theme.colors.primary.main}
-      className="absolute top-0 left-0 w-full px-4 py-2 border-b"
-      style={{ borderBottomColor: theme.colors.primary[900] }}
+      className="absolute top-0 left-0 w-full border-b px-4 py-2"
+      style={{ backgroundColor: colorVar("bar.bg"), borderBottomColor: colorVar("bar.border") }}
     >
-      <div className="flex flex-col justify-between">
-        <div className="flex items-center">
-          <div className="flex-col flex-1">
-            <Timer maxTime={3600} />
-            <Text className="text-left" color="white" fontSize="lg">
-              Find the country on the map
-            </Text>
-            <Text className="text-left" color="white" fontSize="lg">
-              Projection: {geoProjection}
-            </Text>
+      <div className="flex items-center">
+        <div className="flex-1 flex-col">
+          <Timer maxTime={3600} />
+          <Text className="text-left" color="white" fontSize="lg">
+            Find the country on the map
+          </Text>
+          <Text className="text-left" color="white" fontSize="lg">
+            Projection: {geoProjection}
+          </Text>
+        </div>
+        <div className="flex-3">
+          <Heading as="h1" color="white" size="4xl" className="text-center">
+            {countryToGuess?.flag} {countryToGuess?.name.toUpperCase()}
+          </Heading>
+        </div>
+        <div className="flex-1">
+          <div className="mb-2 flex flex-1 items-center justify-end gap-2">
+            <Button rounded="full" colorPalette="secondary" variant="solid" onClick={onClickSkip}>
+              Skip
+            </Button>
+            <IconButton
+              rounded="full"
+              variant="solid"
+              colorPalette="secondary"
+              onClick={onSoundToggle}
+              aria-label={isSoundEnabled ? "Mute sound" : "Unmute sound"}
+            >
+              {isSoundEnabled ? <Volume2 /> : <VolumeX />}
+            </IconButton>
+            <ColorModeButton />
           </div>
-          <div className="flex-3">
-            <Heading as="h1" color="white" size="xl" className="text-center">
-              {countryToGuess?.flag} {countryToGuess?.name.toUpperCase()}
-            </Heading>
-          </div>
-          <div className="flex-1">
-            <div>
-              <div className="flex-1 flex items-center justify-end">
-                <Button
-                  className="mb-2 mr-2"
-                  rounded="full"
-                  colorScheme="secondary"
-                  variant="solid"
-                  onClick={onClickSkip}
-                >
-                  Skip
-                </Button>
-                <IconButton
-                  className="mb-2"
-                  rounded="full"
-                  variant="solid"
-                  colorScheme="secondary"
-                  icon={isSoundEnabled ? <VolumeUpIcon /> : <VolumeOffIcon />}
-                  onClick={onSoundToggle}
-                  aria-label={"sound"}
-                />
-              </div>
-              <Text color="white" className="text-right">
-                {displayLevel(level)}
-              </Text>
-              <Text className="text-right" color="white" fontSize="lg">
-                Tries: {tries} / {losingCondition}
-              </Text>
-              <div className="flex-1 flex items-center justify-end">
-                <Gauge score={score} winCondition={winCondition} />
-              </div>
-            </div>
+          <Text color="white" className="text-right">
+            {displayLevel(level)}
+          </Text>
+          <Text className="text-right" color="white" fontSize="lg">
+            Tries: {tries} / {losingCondition}
+          </Text>
+          <div className="flex flex-1 items-center justify-end">
+            <Gauge score={score} winCondition={winCondition} />
           </div>
         </div>
       </div>
     </Box>
   );
-};
-
-export default UpperBar;
+}

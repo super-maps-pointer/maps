@@ -1,4 +1,3 @@
-import { FC } from "react";
 import { Button, Text } from "@chakra-ui/react";
 import { useTranslation } from "@/i18n/client";
 
@@ -6,22 +5,15 @@ interface RetryLevelScreenProps {
   onPlay: () => void;
 }
 
-const RetryLevelScreen: FC<RetryLevelScreenProps> = ({ onPlay }) => {
+export default function RetryLevelScreen({ onPlay }: RetryLevelScreenProps) {
   const { t } = useTranslation();
 
   return (
-    <div className="flex items-center justify-center h-screen flex-col">
+    <div className="flex h-screen flex-col items-center justify-center">
       <Text className="text-center">{t("retry.gameOver")}</Text>
-      <Button
-        rounded="full"
-        colorScheme="secondary"
-        variant="solid"
-        onClick={onPlay}
-      >
+      <Button rounded="full" colorPalette="secondary" variant="solid" onClick={onPlay}>
         {t("retry.playAgain")}
       </Button>
     </div>
   );
-};
-
-export default RetryLevelScreen;
+}

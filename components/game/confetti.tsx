@@ -1,13 +1,6 @@
-import React, {
-  CSSProperties,
-  forwardRef,
-  useCallback,
-  useEffect,
-  useImperativeHandle,
-  useRef,
-} from "react";
 import ReactCanvasConfetti from "react-canvas-confetti";
-import { CreateTypes } from "canvas-confetti";
+import type { CSSProperties } from "react";
+import type { TOnInitComponentFn } from "react-canvas-confetti/dist/types";
 
 const canvasStyles: CSSProperties = {
   position: "fixed",
@@ -18,60 +11,21 @@ const canvasStyles: CSSProperties = {
   left: 0,
 };
 
-const Confetti = forwardRef(function Confetti({}, ref) {
-  const refAnimationInstance = useRef<CreateTypes | null>(null);
+const SHOTS = [
+  { particleRatio: 0.25, spread: 26, startVelocity: 55 },
+  { particleRatio: 0.2, spread: 60 },
+  { particleRatio: 0.35, spread: 100, decay: 0.91, scalar: 0.8 },
+  { particleRatio: 0.1, spread: 120, startVelocity: 25, decay: 0.92, scalar: 1.2 },
+  { particleRatio: 0.1, spread: 120, startVelocity: 45 },
+];
 
-  useImperativeHandle(ref, () => ({
-    fire,
-  }));
+/** Fires a single burst of confetti as soon as it mounts. */
+export default function Confetti() {
+  const fire: TOnInitComponentFn = ({ confetti }) => {
+    for (const { particleRatio, ...options } of SHOTS) {
+      void confetti({ ...options, origin: { y: 0.7 }, particleCount: Math.floor(200 * particleRatio) });
+    }
+  };
 
-  const getInstance = useCallback((instance: CreateTypes | null) => {
-    refAnimationInstance.current = instance;
-  }, []);
-
-  const makeShot = useCallback((particleRatio: number, opts: any) => {
-    refAnimationInstance.current &&
-      refAnimationInstance.current({
-        ...opts,
-        origin: { y: 0.7 },
-        particleCount: Math.floor(200 * particleRatio),
-      });
-  }, []);
-
-  const fire = useCallback(() => {
-    makeShot(0.25, {
-      spread: 26,
-      startVelocity: 55,
-    });
-
-    makeShot(0.2, {
-      spread: 60,
-    });
-
-    makeShot(0.35, {
-      spread: 100,
-      decay: 0.91,
-      scalar: 0.8,
-    });
-
-    makeShot(0.1, {
-      spread: 120,
-      startVelocity: 25,
-      decay: 0.92,
-      scalar: 1.2,
-    });
-
-    makeShot(0.1, {
-      spread: 120,
-      startVelocity: 45,
-    });
-  }, [makeShot]);
-
-  return (
-    <>
-      <ReactCanvasConfetti refConfetti={getInstance} style={canvasStyles} />
-    </>
-  );
-});
-
-export default Confetti;
+  return <ReactCanvasConfetti onInit={fire} style={canvasStyles} />;
+}
