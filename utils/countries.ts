@@ -1,5 +1,5 @@
+import { sampleSize } from "es-toolkit";
 import { Level, getSampleSize } from "@/utils/rules";
-import { sampleSize } from "lodash";
 
 export interface Country {
   code: string;
@@ -12,7 +12,7 @@ export interface Country {
   level?: Level;
 }
 
-export const COUNTRIES: { [key: string]: Country } = {
+export const COUNTRIES: Record<string, Country> = {
   AFG: {
     name: "Afghanistan",
     capital: "Kabul",
@@ -2620,20 +2620,7 @@ export const COUNTRIES: { [key: string]: Country } = {
 // San Marino, Vatican City, Monaco, Andorra, Liechtenstein, Malta, Bahrain, Singapore
 export const MICRO_COUNTRIES = ["SMR", "VAT", "MCO", "AND", "LIE", "MLT", "BHR", "SGP"];
 
-const getCountriesByLevel = (level: Level): Country[] => {
-  let countries: Country[] = [];
-
-  Object.entries(COUNTRIES).forEach(([key, value]) => {
-    if (value.level === level) {
-      countries.push(value);
-    }
-  });
-  return countries;
-};
-
 export const getCountries = (level: Level): Country[] => {
-  const countriesByLevel = getCountriesByLevel(level);
-  const sampleSizeNumber = getSampleSize(level);
-  const randomSample = sampleSize(countriesByLevel, sampleSizeNumber);
-  return randomSample;
+  const countriesByLevel = Object.values(COUNTRIES).filter((country) => country.level === level);
+  return sampleSize(countriesByLevel, Math.min(getSampleSize(level), countriesByLevel.length));
 };
