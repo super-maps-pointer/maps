@@ -4,6 +4,7 @@ import { IconButton } from "@chakra-ui/react";
 import { Moon, Sun } from "lucide-react";
 import { ThemeProvider, useTheme } from "next-themes";
 import type { ThemeProviderProps } from "next-themes";
+import { useTranslation } from "@/i18n/client";
 
 export function ColorModeProvider(props: ThemeProviderProps) {
   return (
@@ -27,6 +28,7 @@ function useColorMode() {
 }
 
 export function ColorModeButton() {
+  const { t } = useTranslation();
   const { toggleColorMode } = useColorMode();
   return (
     <IconButton
@@ -34,7 +36,7 @@ export function ColorModeButton() {
       rounded="full"
       variant="solid"
       colorPalette="secondary"
-      aria-label="Toggle color mode"
+      aria-label={t("game.toggleColorMode")}
     >
       <Sun className="hidden dark:block" />
       <Moon className="block dark:hidden" />

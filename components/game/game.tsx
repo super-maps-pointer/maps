@@ -4,6 +4,7 @@ import UpperBar from "@/components/game/upper-bar";
 import { toaster } from "@/components/ui/toaster";
 import WorldMap from "@/components/world-map/world-map";
 import useDeviceSize from "@/hooks/useDeviceSize";
+import { useTranslation } from "@/i18n/client";
 import { type Country, getCountries } from "@/utils/countries";
 import { colorVar } from "@/utils/css-var";
 import type { GeoProjection } from "@/utils/geo-projections";
@@ -19,6 +20,7 @@ interface GameProps {
 const TOAST_DURATION = 2000;
 
 export default function Game({ level, onNextLevel, onFailLevel }: GameProps) {
+  const { t } = useTranslation();
   const [countries] = useState<Country[]>(() => getCountries(level));
   const [currentCountryIndex, setCurrentCountryIndex] = useState(0);
   const [attempts, setAttempts] = useState(0);
@@ -56,13 +58,13 @@ export default function Game({ level, onNextLevel, onFailLevel }: GameProps) {
 
   const handleCountryClick = useCallback(
     (name: string, code: string) => {
-      setAttempts((prevAttempts) => prevAttempts + 1);
       if (countryToGuess === undefined) return;
+      setAttempts((prevAttempts) => prevAttempts + 1);
 
       if (code === countryToGuess.code) {
         playGoodSound();
         toaster.create({
-          title: "Good!",
+          title: t("game.good"),
           type: "success",
           duration: TOAST_DURATION,
           closable: true,
@@ -73,9 +75,9 @@ export default function Game({ level, onNextLevel, onFailLevel }: GameProps) {
       } else {
         playBadSound();
         toaster.create({
-          title: "Wrong!",
+          title: t("game.wrong"),
           type: "error",
-          description: `You clicked ${name}`,
+          description: t("game.youClicked", { name }),
           duration: TOAST_DURATION,
           closable: true,
         });
@@ -87,6 +89,7 @@ export default function Game({ level, onNextLevel, onFailLevel }: GameProps) {
       playBadSound,
       playGoodSound,
       setNextCountry,
+      t,
     ],
   );
 

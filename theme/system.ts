@@ -101,6 +101,15 @@ const config = defineConfig({
         game: {
           bg: { value: { _light: "{colors.third.500}", _dark: "#0B171B" } },
         },
+        splash: {
+          hero: { value: { _light: "{colors.third.500}", _dark: "#0B171B" } },
+          section: {
+            value: {
+              _light: "{colors.secondary.500}",
+              _dark: "{colors.secondary.800}",
+            },
+          },
+        },
         bar: {
           bg: {
             value: {

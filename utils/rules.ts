@@ -34,31 +34,16 @@ const RULES: Record<Level, Rules> = {
   },
 };
 
-export const displayLevel = (level: Level) => {
-  switch (level) {
-    case Level.Easy:
-      return "Level 1";
-    case Level.Normal:
-      return "Level 2 🏴‍☠️";
-    case Level.Hard:
-      return "Level 3 🤯";
-    case Level.Extreme:
-      return "Level 4 🫡";
-  }
+const LEVEL_EMOJI: Record<Level, string> = {
+  [Level.Easy]: "",
+  [Level.Normal]: "🏴‍☠️",
+  [Level.Hard]: "🤯",
+  [Level.Extreme]: "🫡",
 };
 
-export const getLevelRules = (level: Level) => {
-  switch (level) {
-    case Level.Easy:
-      return "You have 20 tries to find 5 countries to guess.";
-    case Level.Normal:
-      return "You have 25 tries to find 10 countries to guess.\nNew challenge, the map have a new representation!";
-    case Level.Hard:
-      return "You have 30 tries to find 15 countries to guess.";
-    case Level.Extreme:
-      return "You have 40 tries to find 20 countries to guess.";
-  }
-};
+export const getLevelEmoji = (level: Level) => LEVEL_EMOJI[level];
+
+export const introducesNewProjection = (level: Level) => level === Level.Normal;
 
 export const getWinCondition = (level: Level) => {
   return RULES[level].goal;
@@ -72,12 +57,14 @@ export const getSampleSize = (level: Level) => {
   return RULES[level].sampleSize;
 };
 
-const LEVEL_ORDER = [
+export const LEVEL_ORDER = [
   Level.Easy,
   Level.Normal,
   Level.Hard,
   Level.Extreme,
 ] as const;
+export const getLevelNumber = (level: Level) => LEVEL_ORDER.indexOf(level) + 1;
+
 export function getNextLevel(currentLevel: Level): Level {
   return LEVEL_ORDER[LEVEL_ORDER.indexOf(currentLevel) + 1] ?? currentLevel;
 }

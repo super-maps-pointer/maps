@@ -42,7 +42,7 @@ export default async function RootLayout({
   return (
     <html lang={locale} className={raleway.variable} suppressHydrationWarning>
       <body>
-        <Providers>{children}</Providers>
+        <Providers locale={locale}>{children}</Providers>
       </body>
     </html>
   );
