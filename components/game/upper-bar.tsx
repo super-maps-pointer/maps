@@ -6,13 +6,12 @@ import { ColorModeButton } from "@/components/ui/color-mode";
 import { useLevelTexts } from "@/hooks/useLevelTexts";
 import { useTranslation } from "@/i18n/client";
 import { colorVar } from "@/utils/css-var";
-import { type GeoProjection, getProjectionName } from "@/utils/geo-projections";
+import { getProjectionName } from "@/utils/geo-projections";
 import { getLevelRules } from "@/utils/rules";
 import type { PlayingRunState } from "@/utils/run";
 
 interface UpperBarProps {
   run: PlayingRunState;
-  geoProjection: GeoProjection;
   isSoundEnabled: boolean;
   onSoundToggle: () => void;
   onClickSkip: () => void;
@@ -20,7 +19,6 @@ interface UpperBarProps {
 
 export default function UpperBar({
   run,
-  geoProjection,
   onSoundToggle,
   isSoundEnabled,
   onClickSkip,
@@ -46,7 +44,7 @@ export default function UpperBar({
             {t("game.findCountry")}
           </Text>
           <Text className="text-left" color="white" fontSize="lg">
-            {t("game.projection", { name: getProjectionName(geoProjection) })}
+            {t("game.projection", { name: getProjectionName(run.projection) })}
           </Text>
         </div>
         <div className="flex-3">

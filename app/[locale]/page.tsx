@@ -34,7 +34,13 @@ export default function Home() {
     case "introduction":
       return <IntroductionScreen onPlay={handlePlay} />;
     case "levelWon":
-      return <NextLevelScreen level={runState.level} onPlay={handlePlay} />;
+      return (
+        <NextLevelScreen
+          level={runState.level}
+          projection={runState.projection}
+          onPlay={handlePlay}
+        />
+      );
     case "retry":
       return <RetryLevelScreen onPlay={handleRetry} />;
     case "finished":

@@ -1,4 +1,5 @@
 import { type Country, type RandomSource, sampleCountries } from "./countries";
+import { type GeoProjection, PROJECTION_POOL } from "./geo-projections";
 import { Level, getLevelRules } from "./rules";
 
 interface LevelRunState {
@@ -8,9 +9,16 @@ interface LevelRunState {
   foundCountries: readonly Country[];
 }
 
-export type RunState =
-  | { screen: "introduction" | "levelWon" | "retry" | "finished"; level: Level }
-  | { screen: "playing"; level: Level; levelRun: LevelRunState };
+interface RunPosition {
+  level: Level;
+  projection: GeoProjection;
+}
+
+export type RunState = RunPosition &
+  (
+    | { screen: "introduction" | "levelWon" | "retry" | "finished" }
+    | { screen: "playing"; levelRun: LevelRunState }
+  );
 
 export type PlayingRunState = Extract<RunState, { screen: "playing" }>;
 
@@ -74,11 +82,15 @@ const skip = (levelRun: LevelRunState): LevelRunState => ({
   targetCountry: nextTargetCountry(levelRun),
 });
 
-const startLevelRun = (level: Level, random: RandomSource): PlayingRunState => {
+const startLevelRun = (
+  { level, projection }: RunPosition,
+  random: RandomSource,
+): PlayingRunState => {
   const sample = sampleCountries(level, random);
   return {
     screen: "playing",
     level,
+    projection,
     levelRun: {
       sample,
       targetCountry: sample[0],
@@ -88,25 +100,52 @@ const startLevelRun = (level: Level, random: RandomSource): PlayingRunState => {
   };
 };
 
+const EASY_PROJECTION: GeoProjection = "geoMercator";
+
+const drawProjection = (
+  previous: GeoProjection,
+  random: RandomSource,
+): GeoProjection => {
+  const candidates = PROJECTION_POOL.filter(
+    (projection) => projection !== previous,
+  );
+  return candidates[Math.floor(random() * candidates.length)] ?? previous;
+};
+
 const reachLevel = (
   level: Level,
   screen: "introduction" | "levelWon",
-): RunState => ({ screen, level });
+  previousProjection: GeoProjection,
+  random: RandomSource,
+): RunState => ({
+  screen,
+  level,
+  projection:
+    level === Level.Easy
+      ? EASY_PROJECTION
+      : drawProjection(previousProjection, random),
+});
 
-const reachNextLevel = (level: Level): RunState => {
-  const { nextLevel } = getLevelRules(level);
+const reachNextLevel = (
+  position: RunPosition,
+  random: RandomSource,
+): RunState => {
+  const { nextLevel } = getLevelRules(position.level);
   return nextLevel === undefined
-    ? { screen: "finished", level }
-    : reachLevel(nextLevel, "levelWon");
+    ? { screen: "finished", ...position }
+    : reachLevel(nextLevel, "levelWon", position.projection, random);
 };
 
-const endLevelRun = (state: PlayingRunState): RunState => {
-  const { goal, tries } = getLevelRules(state.level);
-  const { levelRun } = state;
+const endLevelRun = (
+  state: PlayingRunState,
+  random: RandomSource,
+): RunState => {
+  const { level, projection, levelRun } = state;
+  const { goal, tries } = getLevelRules(level);
   if (levelRun.foundCountries.length >= goal) {
-    return reachNextLevel(state.level);
+    return reachNextLevel({ level, projection }, random);
   }
-  if (levelRun.tries >= tries) return { screen: "retry", level: state.level };
+  if (levelRun.tries >= tries) return { screen: "retry", level, projection };
   return state;
 };
 
@@ -116,16 +155,17 @@ const withoutOutcome = (state: RunState): RunTransition => ({
 });
 
 export const createRun = (random: RandomSource) => ({
-  start: (): RunState => reachLevel(Level.Easy, "introduction"),
+  start: (): RunState =>
+    reachLevel(Level.Easy, "introduction", EASY_PROJECTION, random),
   dispatch: (state: RunState, action: RunAction): RunTransition => {
     if (action.type === "play") {
       return state.screen === "introduction" || state.screen === "levelWon"
-        ? withoutOutcome(startLevelRun(state.level, random))
+        ? withoutOutcome(startLevelRun(state, random))
         : withoutOutcome(state);
     }
     if (action.type === "retry") {
       return state.screen === "retry"
-        ? withoutOutcome(startLevelRun(state.level, random))
+        ? withoutOutcome(startLevelRun(state, random))
         : withoutOutcome(state);
     }
     if (state.screen !== "playing") return withoutOutcome(state);
@@ -134,7 +174,7 @@ export const createRun = (random: RandomSource) => ({
     }
     const result = guess(state.levelRun, action.code, action.name);
     return {
-      state: endLevelRun({ ...state, levelRun: result.levelRun }),
+      state: endLevelRun({ ...state, levelRun: result.levelRun }, random),
       outcome: result.outcome,
     };
   },

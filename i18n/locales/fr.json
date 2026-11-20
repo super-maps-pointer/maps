@@ -12,7 +12,8 @@
     "congratulations": "Félicitations ! Vous avez gagné !",
     "nextStep": "Prochaine étape : niveau {{level}} !",
     "areYouReady": "Êtes-vous prêt ?",
-    "nextLevel": "Prochain Niveau"
+    "nextLevel": "Prochain Niveau",
+    "newProjection": "Nouvelle projection : {{name}}"
   },
   "retry": {
     "gameOver": "Game over ! Vous avez échoué.",
