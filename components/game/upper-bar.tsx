@@ -8,13 +8,11 @@ import { useTranslation } from "@/i18n/client";
 import type { Country } from "@/utils/countries";
 import { colorVar } from "@/utils/css-var";
 import { type GeoProjection, getProjectionName } from "@/utils/geo-projections";
-import type { Level } from "@/utils/rules";
+import { type Level, getLevelRules } from "@/utils/rules";
 
 interface UpperBarProps {
   tries: number;
   score: number;
-  losingCondition: number;
-  winCondition: number;
   countryToGuess: Country | undefined;
   level: Level;
   geoProjection: GeoProjection;
@@ -28,8 +26,6 @@ export default function UpperBar({
   countryToGuess,
   level,
   geoProjection,
-  losingCondition,
-  winCondition,
   score,
   onSoundToggle,
   isSoundEnabled,
@@ -37,6 +33,7 @@ export default function UpperBar({
 }: UpperBarProps) {
   const { t } = useTranslation();
   const levelTexts = useLevelTexts();
+  const { goal, tries: maxTries } = getLevelRules(level);
 
   return (
     <Box
@@ -86,10 +83,10 @@ export default function UpperBar({
             {levelTexts.name(level)}
           </Text>
           <Text className="text-right" color="white" fontSize="lg">
-            {t("game.tries", { tries, max: losingCondition })}
+            {t("game.tries", { tries, max: maxTries })}
           </Text>
           <div className="flex flex-1 items-center justify-end">
-            <Gauge score={score} winCondition={winCondition} />
+            <Gauge score={score} winCondition={goal} />
           </div>
         </div>
       </div>

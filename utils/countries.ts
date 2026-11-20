@@ -1,5 +1,5 @@
 import { sampleSize } from "es-toolkit";
-import { Level, getSampleSize } from "@/utils/rules";
+import { Level, getLevelRules } from "@/utils/rules";
 
 export interface Country {
   code: string;
@@ -2635,6 +2635,6 @@ export const getCountries = (level: Level): Country[] => {
   );
   return sampleSize(
     countriesByLevel,
-    Math.min(getSampleSize(level), countriesByLevel.length),
+    Math.min(getLevelRules(level).sampleSize, countriesByLevel.length),
   );
 };
