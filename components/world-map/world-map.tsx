@@ -10,7 +10,7 @@ import {
 import type { ZoomPanCallbackProps } from "react-simple-maps";
 import GeoCircle from "@/components/world-map/geo-circle";
 import Zoom from "@/components/world-map/zoom";
-import { type Country, MICRO_COUNTRIES } from "@/utils/countries";
+import { type Country, isMicroCountry } from "@/utils/countries";
 import { colorVar } from "@/utils/css-var";
 import type { GeoProjection } from "@/utils/geo-projections";
 import { type CountryGeography, isCountryGeography } from "@/utils/geography";
@@ -133,7 +133,7 @@ export default function WorldMap({
               geographies
                 .filter(isCountryGeography)
                 .filter((geography) =>
-                  MICRO_COUNTRIES.includes(geography.properties.ADM0_A3),
+                  isMicroCountry(geography.properties.ADM0_A3),
                 )
                 .map((geography) => (
                   <GeoCircle
