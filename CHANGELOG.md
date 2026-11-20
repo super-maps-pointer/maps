@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.8.0](https://github.com/super-maps-pointer/maps/compare/v1.7.0...v1.8.0) (2026-11-20)
+
+
+### Features
+
+* make micro-countries bigger ([#39](https://github.com/super-maps-pointer/maps/issues/39)) ([3a8c7a5](https://github.com/super-maps-pointer/maps/commit/3a8c7a56ddfc09e2758d8fa08b274fc5cee771ae))
+* splash screen with wave divider and how-to-play section ([#46](https://github.com/super-maps-pointer/maps/issues/46)) ([17bcca9](https://github.com/super-maps-pointer/maps/commit/17bcca9206ae792b848a416e14b556e8f2036695))
+
 ## [1.7.0](https://github.com/super-maps-pointer/maps/compare/v1.6.0...v1.7.0) (2023-11-10)
 
 
