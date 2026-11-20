@@ -1,4 +1,3 @@
-import { sampleSize } from "es-toolkit";
 import { Level, getLevelRules } from "@/utils/rules";
 
 export interface Country {
@@ -1595,16 +1594,6 @@ const COUNTRIES: Record<string, Country> = {
     code: "PLW",
     flag: "🇵🇼",
   },
-  PSE: {
-    name: "Palestine",
-    capital: "Ramallah",
-    population: 5052776,
-    funFact:
-      "Palestine is a region with a complex political situation and is known for its historical significance and religious sites.",
-    code: "PSE",
-    flag: "🇵🇸",
-    level: Level.Hard,
-  },
   PAN: {
     name: "Panama",
     capital: "Panama City",
@@ -1986,16 +1975,6 @@ const COUNTRIES: Record<string, Country> = {
     code: "KOR",
     flag: "🇰🇷",
   },
-  SSD: {
-    name: "South Sudan",
-    capital: "Juba",
-    population: 11062113,
-    funFact:
-      "South Sudan is the youngest country in the world, gaining independence from Sudan in 2011. It is home to diverse ethnic groups, wildlife, and the vast Sudd wetland.",
-    level: Level.Hard,
-    code: "SSD",
-    flag: "🇸🇸",
-  },
   ESP: {
     name: "Spain",
     capital: "Madrid",
@@ -2335,16 +2314,6 @@ const COUNTRIES: Record<string, Country> = {
     code: "WLF",
     flag: "🇼🇫",
   },
-  ESH: {
-    name: "Western Sahara",
-    capital: "El Aaiún",
-    population: 597339,
-    funFact:
-      "Western Sahara is a disputed territory in North Africa. It is known for its vast desert landscapes, including the world's largest non-polar desert, the Sahara. The status of Western Sahara is the subject of ongoing international negotiations.",
-    code: "ESH",
-    flag: "🇪🇭",
-    level: Level.Hard,
-  },
   YEM: {
     name: "Yemen",
     capital: "Sana'a",
@@ -2431,7 +2400,7 @@ const COUNTRIES: Record<string, Country> = {
     population: 5052776,
     funFact:
       "Palestine is a region with a complex political situation and is known for its historical significance and religious sites.",
-    code: "PSE",
+    code: "PSX",
     flag: "🇵🇸",
     level: Level.Hard,
   },
@@ -2616,9 +2585,9 @@ const COUNTRIES: Record<string, Country> = {
   },
 };
 
-// https://en.wikipedia.org/wiki/Microstate
-// San Marino, Vatican City, Monaco, Andorra, Liechtenstein, Malta, Bahrain, Singapore
-export const MICRO_COUNTRIES = [
+export const CATALOGUE: readonly Country[] = Object.values(COUNTRIES);
+
+export const MICRO_COUNTRIES: readonly string[] = [
   "SMR",
   "VAT",
   "MCO",
@@ -2629,12 +2598,25 @@ export const MICRO_COUNTRIES = [
   "SGP",
 ];
 
-export const getCountries = (level: Level): Country[] => {
-  const countriesByLevel = Object.values(COUNTRIES).filter(
+export const isMicroCountry = (code: string) => MICRO_COUNTRIES.includes(code);
+
+type RandomSource = () => number;
+
+const shuffle = <T>(items: readonly T[], random: RandomSource): T[] =>
+  items
+    .map((item) => ({ item, sortKey: random() }))
+    .toSorted((left, right) => left.sortKey - right.sortKey)
+    .map(({ item }) => item);
+
+export const sampleCountries = (
+  level: Level,
+  random: RandomSource,
+): Country[] => {
+  const countriesOfLevel = CATALOGUE.filter(
     (country) => country.level === level,
   );
-  return sampleSize(
-    countriesByLevel,
-    Math.min(getLevelRules(level).sampleSize, countriesByLevel.length),
+  return shuffle(countriesOfLevel, random).slice(
+    0,
+    getLevelRules(level).sampleSize,
   );
 };

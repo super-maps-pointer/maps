@@ -5,7 +5,7 @@ import { toaster } from "@/components/ui/toaster";
 import WorldMap from "@/components/world-map/world-map";
 import useDeviceSize from "@/hooks/useDeviceSize";
 import { useTranslation } from "@/i18n/client";
-import { type Country, getCountries } from "@/utils/countries";
+import { type Country, sampleCountries } from "@/utils/countries";
 import { colorVar } from "@/utils/css-var";
 import type { GeoProjection } from "@/utils/geo-projections";
 import { type Level, getLevelRules } from "@/utils/rules";
@@ -21,7 +21,9 @@ const TOAST_DURATION = 2000;
 
 export default function Game({ level, onNextLevel, onFailLevel }: GameProps) {
   const { t } = useTranslation();
-  const [countries] = useState<Country[]>(() => getCountries(level));
+  const [countries] = useState<Country[]>(() =>
+    sampleCountries(level, Math.random),
+  );
   const [currentCountryIndex, setCurrentCountryIndex] = useState(0);
   const [attempts, setAttempts] = useState(0);
   const [guessedCountries, setGuessedCountries] = useState<Country[]>([]);
