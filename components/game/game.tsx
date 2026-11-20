@@ -7,23 +7,18 @@ import useDeviceSize from "@/hooks/useDeviceSize";
 import { useTranslation } from "@/i18n/client";
 import { colorVar } from "@/utils/css-var";
 import type { GeoProjection } from "@/utils/geo-projections";
-import type { Level } from "@/utils/rules";
-import { type GuessOutcome, type RunAction, createRun } from "@/utils/run";
+import type { GuessOutcome, PlayingRunState, RunAction } from "@/utils/run";
 import { SOUNDS } from "@/utils/sounds";
 
 interface GameProps {
-  level: Level;
-  onNextLevel: () => void;
-  onFailLevel: () => void;
+  run: PlayingRunState;
+  dispatch: (action: RunAction) => GuessOutcome | undefined;
 }
 
 const TOAST_DURATION = 2000;
 
-const run = createRun(Math.random);
-
-export default function Game({ level, onNextLevel, onFailLevel }: GameProps) {
+export default function Game({ run, dispatch }: GameProps) {
   const { t } = useTranslation();
-  const [runState, setRunState] = useState(() => run.start(level));
   const [width, height] = useDeviceSize();
   const geoProjection: GeoProjection = "geoMercator";
   const [isSoundEnabled, setIsSoundEnabled] = useState(true);
@@ -63,37 +58,22 @@ export default function Game({ level, onNextLevel, onFailLevel }: GameProps) {
     [playBadSound, playGoodSound, t],
   );
 
-  const dispatch = useCallback(
-    (action: RunAction) => {
-      const { state, outcome } = run.dispatch(runState, action);
-      setRunState(state);
-      if (outcome !== undefined) announce(outcome);
-    },
-    [announce, runState],
-  );
-
   const handleCountryClick = useCallback(
     (name: string, code: string) => {
-      dispatch({ type: "guess", code, name });
+      const outcome = dispatch({ type: "guess", code, name });
+      if (outcome !== undefined) announce(outcome);
     },
-    [dispatch],
+    [announce, dispatch],
   );
 
   const handleSkipClick = useCallback(() => {
     dispatch({ type: "skip" });
   }, [dispatch]);
 
-  const { status } = runState.levelRun;
-
-  useEffect(() => {
-    if (status === "won") onNextLevel();
-    else if (status === "lost") onFailLevel();
-  }, [status, onNextLevel, onFailLevel]);
-
   return (
     <div className="relative" style={{ backgroundColor: colorVar("game.bg") }}>
       <UpperBar
-        run={runState}
+        run={run}
         geoProjection={geoProjection}
         onSoundToggle={() => {
           setIsSoundEnabled((enabled) => !enabled);
@@ -103,7 +83,7 @@ export default function Game({ level, onNextLevel, onFailLevel }: GameProps) {
       />
       <WorldMap
         onCountryClick={handleCountryClick}
-        foundCountries={runState.levelRun.foundCountries}
+        foundCountries={run.levelRun.foundCountries}
         width={width}
         height={height}
         geoProjection={geoProjection}

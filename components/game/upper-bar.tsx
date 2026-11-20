@@ -8,10 +8,10 @@ import { useTranslation } from "@/i18n/client";
 import { colorVar } from "@/utils/css-var";
 import { type GeoProjection, getProjectionName } from "@/utils/geo-projections";
 import { getLevelRules } from "@/utils/rules";
-import type { RunState } from "@/utils/run";
+import type { PlayingRunState } from "@/utils/run";
 
 interface UpperBarProps {
-  run: RunState;
+  run: PlayingRunState;
   geoProjection: GeoProjection;
   isSoundEnabled: boolean;
   onSoundToggle: () => void;
