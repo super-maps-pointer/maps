@@ -30,7 +30,7 @@ const DEFAULT_POSITION: Position = { coordinates: [0, 10], zoom: 1 };
 
 interface WorldMapProps {
   onCountryClick: (name: string, code: string) => void;
-  guessedCountries: Country[];
+  foundCountries: readonly Country[];
   width: number;
   height: number;
   geoProjection: GeoProjection;
@@ -38,7 +38,7 @@ interface WorldMapProps {
 
 export default function WorldMap({
   onCountryClick,
-  guessedCountries,
+  foundCountries,
   width,
   height,
   geoProjection,
@@ -53,8 +53,8 @@ export default function WorldMap({
     [onCountryClick],
   );
 
-  const isGuessed = (countryCode: string) =>
-    guessedCountries.some((country) => country.code === countryCode);
+  const isFound = (countryCode: string) =>
+    foundCountries.some((country) => country.code === countryCode);
 
   const handleZoomIn = () => {
     if (position.zoom >= MAX_ZOOM) return;
@@ -120,7 +120,7 @@ export default function WorldMap({
                   key={geography.rsmKey}
                   geography={geography}
                   className="country"
-                  data-guessed={isGuessed(geography.properties.ADM0_A3)}
+                  data-guessed={isFound(geography.properties.ADM0_A3)}
                   onClick={() => {
                     handleGeographyClick(geography);
                   }}
@@ -138,7 +138,7 @@ export default function WorldMap({
                 .map((geography) => (
                   <GeoCircle
                     key={`circle-${geography.rsmKey}`}
-                    isCountryGuessed={isGuessed(geography.properties.ADM0_A3)}
+                    isCountryGuessed={isFound(geography.properties.ADM0_A3)}
                     onClick={handleGeographyClick}
                     geography={geography}
                   />

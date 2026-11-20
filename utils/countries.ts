@@ -2600,7 +2600,7 @@ export const MICRO_COUNTRIES: readonly string[] = [
 
 export const isMicroCountry = (code: string) => MICRO_COUNTRIES.includes(code);
 
-type RandomSource = () => number;
+export type RandomSource = () => number;
 
 const shuffle = <T>(items: readonly T[], random: RandomSource): T[] =>
   items
