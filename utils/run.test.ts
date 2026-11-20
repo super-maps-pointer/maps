@@ -70,7 +70,7 @@ describe("the screen flow", () => {
   it("shows the next-level screen for the next Level after a won Level run, and play starts its Level run", () => {
     const won = winLevelRun(startEasy());
 
-    expect(won).toEqual({ screen: "levelWon", level: Level.Normal });
+    expect(won).toMatchObject({ screen: "levelWon", level: Level.Normal });
 
     const next = play(won);
     expect(next.screen).toBe("playing");
@@ -93,7 +93,7 @@ describe("the screen flow", () => {
       Level.Hard,
       Level.Extreme,
     ]);
-    expect(state).toEqual({ screen: "finished", level: Level.Extreme });
+    expect(state).toMatchObject({ screen: "finished", level: Level.Extreme });
   });
 
   it("shows the retry screen after a lost Level run, and retry starts a new Level run on the same Level with a fresh sample", () => {
@@ -110,7 +110,7 @@ describe("the screen flow", () => {
           .state,
     );
 
-    expect(lost).toEqual({ screen: "retry", level: Level.Normal });
+    expect(lost).toMatchObject({ screen: "retry", level: Level.Normal });
 
     const retried = retryRun.dispatch(lost, { type: "retry" }).state;
     expect(retried.screen).toBe("playing");
@@ -243,5 +243,73 @@ describe("a wrong guess", () => {
     expect(outcome).toEqual({ kind: "wrong", clickedName: found.name });
     expect(levelRunOf(next).tries).toBe(2);
     expect(levelRunOf(next).foundCountries).toEqual([found]);
+  });
+});
+
+const seeds = Array.from({ length: 30 }, (_, index) => index + 1);
+
+const projectionsPerLevel = (seed: number) => {
+  const seededRun = createRun(seededRandom(seed));
+  const projections: string[] = [];
+  let state = seededRun.start();
+  while (state.screen !== "finished") {
+    state = seededRun.dispatch(state, { type: "play" }).state;
+    projections.push(state.projection);
+    state = winLevelRun(state, seededRun);
+  }
+  return projections;
+};
+
+describe("the Projection", () => {
+  it("is Mercator on Easy", () => {
+    expect(run.start().projection).toBe("geoMercator");
+    expect(startEasy().projection).toBe("geoMercator");
+  });
+
+  it("differs from the previous Level's on every Level from Normal on", () => {
+    for (const seed of seeds) {
+      const projections = projectionsPerLevel(seed);
+      projections.slice(1).forEach((projection, index) => {
+        expect(projection).not.toBe(projections[index]);
+      });
+    }
+  });
+
+  it("is never Mercator on Normal but can come back later", () => {
+    const runs = seeds.map(projectionsPerLevel);
+
+    expect(runs.map(([, normal]) => normal)).not.toContain("geoMercator");
+    expect(runs.flatMap((levels) => levels.slice(2))).toContain("geoMercator");
+  });
+
+  it("is drawn from the injected random source", () => {
+    const draws = new Set(seeds.map((seed) => projectionsPerLevel(seed)[1]));
+
+    expect(draws).toEqual(new Set(["geoEqualEarth", "geoTransverseMercator"]));
+  });
+
+  it("is kept by a retry", () => {
+    for (const seed of seeds) {
+      const seededRun = createRun(seededRandom(seed));
+      const normal = seededRun.dispatch(
+        winLevelRun(playEasy(seededRun), seededRun),
+        { type: "play" },
+      ).state;
+      const lost = repeat(
+        normal,
+        25,
+        (s) =>
+          seededRun.dispatch(s, {
+            type: "guess",
+            code: "XXX",
+            name: "Atlantis",
+          }).state,
+      );
+
+      const retried = seededRun.dispatch(lost, { type: "retry" }).state;
+
+      expect(lost.projection).toBe(normal.projection);
+      expect(retried.projection).toBe(normal.projection);
+    }
   });
 });

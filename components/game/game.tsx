@@ -6,7 +6,6 @@ import WorldMap from "@/components/world-map/world-map";
 import useDeviceSize from "@/hooks/useDeviceSize";
 import { useTranslation } from "@/i18n/client";
 import { colorVar } from "@/utils/css-var";
-import type { GeoProjection } from "@/utils/geo-projections";
 import type { GuessOutcome, PlayingRunState, RunAction } from "@/utils/run";
 import { SOUNDS } from "@/utils/sounds";
 
@@ -20,7 +19,6 @@ const TOAST_DURATION = 2000;
 export default function Game({ run, dispatch }: GameProps) {
   const { t } = useTranslation();
   const [width, height] = useDeviceSize();
-  const geoProjection: GeoProjection = "geoMercator";
   const [isSoundEnabled, setIsSoundEnabled] = useState(true);
   const [playGoodSound] = useSound(SOUNDS.good, {
     soundEnabled: isSoundEnabled,
@@ -74,7 +72,6 @@ export default function Game({ run, dispatch }: GameProps) {
     <div className="relative" style={{ backgroundColor: colorVar("game.bg") }}>
       <UpperBar
         run={run}
-        geoProjection={geoProjection}
         onSoundToggle={() => {
           setIsSoundEnabled((enabled) => !enabled);
         }}
@@ -86,7 +83,7 @@ export default function Game({ run, dispatch }: GameProps) {
         foundCountries={run.levelRun.foundCountries}
         width={width}
         height={height}
-        geoProjection={geoProjection}
+        geoProjection={run.projection}
       />
     </div>
   );
