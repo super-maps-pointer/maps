@@ -25,6 +25,22 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 A pre-commit hook (husky + lint-staged) formats and lints staged files. CI runs every check above on each pull request.
 
+## Design agent skill
+
+[Impeccable](https://github.com/pbakaus/impeccable) is not committed. Install it locally for your coding agent:
+
+```bash
+npx impeccable install --providers=codex --scope=project
+```
+
+It lands in `.agents/skills/impeccable`, read by Codex, Cursor, Copilot, Gemini, OpenCode and Pi. For Claude Code, link it:
+
+```bash
+mkdir -p .claude/skills && ln -s ../../.agents/skills/impeccable .claude/skills/impeccable
+```
+
+The product and design context it uses is committed: `PRODUCT.md`, `DESIGN.md` and `.impeccable/`.
+
 ## Vercel
 
 Here is a quick access to the [Vercel project](https://vercel.com/super-maps-pointer/maps)

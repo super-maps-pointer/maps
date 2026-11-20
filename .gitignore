@@ -39,3 +39,7 @@ next-env.d.ts
 
 # local Claude Code preview config
 .claude/launch.json
+
+# Impeccable skill (install with: npx impeccable install --providers=codex --scope=project)
+.agents/skills/impeccable
+.claude/skills/impeccable

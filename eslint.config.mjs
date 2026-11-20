@@ -9,7 +9,7 @@ import { defineConfig, globalIgnores } from "eslint/config";
 import tseslint from "typescript-eslint";
 
 export default defineConfig(
-  globalIgnores([".next/**", "node_modules/**", "next-env.d.ts"]),
+  globalIgnores([".next/**", "node_modules/**", "next-env.d.ts", ".agents/**"]),
 
   eslint.configs.recommended,
   tseslint.configs.strictTypeChecked,
