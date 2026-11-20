@@ -1,23 +1,24 @@
 import { type Country, type RandomSource, sampleCountries } from "./countries";
-import { type Level, getLevelRules } from "./rules";
-
-type LevelRunStatus = "playing" | "won" | "lost";
+import { Level, getLevelRules } from "./rules";
 
 interface LevelRunState {
   sample: readonly Country[];
   targetCountry: Country | undefined;
   tries: number;
   foundCountries: readonly Country[];
-  status: LevelRunStatus;
 }
 
-export interface RunState {
-  level: Level;
-  levelRun: LevelRunState;
-}
+export type RunState =
+  | { screen: "introduction" | "levelWon" | "retry" | "finished"; level: Level }
+  | { screen: "playing"; level: Level; levelRun: LevelRunState };
+
+export type PlayingRunState = Extract<RunState, { screen: "playing" }>;
 
 export type RunAction =
-  { type: "guess"; code: string; name: string } | { type: "skip" };
+  | { type: "play" }
+  | { type: "retry" }
+  | { type: "guess"; code: string; name: string }
+  | { type: "skip" };
 
 export type GuessOutcome =
   { kind: "correct" } | { kind: "wrong"; clickedName: string };
@@ -43,18 +44,7 @@ const nextTargetCountry = ({
   return targetCountry;
 };
 
-const statusOf = (
-  level: Level,
-  { tries, foundCountries }: Pick<LevelRunState, "tries" | "foundCountries">,
-): LevelRunStatus => {
-  const rules = getLevelRules(level);
-  if (foundCountries.length >= rules.goal) return "won";
-  if (tries >= rules.tries) return "lost";
-  return "playing";
-};
-
 const guess = (
-  level: Level,
   levelRun: LevelRunState,
   code: string,
   name: string,
@@ -62,13 +52,8 @@ const guess = (
   const tries = levelRun.tries + 1;
   const { targetCountry } = levelRun;
   if (targetCountry?.code !== code) {
-    const { foundCountries } = levelRun;
     return {
-      levelRun: {
-        ...levelRun,
-        tries,
-        status: statusOf(level, { tries, foundCountries }),
-      },
+      levelRun: { ...levelRun, tries },
       outcome: { kind: "wrong", clickedName: name },
     };
   }
@@ -79,7 +64,6 @@ const guess = (
       tries,
       foundCountries,
       targetCountry: nextTargetCountry({ ...levelRun, foundCountries }),
-      status: statusOf(level, { tries, foundCountries }),
     },
     outcome: { kind: "correct" },
   };
@@ -90,30 +74,67 @@ const skip = (levelRun: LevelRunState): LevelRunState => ({
   targetCountry: nextTargetCountry(levelRun),
 });
 
+const startLevelRun = (level: Level, random: RandomSource): PlayingRunState => {
+  const sample = sampleCountries(level, random);
+  return {
+    screen: "playing",
+    level,
+    levelRun: {
+      sample,
+      targetCountry: sample[0],
+      tries: 0,
+      foundCountries: [],
+    },
+  };
+};
+
+const reachLevel = (
+  level: Level,
+  screen: "introduction" | "levelWon",
+): RunState => ({ screen, level });
+
+const reachNextLevel = (level: Level): RunState => {
+  const { nextLevel } = getLevelRules(level);
+  return nextLevel === undefined
+    ? { screen: "finished", level }
+    : reachLevel(nextLevel, "levelWon");
+};
+
+const endLevelRun = (state: PlayingRunState): RunState => {
+  const { goal, tries } = getLevelRules(state.level);
+  const { levelRun } = state;
+  if (levelRun.foundCountries.length >= goal) {
+    return reachNextLevel(state.level);
+  }
+  if (levelRun.tries >= tries) return { screen: "retry", level: state.level };
+  return state;
+};
+
+const withoutOutcome = (state: RunState): RunTransition => ({
+  state,
+  outcome: undefined,
+});
+
 export const createRun = (random: RandomSource) => ({
-  start: (level: Level): RunState => {
-    const sample = sampleCountries(level, random);
-    return {
-      level,
-      levelRun: {
-        sample,
-        targetCountry: sample[0],
-        tries: 0,
-        foundCountries: [],
-        status: "playing",
-      },
-    };
-  },
+  start: (): RunState => reachLevel(Level.Easy, "introduction"),
   dispatch: (state: RunState, action: RunAction): RunTransition => {
-    if (action.type === "skip") {
-      return {
-        state: { ...state, levelRun: skip(state.levelRun) },
-        outcome: undefined,
-      };
+    if (action.type === "play") {
+      return state.screen === "introduction" || state.screen === "levelWon"
+        ? withoutOutcome(startLevelRun(state.level, random))
+        : withoutOutcome(state);
     }
-    const result = guess(state.level, state.levelRun, action.code, action.name);
+    if (action.type === "retry") {
+      return state.screen === "retry"
+        ? withoutOutcome(startLevelRun(state.level, random))
+        : withoutOutcome(state);
+    }
+    if (state.screen !== "playing") return withoutOutcome(state);
+    if (action.type === "skip") {
+      return withoutOutcome({ ...state, levelRun: skip(state.levelRun) });
+    }
+    const result = guess(state.levelRun, action.code, action.name);
     return {
-      state: { ...state, levelRun: result.levelRun },
+      state: endLevelRun({ ...state, levelRun: result.levelRun }),
       outcome: result.outcome,
     };
   },
