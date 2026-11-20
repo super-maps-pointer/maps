@@ -6,7 +6,7 @@ import EndGameScreen from "@/components/menu/end-game-screen";
 import IntroductionScreen from "@/components/menu/introduction-screen";
 import NextLevelScreen from "@/components/menu/next-level-screen";
 import RetryLevelScreen from "@/components/menu/retry-level-screen";
-import { Level, getNextLevel } from "@/utils/rules";
+import { Level, getLevelRules } from "@/utils/rules";
 
 type ActiveState =
   "introduction" | "nextLevel" | "retryLevel" | "endGame" | "game";
@@ -20,12 +20,13 @@ export default function Home() {
   }, []);
 
   const handleNextLevel = useCallback(() => {
-    if (level === Level.Extreme) {
+    const { nextLevel } = getLevelRules(level);
+    if (nextLevel === undefined) {
       setActiveState("endGame");
       return;
     }
     setActiveState("nextLevel");
-    setLevel(getNextLevel(level));
+    setLevel(nextLevel);
   }, [level]);
 
   const handleFailLevel = useCallback(() => {

@@ -5,7 +5,7 @@ import { useLevelTexts } from "@/hooks/useLevelTexts";
 import { useTranslation } from "@/i18n/client";
 import { colorVar } from "@/utils/css-var";
 import { IMAGES } from "@/utils/images";
-import { LEVEL_ORDER, introducesNewProjection } from "@/utils/rules";
+import { LEVEL_ORDER, getLevelRules } from "@/utils/rules";
 
 interface IntroductionScreenProps {
   onPlay: () => void;
@@ -76,7 +76,7 @@ function HowToPlay() {
                 {levelTexts.name(level)}
               </Heading>
               <Text>{levelTexts.goal(level)}</Text>
-              {introducesNewProjection(level) && (
+              {getLevelRules(level).introducesNewProjection && (
                 <Text className="mt-1 italic">{levelTexts.newProjection}</Text>
               )}
             </li>

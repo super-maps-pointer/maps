@@ -2,11 +2,7 @@ import { Button, Text } from "@chakra-ui/react";
 import Confetti from "@/components/game/confetti";
 import { useLevelTexts } from "@/hooks/useLevelTexts";
 import { useTranslation } from "@/i18n/client";
-import {
-  type Level,
-  getLevelNumber,
-  introducesNewProjection,
-} from "@/utils/rules";
+import { type Level, getLevelRules } from "@/utils/rules";
 
 interface NextLevelScreenProps {
   level: Level;
@@ -19,18 +15,17 @@ export default function NextLevelScreen({
 }: NextLevelScreenProps) {
   const { t } = useTranslation();
   const levelTexts = useLevelTexts();
+  const { number, introducesNewProjection } = getLevelRules(level);
 
   return (
     <>
       <Confetti />
       <div className="flex h-screen flex-col items-center justify-center">
         <Text className="text-center">{t("next.congratulations")}</Text>
-        <Text className="mb-5">
-          {t("next.nextStep", { level: getLevelNumber(level) })}
-        </Text>
+        <Text className="mb-5">{t("next.nextStep", { level: number })}</Text>
         <Text className="mb-5 text-center">
           {levelTexts.goal(level)}
-          {introducesNewProjection(level) && (
+          {introducesNewProjection && (
             <>
               <br />
               {levelTexts.newProjection}

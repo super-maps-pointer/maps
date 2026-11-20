@@ -8,7 +8,7 @@ import { useTranslation } from "@/i18n/client";
 import { type Country, getCountries } from "@/utils/countries";
 import { colorVar } from "@/utils/css-var";
 import type { GeoProjection } from "@/utils/geo-projections";
-import { type Level, getLossCondition, getWinCondition } from "@/utils/rules";
+import { type Level, getLevelRules } from "@/utils/rules";
 import { SOUNDS } from "@/utils/sounds";
 
 interface GameProps {
@@ -97,11 +97,10 @@ export default function Game({ level, onNextLevel, onFailLevel }: GameProps) {
     setNextCountry(guessedCountries);
   }, [guessedCountries, setNextCountry]);
 
-  const winCondition = getWinCondition(level);
-  const losingCondition = getLossCondition(level);
+  const { goal, tries } = getLevelRules(level);
   const score = guessedCountries.length;
-  const isGameWon = score >= winCondition;
-  const isGameLost = attempts >= losingCondition;
+  const isGameWon = score >= goal;
+  const isGameLost = attempts >= tries;
 
   useEffect(() => {
     if (isGameWon) onNextLevel();
@@ -115,8 +114,6 @@ export default function Game({ level, onNextLevel, onFailLevel }: GameProps) {
         countryToGuess={countryToGuess}
         geoProjection={geoProjection}
         level={level}
-        losingCondition={losingCondition}
-        winCondition={winCondition}
         score={score}
         onSoundToggle={() => {
           setIsSoundEnabled((enabled) => !enabled);

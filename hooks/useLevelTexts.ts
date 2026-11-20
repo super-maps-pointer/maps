@@ -1,23 +1,18 @@
 import { useTranslation } from "@/i18n/client";
-import {
-  type Level,
-  getLevelEmoji,
-  getLevelNumber,
-  getLossCondition,
-  getWinCondition,
-} from "@/utils/rules";
+import { type Level, getLevelRules } from "@/utils/rules";
 
 export function useLevelTexts() {
   const { t } = useTranslation();
 
-  const name = (level: Level) =>
-    `${t("level.name", { number: getLevelNumber(level) })} ${getLevelEmoji(level)}`.trim();
+  const name = (level: Level) => {
+    const { number, emoji } = getLevelRules(level);
+    return `${t("level.name", { number })} ${emoji}`.trim();
+  };
 
-  const goal = (level: Level) =>
-    t("level.goal", {
-      goal: getWinCondition(level),
-      tries: getLossCondition(level),
-    });
+  const goal = (level: Level) => {
+    const rules = getLevelRules(level);
+    return t("level.goal", { goal: rules.goal, tries: rules.tries });
+  };
 
   return { name, goal, newProjection: t("level.newProjection") };
 }
