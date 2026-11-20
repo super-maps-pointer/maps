@@ -5,16 +5,13 @@ import Timer from "@/components/game/timer";
 import { ColorModeButton } from "@/components/ui/color-mode";
 import { useLevelTexts } from "@/hooks/useLevelTexts";
 import { useTranslation } from "@/i18n/client";
-import type { Country } from "@/utils/countries";
 import { colorVar } from "@/utils/css-var";
 import { type GeoProjection, getProjectionName } from "@/utils/geo-projections";
-import { type Level, getLevelRules } from "@/utils/rules";
+import { getLevelRules } from "@/utils/rules";
+import type { RunState } from "@/utils/run";
 
 interface UpperBarProps {
-  tries: number;
-  score: number;
-  countryToGuess: Country | undefined;
-  level: Level;
+  run: RunState;
   geoProjection: GeoProjection;
   isSoundEnabled: boolean;
   onSoundToggle: () => void;
@@ -22,18 +19,17 @@ interface UpperBarProps {
 }
 
 export default function UpperBar({
-  tries,
-  countryToGuess,
-  level,
+  run,
   geoProjection,
-  score,
   onSoundToggle,
   isSoundEnabled,
   onClickSkip,
 }: UpperBarProps) {
   const { t } = useTranslation();
   const levelTexts = useLevelTexts();
+  const { level, levelRun } = run;
   const { goal, tries: maxTries } = getLevelRules(level);
+  const { targetCountry } = levelRun;
 
   return (
     <Box
@@ -55,7 +51,7 @@ export default function UpperBar({
         </div>
         <div className="flex-3">
           <Heading as="h1" color="white" size="4xl" className="text-center">
-            {countryToGuess?.flag} {countryToGuess?.name.toUpperCase()}
+            {targetCountry?.flag} {targetCountry?.name.toUpperCase()}
           </Heading>
         </div>
         <div className="flex-1">
@@ -83,10 +79,10 @@ export default function UpperBar({
             {levelTexts.name(level)}
           </Text>
           <Text className="text-right" color="white" fontSize="lg">
-            {t("game.tries", { tries, max: maxTries })}
+            {t("game.tries", { tries: levelRun.tries, max: maxTries })}
           </Text>
           <div className="flex flex-1 items-center justify-end">
-            <Gauge score={score} winCondition={goal} />
+            <Gauge score={levelRun.foundCountries.length} winCondition={goal} />
           </div>
         </div>
       </div>
