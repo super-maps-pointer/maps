@@ -1,0 +1,236 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-20T23:55:00Z",
+  "title": "Design System: Super Maps Pointer",
+  "extensions": {
+    "colorMeta": {
+      "primary": {
+        "role": "primary",
+        "displayName": "Deep Lagoon Teal",
+        "tonalRamp": [
+          "#022C2D",
+          "#033C3D",
+          "#044647",
+          "#065758",
+          "#2B7071",
+          "#51898A",
+          "#83ABAC",
+          "#E1EBEB"
+        ]
+      },
+      "primary-night": { "role": "primary", "displayName": "Night Lagoon" },
+      "primary-deep": { "role": "primary", "displayName": "Lagoon Depths" },
+      "primary-ink": { "role": "primary", "displayName": "Lagoon Ink" },
+      "secondary": {
+        "role": "secondary",
+        "displayName": "Sunbaked Terracotta",
+        "tonalRamp": [
+          "#A23B33",
+          "#AF4C44",
+          "#B6564E",
+          "#C46960",
+          "#CD8078",
+          "#D69690",
+          "#E2B4B0",
+          "#F8EDEC"
+        ]
+      },
+      "secondary-deep": {
+        "role": "secondary",
+        "displayName": "Burnt Terracotta"
+      },
+      "sea-glass": {
+        "role": "tertiary",
+        "displayName": "Sea Glass",
+        "tonalRamp": [
+          "#7EB9BC",
+          "#8FC3C6",
+          "#98C9CC",
+          "#A2CFD1",
+          "#B6DADC",
+          "#C3E1E2",
+          "#D4EAEB",
+          "#F5FAFA"
+        ]
+      },
+      "sea-glass-deep": { "role": "tertiary", "displayName": "Deep Sea Glass" },
+      "shallow-water": {
+        "role": "tertiary",
+        "displayName": "Shallow Water",
+        "tonalRamp": [
+          "#52A1A3",
+          "#65AEB0",
+          "#6FB5B8",
+          "#82C3C5",
+          "#95CCCE",
+          "#A8D5D6",
+          "#C1E1E2",
+          "#F0F8F8"
+        ]
+      },
+      "shallow-water-deep": {
+        "role": "tertiary",
+        "displayName": "Deep Shallow Water"
+      },
+      "mint-paper": {
+        "role": "neutral",
+        "displayName": "Mint Paper",
+        "tonalRamp": [
+          "#CFE5E4",
+          "#D6E9E8",
+          "#DAECEB",
+          "#E2F0EF",
+          "#E6F2F1",
+          "#EBF5F4",
+          "#F1F8F7",
+          "#FCFDFD"
+        ]
+      },
+      "night-sea": { "role": "neutral", "displayName": "Night Sea" },
+      "night-ocean": { "role": "neutral", "displayName": "Night Ocean" },
+      "night-land": { "role": "neutral", "displayName": "Night Land" },
+      "night-track": { "role": "neutral", "displayName": "Night Track" },
+      "paper-white": { "role": "neutral", "displayName": "Paper White" },
+      "ocean-fog": { "role": "neutral", "displayName": "Ocean Fog" },
+      "border-ink": { "role": "neutral", "displayName": "Border Ink" },
+      "border-mist": { "role": "neutral", "displayName": "Border Mist" },
+      "graticule-grey": { "role": "neutral", "displayName": "Graticule Grey" },
+      "graticule-night": { "role": "neutral", "displayName": "Graticule Night" }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "The target country in the game bar; the introduction title on desktop."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section titles such as How to play."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Level names on level cards."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Game bar information, introduction and rules text."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Buttons, level status, counters."
+      }
+    },
+    "shadows": [
+      {
+        "name": "gauge-track",
+        "value": "0 1px 2px 0 rgb(0 0 0 / 0.05)",
+        "purpose": "The only shadow in the system, on the progress gauge track."
+      }
+    ],
+    "motion": [],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Terracotta pill for every primary action: Start, Skip, Next Level.",
+      "html": "<button class=\"ds-btn-primary\">Start Level 1</button>",
+      "css": ".ds-btn-primary { background: var(--chakra-colors-secondary-solid, #C46960); color: #fff; font-family: Raleway, sans-serif; font-size: 1rem; height: 40px; padding: 0 16px; border: none; border-radius: 9999px; cursor: pointer; transition: background 0.2s; } .ds-btn-primary:hover { background: #B6564E; } .ds-btn-primary:focus-visible { outline: 2px solid #C46960; outline-offset: 2px; }"
+    },
+    {
+      "name": "Icon Button",
+      "kind": "button",
+      "refersTo": "icon-button",
+      "description": "Round terracotta button for the sound toggle.",
+      "html": "<button class=\"ds-icon-btn\" aria-label=\"Mute sound\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z\"/><path d=\"M16 9a5 5 0 0 1 0 6\"/><path d=\"M19.364 18.364a9 9 0 0 0 0-12.728\"/></svg></button>",
+      "css": ".ds-icon-btn { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: #C46960; color: #fff; border: none; border-radius: 9999px; cursor: pointer; transition: background 0.2s; } .ds-icon-btn:hover { background: #B6564E; } .ds-icon-btn:focus-visible { outline: 2px solid #C46960; outline-offset: 2px; }"
+    },
+    {
+      "name": "Game Bar",
+      "kind": "nav",
+      "refersTo": "game-bar",
+      "description": "Flat teal bar pinned over the map with the target country in the center.",
+      "html": "<div class=\"ds-bar\"><div class=\"ds-bar-side\">Find the country on the map<br>Projection: Mercator</div><div class=\"ds-bar-target\">🇵🇪 PERU</div><div class=\"ds-bar-side ds-bar-right\">Level 1<br>Tries: 3 / 20</div></div>",
+      "css": ".ds-bar { display: flex; align-items: center; background: var(--chakra-colors-bar-bg, #065758); border-bottom: 1px solid #022C2D; color: #fff; padding: 8px 16px; font-family: Raleway, sans-serif; } .ds-bar-side { flex: 1; font-size: 1.125rem; } .ds-bar-right { text-align: right; } .ds-bar-target { flex: 3; text-align: center; font-size: 2.25rem; font-weight: 700; }"
+    },
+    {
+      "name": "Level Card",
+      "kind": "card",
+      "refersTo": "level-card",
+      "description": "Translucent card on terracotta describing a level in How to play.",
+      "html": "<div class=\"ds-level-wrap\"><div class=\"ds-level-card\"><h3>Level 2</h3><p>Find 10 countries in 25 tries.</p><p class=\"ds-level-note\">New challenge, the map changes projection!</p></div></div>",
+      "css": ".ds-level-wrap { background: #C46960; padding: 16px; } .ds-level-card { background: rgb(255 255 255 / 0.1); color: #fff; border-radius: 16px; padding: 20px; font-family: Raleway, sans-serif; } .ds-level-card h3 { margin: 0 0 4px; font-size: 1.125rem; font-weight: 700; } .ds-level-card p { margin: 0; } .ds-level-note { margin-top: 4px; font-style: italic; }"
+    },
+    {
+      "name": "Progress Gauge",
+      "kind": "custom",
+      "refersTo": "gauge-track",
+      "description": "Progress toward the level goal with a terracotta fill.",
+      "html": "<div class=\"ds-gauge-wrap\"><div class=\"ds-gauge\"><div class=\"ds-gauge-fill\" style=\"width:40%\"></div></div><span>4 / 10</span></div>",
+      "css": ".ds-gauge-wrap { display: flex; align-items: center; gap: 4px; background: #065758; color: #fff; padding: 8px; font-family: Raleway, sans-serif; font-size: 1.125rem; } .ds-gauge { width: 320px; height: 16px; background: #fff; border: 1px solid #000; border-radius: 8px; box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05); } .ds-gauge-fill { height: 100%; background: #C46960; border-radius: 8px; }"
+    },
+    {
+      "name": "Map Country",
+      "kind": "custom",
+      "description": "Country shapes: default, hover, and found.",
+      "html": "<svg class=\"ds-map\" viewBox=\"0 0 120 60\" width=\"240\" height=\"120\"><rect width=\"120\" height=\"60\" class=\"ds-ocean\"/><path class=\"ds-country\" d=\"M10 15 L40 10 L45 35 L20 45 Z\"/><path class=\"ds-country ds-found\" d=\"M50 12 L80 15 L75 40 L55 38 Z\"/><path class=\"ds-country\" d=\"M85 20 L110 18 L108 48 L88 45 Z\"/></svg>",
+      "css": ".ds-ocean { fill: #F2F2F2; } .ds-country { fill: #fff; stroke: #333; stroke-width: 0.5; cursor: pointer; } .ds-country:hover { fill: #A2CFD1; } .ds-country:active { fill: #8FC3C6; } .ds-found, .ds-found:hover { fill: #82C3C5; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Explorer's Atlas",
+    "overview": "The game reads like a well-travelled atlas: a deep lagoon teal for the instruments, sunbaked terracotta for anything you press, and pale mint and sea-glass for land and water. The map is the main subject, and everything around it (the game bar, the menus, the celebration screens) stays calm so the player's eye can go back to the map. Surfaces are flat colour fields with no shadows; depth comes from tone. Shapes are round and friendly, like pills, soft cards and layered waves, so the game feels welcoming without being childish. Playfulness comes from motion and sound (confetti, emojis, sound effects) rather than from decoration on the chrome. Light and dark modes are equally important. Dark mode is a night sea, not an inverted page: teal goes deeper, the land turns to slate and the ocean to dark blue-green.",
+    "keyCharacteristics": [
+      "The map dominates; chrome is a thin frame of flat colour.",
+      "Two voices: teal for structure, terracotta for action.",
+      "Round shapes: pill buttons, 16px cards, wave dividers.",
+      "Flat at rest; depth through tonal layering.",
+      "Every colour has a light and a dark value."
+    ],
+    "rules": [
+      {
+        "name": "The Terracotta Means Press Rule",
+        "body": "Terracotta is reserved for things the player acts on and for progress toward the goal. Structure never uses it.",
+        "section": "colors"
+      },
+      {
+        "name": "The Token-Only Rule",
+        "body": "Colours come from the semantic tokens in theme/system.ts, read through colorVar() or the Chakra CSS variables. Components never hard-code hex values, so both modes stay in sync.",
+        "section": "colors"
+      },
+      {
+        "name": "The Found Country Rule",
+        "body": "A found country is always marked with Shallow Water, which is also what hover and press resolve to on micro-countries, so the map reads as \"found\" at a glance.",
+        "section": "colors"
+      },
+      {
+        "name": "The Country Is the Headline Rule",
+        "body": "During a run, the target country is the only display-size text on screen.",
+        "section": "typography"
+      },
+      {
+        "name": "The Flat Atlas Rule",
+        "body": "Surfaces have no shadow at rest. To separate a layer, change its tone, not its elevation.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do read every colour from a semantic token with a light and a dark value (theme/system.ts, colorVar()).",
+      "Do use Sunbaked Terracotta pills for every primary action.",
+      "Do keep the game chrome flat and let the map carry the screen.",
+      "Do keep touch targets large enough for a finger, including micro-countries.",
+      "Do design both light and dark modes together."
+    ],
+    "donts": [
+      "Don't hard-code hex values in components.",
+      "Don't add shadows to separate surfaces; change the tone.",
+      "Don't use terracotta for structural chrome or decoration.",
+      "Don't add a second typeface.",
+      "Don't put display-size text on the game screen other than the target country."
+    ]
+  }
+}

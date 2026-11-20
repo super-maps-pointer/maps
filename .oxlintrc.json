@@ -24,7 +24,8 @@
     ".next/**",
     "node_modules/**",
     "next-env.d.ts",
-    ".claude/**"
+    ".claude/**",
+    ".agents/**"
   ],
   "rules": {
     "react/react-in-jsx-scope": "off",
