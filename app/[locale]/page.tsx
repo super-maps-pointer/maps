@@ -1,50 +1,51 @@
 "use client";
 
-import { type ReactNode, useCallback, useState } from "react";
+import { useCallback, useState } from "react";
 import Game from "@/components/game/game";
 import EndGameScreen from "@/components/menu/end-game-screen";
 import IntroductionScreen from "@/components/menu/introduction-screen";
 import NextLevelScreen from "@/components/menu/next-level-screen";
 import RetryLevelScreen from "@/components/menu/retry-level-screen";
-import { Level, getNextLevel } from "@/utils/rules";
+import { type RunAction, createRun } from "@/utils/run";
 
-type ActiveState =
-  "introduction" | "nextLevel" | "retryLevel" | "endGame" | "game";
+const run = createRun(Math.random);
 
 export default function Home() {
-  const [activeState, setActiveState] = useState<ActiveState>("introduction");
-  const [level, setLevel] = useState<Level>(Level.Easy);
+  const [runState, setRunState] = useState(run.start);
+
+  const dispatch = useCallback(
+    (action: RunAction) => {
+      const { state, outcome } = run.dispatch(runState, action);
+      setRunState(state);
+      return outcome;
+    },
+    [runState],
+  );
 
   const handlePlay = useCallback(() => {
-    setActiveState("game");
-  }, []);
+    dispatch({ type: "play" });
+  }, [dispatch]);
 
-  const handleNextLevel = useCallback(() => {
-    if (level === Level.Extreme) {
-      setActiveState("endGame");
-      return;
-    }
-    setActiveState("nextLevel");
-    setLevel(getNextLevel(level));
-  }, [level]);
+  const handleRetry = useCallback(() => {
+    dispatch({ type: "retry" });
+  }, [dispatch]);
 
-  const handleFailLevel = useCallback(() => {
-    setActiveState("retryLevel");
-  }, []);
-
-  const screens: Record<ActiveState, ReactNode> = {
-    introduction: <IntroductionScreen onPlay={handlePlay} />,
-    nextLevel: <NextLevelScreen level={level} onPlay={handlePlay} />,
-    retryLevel: <RetryLevelScreen onPlay={handlePlay} />,
-    endGame: <EndGameScreen />,
-    game: (
-      <Game
-        level={level}
-        onNextLevel={handleNextLevel}
-        onFailLevel={handleFailLevel}
-      />
-    ),
-  };
-
-  return screens[activeState];
+  switch (runState.screen) {
+    case "introduction":
+      return <IntroductionScreen onPlay={handlePlay} />;
+    case "levelWon":
+      return (
+        <NextLevelScreen
+          level={runState.level}
+          projection={runState.projection}
+          onPlay={handlePlay}
+        />
+      );
+    case "retry":
+      return <RetryLevelScreen onPlay={handleRetry} />;
+    case "finished":
+      return <EndGameScreen />;
+    case "playing":
+      return <Game run={runState} dispatch={dispatch} />;
+  }
 }

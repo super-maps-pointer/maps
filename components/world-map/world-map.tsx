@@ -10,7 +10,7 @@ import {
 import type { ZoomPanCallbackProps } from "react-simple-maps";
 import GeoCircle from "@/components/world-map/geo-circle";
 import Zoom from "@/components/world-map/zoom";
-import { type Country, MICRO_COUNTRIES } from "@/utils/countries";
+import { type Country, isMicroCountry } from "@/utils/countries";
 import { colorVar } from "@/utils/css-var";
 import type { GeoProjection } from "@/utils/geo-projections";
 import { type CountryGeography, isCountryGeography } from "@/utils/geography";
@@ -30,7 +30,7 @@ const DEFAULT_POSITION: Position = { coordinates: [0, 10], zoom: 1 };
 
 interface WorldMapProps {
   onCountryClick: (name: string, code: string) => void;
-  guessedCountries: Country[];
+  foundCountries: readonly Country[];
   width: number;
   height: number;
   geoProjection: GeoProjection;
@@ -38,7 +38,7 @@ interface WorldMapProps {
 
 export default function WorldMap({
   onCountryClick,
-  guessedCountries,
+  foundCountries,
   width,
   height,
   geoProjection,
@@ -53,8 +53,8 @@ export default function WorldMap({
     [onCountryClick],
   );
 
-  const isGuessed = (countryCode: string) =>
-    guessedCountries.some((country) => country.code === countryCode);
+  const isFound = (countryCode: string) =>
+    foundCountries.some((country) => country.code === countryCode);
 
   const handleZoomIn = () => {
     if (position.zoom >= MAX_ZOOM) return;
@@ -120,7 +120,7 @@ export default function WorldMap({
                   key={geography.rsmKey}
                   geography={geography}
                   className="country"
-                  data-guessed={isGuessed(geography.properties.ADM0_A3)}
+                  data-guessed={isFound(geography.properties.ADM0_A3)}
                   onClick={() => {
                     handleGeographyClick(geography);
                   }}
@@ -133,12 +133,12 @@ export default function WorldMap({
               geographies
                 .filter(isCountryGeography)
                 .filter((geography) =>
-                  MICRO_COUNTRIES.includes(geography.properties.ADM0_A3),
+                  isMicroCountry(geography.properties.ADM0_A3),
                 )
                 .map((geography) => (
                   <GeoCircle
                     key={`circle-${geography.rsmKey}`}
-                    isCountryGuessed={isGuessed(geography.properties.ADM0_A3)}
+                    isCountryGuessed={isFound(geography.properties.ADM0_A3)}
                     onClick={handleGeographyClick}
                     geography={geography}
                   />

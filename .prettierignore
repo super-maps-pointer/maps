@@ -4,3 +4,4 @@ package-lock.json
 next-env.d.ts
 public/*.json
 CHANGELOG.md
+coverage

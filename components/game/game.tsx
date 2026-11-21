@@ -5,28 +5,20 @@ import { toaster } from "@/components/ui/toaster";
 import WorldMap from "@/components/world-map/world-map";
 import useDeviceSize from "@/hooks/useDeviceSize";
 import { useTranslation } from "@/i18n/client";
-import { type Country, getCountries } from "@/utils/countries";
 import { colorVar } from "@/utils/css-var";
-import type { GeoProjection } from "@/utils/geo-projections";
-import { type Level, getLossCondition, getWinCondition } from "@/utils/rules";
+import type { GuessOutcome, PlayingRunState, RunAction } from "@/utils/run";
 import { SOUNDS } from "@/utils/sounds";
 
 interface GameProps {
-  level: Level;
-  onNextLevel: () => void;
-  onFailLevel: () => void;
+  run: PlayingRunState;
+  dispatch: (action: RunAction) => GuessOutcome | undefined;
 }
 
 const TOAST_DURATION = 2000;
 
-export default function Game({ level, onNextLevel, onFailLevel }: GameProps) {
+export default function Game({ run, dispatch }: GameProps) {
   const { t } = useTranslation();
-  const [countries] = useState<Country[]>(() => getCountries(level));
-  const [currentCountryIndex, setCurrentCountryIndex] = useState(0);
-  const [attempts, setAttempts] = useState(0);
-  const [guessedCountries, setGuessedCountries] = useState<Country[]>([]);
   const [width, height] = useDeviceSize();
-  const geoProjection: GeoProjection = "geoMercator";
   const [isSoundEnabled, setIsSoundEnabled] = useState(true);
   const [playGoodSound] = useSound(SOUNDS.good, {
     soundEnabled: isSoundEnabled,
@@ -40,28 +32,9 @@ export default function Game({ level, onNextLevel, onFailLevel }: GameProps) {
     playStartSound();
   }, [playStartSound]);
 
-  const countryToGuess = countries[currentCountryIndex];
-
-  const setNextCountry = useCallback(
-    (guessed: Country[]) => {
-      setCurrentCountryIndex((prevIndex) => {
-        for (let step = 1; step <= countries.length; step++) {
-          const index = (prevIndex + step) % countries.length;
-          const country = countries[index];
-          if (country !== undefined && !guessed.includes(country)) return index;
-        }
-        return prevIndex;
-      });
-    },
-    [countries],
-  );
-
-  const handleCountryClick = useCallback(
-    (name: string, code: string) => {
-      if (countryToGuess === undefined) return;
-      setAttempts((prevAttempts) => prevAttempts + 1);
-
-      if (code === countryToGuess.code) {
+  const announce = useCallback(
+    (outcome: GuessOutcome) => {
+      if (outcome.kind === "correct") {
         playGoodSound();
         toaster.create({
           title: t("game.good"),
@@ -69,55 +42,36 @@ export default function Game({ level, onNextLevel, onFailLevel }: GameProps) {
           duration: TOAST_DURATION,
           closable: true,
         });
-        const nextGuessed = [...guessedCountries, countryToGuess];
-        setGuessedCountries(nextGuessed);
-        setNextCountry(nextGuessed);
-      } else {
-        playBadSound();
-        toaster.create({
-          title: t("game.wrong"),
-          type: "error",
-          description: t("game.youClicked", { name }),
-          duration: TOAST_DURATION,
-          closable: true,
-        });
+        return;
       }
+      playBadSound();
+      toaster.create({
+        title: t("game.wrong"),
+        type: "error",
+        description: t("game.youClicked", { name: outcome.clickedName }),
+        duration: TOAST_DURATION,
+        closable: true,
+      });
     },
-    [
-      countryToGuess,
-      guessedCountries,
-      playBadSound,
-      playGoodSound,
-      setNextCountry,
-      t,
-    ],
+    [playBadSound, playGoodSound, t],
+  );
+
+  const handleCountryClick = useCallback(
+    (name: string, code: string) => {
+      const outcome = dispatch({ type: "guess", code, name });
+      if (outcome !== undefined) announce(outcome);
+    },
+    [announce, dispatch],
   );
 
   const handleSkipClick = useCallback(() => {
-    setNextCountry(guessedCountries);
-  }, [guessedCountries, setNextCountry]);
-
-  const winCondition = getWinCondition(level);
-  const losingCondition = getLossCondition(level);
-  const score = guessedCountries.length;
-  const isGameWon = score >= winCondition;
-  const isGameLost = attempts >= losingCondition;
-
-  useEffect(() => {
-    if (isGameWon) onNextLevel();
-    else if (isGameLost) onFailLevel();
-  }, [isGameWon, isGameLost, onNextLevel, onFailLevel]);
+    dispatch({ type: "skip" });
+  }, [dispatch]);
 
   return (
     <div className="relative" style={{ backgroundColor: colorVar("game.bg") }}>
       <UpperBar
-        tries={attempts}
-        countryToGuess={countryToGuess}
-        geoProjection={geoProjection}
-        level={level}
-        losingCondition={losingCondition}
-        winCondition={winCondition}
-        score={score}
+        run={run}
         onSoundToggle={() => {
           setIsSoundEnabled((enabled) => !enabled);
         }}
@@ -126,10 +80,10 @@ export default function Game({ level, onNextLevel, onFailLevel }: GameProps) {
       />
       <WorldMap
         onCountryClick={handleCountryClick}
-        guessedCountries={guessedCountries}
+        foundCountries={run.levelRun.foundCountries}
         width={width}
         height={height}
-        geoProjection={geoProjection}
+        geoProjection={run.projection}
       />
     </div>
   );

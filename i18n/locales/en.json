@@ -12,7 +12,8 @@
     "congratulations": "Congratulations! You won!",
     "nextStep": "Next step: level {{level}}!",
     "areYouReady": "Are you ready?",
-    "nextLevel": "Next Level"
+    "nextLevel": "Next Level",
+    "newProjection": "New projection: {{name}}"
   },
   "retry": {
     "gameOver": "Game over! You failed.",

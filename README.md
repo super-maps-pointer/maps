@@ -14,16 +14,17 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## Scripts
 
-| Script              | What it does                                  |
-| ------------------- | --------------------------------------------- |
-| `npm run dev`       | Dev server (Turbopack)                        |
-| `npm run build`     | Production build                              |
-| `npm run lint`      | Oxlint, then ESLint (type-aware rules)        |
-| `npm run typecheck` | `tsc --noEmit`                                |
-| `npm run format`    | Format with Prettier (`format:check` in CI)   |
-| `npm run knip`      | Report unused files, exports and dependencies |
+| Script                  | What it does                                           |
+| ----------------------- | ------------------------------------------------------ |
+| `npm run dev`           | Dev server (Turbopack)                                 |
+| `npm run build`         | Production build                                       |
+| `npm run lint`          | Oxlint, then ESLint (type-aware rules)                 |
+| `npm run typecheck`     | `tsc --noEmit`                                         |
+| `npm run format`        | Format with Prettier (`format:check` in CI)            |
+| `npm run knip`          | Report unused files, exports and dependencies          |
+| `npm run test:coverage` | Run the tests with a v8 coverage report in `coverage/` |
 
-A pre-commit hook (husky + lint-staged) formats and lints staged files. CI runs every check above on each pull request.
+A pre-commit hook (husky + lint-staged) formats and lints staged files. CI runs every check above on each pull request; the coverage report is informative and has no threshold.
 
 ## Design agent skill
 
