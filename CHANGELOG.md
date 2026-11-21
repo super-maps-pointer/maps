@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.9.0](https://github.com/super-maps-pointer/maps/compare/v1.8.0...v1.9.0) (2026-11-21)
+
+
+### Features
+
+* test the game through a pure Run module and bring back the Projection change ([#58](https://github.com/super-maps-pointer/maps/issues/58)) ([914fbd1](https://github.com/super-maps-pointer/maps/commit/914fbd171087333082a2329e02758ec43c6d8c0a))
+
 ## [1.8.0](https://github.com/super-maps-pointer/maps/compare/v1.7.0...v1.8.0) (2026-11-20)
 
 
