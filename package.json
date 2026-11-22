@@ -18,6 +18,7 @@
   },
   "dependencies": {
     "@chakra-ui/react": "^3.38.0",
+    "@emotion/cache": "^11.14.0",
     "@emotion/react": "^11.14.0",
     "accept-language": "^3.0.20",
     "effect": "^4.1.4",

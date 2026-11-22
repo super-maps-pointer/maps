@@ -5,6 +5,7 @@ import type { ReactNode } from "react";
 import { CookiesProvider } from "react-cookie";
 import { I18nextProvider } from "react-i18next";
 import { ColorModeProvider } from "@/components/ui/color-mode";
+import { EmotionRegistry } from "@/components/ui/emotion-registry";
 import { Toaster } from "@/components/ui/toaster";
 import { useI18n } from "@/i18n/client";
 import type { Locale } from "@/i18n/settings";
@@ -19,12 +20,14 @@ export function Providers({ locale, children }: ProvidersProps) {
   return (
     <CookiesProvider>
       <TranslationProvider locale={locale}>
-        <ChakraProvider value={system}>
-          <ColorModeProvider>
-            {children}
-            <Toaster />
-          </ColorModeProvider>
-        </ChakraProvider>
+        <EmotionRegistry>
+          <ChakraProvider value={system}>
+            <ColorModeProvider>
+              {children}
+              <Toaster />
+            </ColorModeProvider>
+          </ChakraProvider>
+        </EmotionRegistry>
       </TranslationProvider>
     </CookiesProvider>
   );

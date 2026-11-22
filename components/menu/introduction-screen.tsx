@@ -1,4 +1,5 @@
-import { Button, Heading, Text } from "@chakra-ui/react";
+import { Button, Heading, Link, Text } from "@chakra-ui/react";
+import { ChevronDown } from "lucide-react";
 import Image from "next/image";
 import WaveDivider from "@/components/menu/wave-divider";
 import { useLevelTexts } from "@/hooks/useLevelTexts";
@@ -6,6 +7,8 @@ import { useTranslation } from "@/i18n/client";
 import { colorVar } from "@/utils/css-var";
 import { IMAGES } from "@/utils/images";
 import { LEVEL_ORDER, getLevelRules } from "@/utils/rules";
+
+const HOW_TO_PLAY_ID = "how-to-play";
 
 interface IntroductionScreenProps {
   onPlay: () => void;
@@ -45,6 +48,15 @@ export default function IntroductionScreen({
           >
             {t("introduction.start")}
           </Button>
+          <Link
+            href={`#${HOW_TO_PLAY_ID}`}
+            className="mt-12 flex flex-col items-center gap-1"
+            fontSize="sm"
+            textUnderlineOffset="4px"
+          >
+            {t("introduction.howToPlay.title")}
+            <ChevronDown aria-hidden className="size-5" />
+          </Link>
         </div>
         <WaveDivider />
       </section>
@@ -59,6 +71,7 @@ function HowToPlay() {
 
   return (
     <section
+      id={HOW_TO_PLAY_ID}
       className="px-4 py-16 text-white"
       style={{ backgroundColor: colorVar("splash.section") }}
     >

@@ -37,6 +37,17 @@ describe("IntroductionScreen", () => {
     expect(notices[0]?.closest("li")).toHaveTextContent("Level 2");
   });
 
+  it("points from the hero down to the How to play section", () => {
+    renderWithProviders(<IntroductionScreen onPlay={vi.fn()} />, "en");
+
+    const link = screen.getByRole("link", { name: "How to play" });
+    const target = link.getAttribute("href")?.slice(1) ?? "";
+
+    expect(document.getElementById(target)).toContainElement(
+      screen.getByRole("heading", { name: "How to play" }),
+    );
+  });
+
   it("starts the game from the hero button", () => {
     const onPlay = vi.fn();
     renderWithProviders(<IntroductionScreen onPlay={onPlay} />, "en");

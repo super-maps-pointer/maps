@@ -1,6 +1,6 @@
 "use client";
 
-import { IconButton } from "@chakra-ui/react";
+import { IconButton, type IconButtonProps } from "@chakra-ui/react";
 import { Moon, Sun } from "lucide-react";
 import { ThemeProvider, useTheme } from "next-themes";
 import type { ThemeProviderProps } from "next-themes";
@@ -27,11 +27,12 @@ function useColorMode() {
   return { colorMode, setColorMode: setTheme, toggleColorMode };
 }
 
-export function ColorModeButton() {
+export function ColorModeButton({ size }: Pick<IconButtonProps, "size">) {
   const { t } = useTranslation();
   const { toggleColorMode } = useColorMode();
   return (
     <IconButton
+      size={size}
       onClick={toggleColorMode}
       rounded="full"
       variant="solid"

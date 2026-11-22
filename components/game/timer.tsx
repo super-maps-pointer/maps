@@ -1,4 +1,3 @@
-import { Text } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 
 interface TimerProps {
@@ -27,9 +26,5 @@ export default function Timer({ maxTime }: TimerProps) {
     };
   }, [maxTime]);
 
-  return (
-    <Text className="text-left" color="white" fontSize="lg">
-      {formatTime(time)}
-    </Text>
-  );
+  return <time>{formatTime(time)}</time>;
 }
