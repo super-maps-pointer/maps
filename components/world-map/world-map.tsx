@@ -114,36 +114,41 @@ export default function WorldMap({
             strokeWidth={0.5}
           />
           <Geographies geography={WORLD_MAP_FILE}>
-            {({ geographies }) =>
-              geographies.filter(isCountryGeography).map((geography) => (
-                <Geography
-                  key={geography.rsmKey}
-                  geography={geography}
-                  className="country"
-                  data-guessed={isFound(geography.properties.ADM0_A3)}
-                  onClick={() => {
-                    handleGeographyClick(geography);
-                  }}
-                />
-              ))
-            }
-          </Geographies>
-          <Geographies geography={WORLD_MAP_FILE}>
-            {({ geographies }) =>
-              geographies
-                .filter(isCountryGeography)
-                .filter((geography) =>
-                  isMicroCountry(geography.properties.ADM0_A3),
-                )
-                .map((geography) => (
+            {({ geographies }) => {
+              const countries = geographies.filter(isCountryGeography);
+              const microCountries = countries.filter((geography) =>
+                isMicroCountry(geography.properties.ADM0_A3),
+              );
+              const microCountryLayer = (layer: "hitArea" | "dot") =>
+                microCountries.map((geography) => (
                   <GeoCircle
-                    key={`circle-${geography.rsmKey}`}
+                    key={`${layer}-${geography.rsmKey}`}
                     isCountryGuessed={isFound(geography.properties.ADM0_A3)}
                     onClick={handleGeographyClick}
                     geography={geography}
+                    layer={layer}
+                    zoom={position.zoom}
                   />
-                ))
-            }
+                ));
+
+              return (
+                <>
+                  {microCountryLayer("hitArea")}
+                  {countries.map((geography) => (
+                    <Geography
+                      key={geography.rsmKey}
+                      geography={geography}
+                      className="country"
+                      data-guessed={isFound(geography.properties.ADM0_A3)}
+                      onClick={() => {
+                        handleGeographyClick(geography);
+                      }}
+                    />
+                  ))}
+                  {microCountryLayer("dot")}
+                </>
+              );
+            }}
           </Geographies>
         </ZoomableGroup>
       </ComposableMap>
